@@ -1,0 +1,6 @@
+{
+  "name": "IGCSE Biology: Digestive System Explorer",
+  "description": "Interactive animated learning platform for Cambridge IGCSE 0610 Digestive System, featuring real-time GI tract journey animation, peristalsis, enzyme lab, and villus absorption models.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
