@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Droplets, CheckCircle2, RefreshCw, Layers, Box, Info } from 'lucide-react';
+import { Droplets, CheckCircle2, RefreshCw, Info } from 'lucide-react';
 
 interface NutrientParticle {
   id: number;
@@ -25,7 +25,6 @@ interface VillusStructure {
 }
 
 export const VillusLab: React.FC = () => {
-  const [viewMode, setViewMode] = useState<'3d' | '2d'>('3d');
   const [particles, setParticles] = useState<NutrientParticle[]>([]);
   const [particleIdCounter, setParticleIdCounter] = useState(1);
   const [absorbedStats, setAbsorbedStats] = useState({
@@ -37,9 +36,6 @@ export const VillusLab: React.FC = () => {
 
   const [activeStructure, setActiveStructure] = useState<'microvilli' | 'capillary' | 'lacteal' | null>('microvilli');
 
-  // 3D image with ONLY the 3 key labels: Microvilli, Capillary, and Lacteal
-  const villus3dImgUrl = '/src/assets/images/villus_3d_3labels_1793753671172.jpg';
-
   // The 3 essential structures required by Cambridge IGCSE 0610
   const structures: VillusStructure[] = [
     {
@@ -50,8 +46,8 @@ export const VillusLab: React.FC = () => {
         'Millions of microscopic folds extending from each columnar epithelial cell. They hugely amplify the surface area of the ileum, allowing maximum rates of diffusion and active transport.',
       highlightColor: '#f59e0b',
       badgeBg: 'bg-amber-500/20 text-amber-300 border-amber-500/40',
-      pinX: 345,
-      pinY: 55,
+      pinX: 230,
+      pinY: 68,
       absorbedSubstances: ['Initial contact site for all digested nutrients'],
     },
     {
@@ -59,11 +55,11 @@ export const VillusLab: React.FC = () => {
       title: 'Capillary Network',
       subtitle: 'Water-Soluble Nutrient Transport',
       description:
-        'A dense mesh of microscopic blood vessels wrapping closely around the central lacteal. Constant blood flow rapidly sweeps away absorbed glucose, amino acids, water, and mineral ions into the Hepatic Portal Vein toward the liver, maintaining a steep concentration gradient.',
+        'A dense network of microscopic blood vessels wrapping closely around the central lacteal. Constant blood flow rapidly sweeps away absorbed glucose, amino acids, water, and mineral ions into the Hepatic Portal Vein toward the liver, maintaining a steep concentration gradient.',
       highlightColor: '#ef4444',
       badgeBg: 'bg-red-500/20 text-red-300 border-red-500/40',
-      pinX: 308,
-      pinY: 188,
+      pinX: 165,
+      pinY: 220,
       absorbedSubstances: ['Glucose', 'Amino Acids', 'Water', 'Vitamins B & C'],
     },
     {
@@ -74,25 +70,25 @@ export const VillusLab: React.FC = () => {
         'A central, blind-ended lymphatic vessel running up the core of each villus. Fatty acids and glycerol (insoluble in water) are absorbed and packaged into tiny lipid droplets (chylomicrons) which enter the lacteal and travel through the lymphatic system.',
       highlightColor: '#10b981',
       badgeBg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-      pinX: 302,
-      pinY: 305,
+      pinX: 230,
+      pinY: 290,
       absorbedSubstances: ['Fatty Acids', 'Glycerol', 'Fat-Soluble Vitamins (A, D, E, K)'],
     },
   ];
 
-  // Spawn nutrient particles
+  // Spawn nutrient particles in the intestinal lumen
   const spawnNutrient = (type: 'glucose' | 'amino_acid' | 'lipid' | 'water') => {
-    // In 3D mode (viewBox 0 0 600 450), start in lumen near top
-    const startX = 220 + Math.random() * 160;
-    const startY = 15 + Math.random() * 25;
+    // In 2D mode (viewBox 0 0 460 520), start in lumen near top (y ~ 20 to 45)
+    const startX = 140 + Math.random() * 180;
+    const startY = 18 + Math.random() * 28;
 
     let label = 'Glucose';
-    let color = '#3b82f6';
+    let color = '#f59e0b';
     let target: 'blood' | 'lacteal' = 'blood';
 
     if (type === 'amino_acid') {
       label = 'Amino Acid';
-      color = '#f97316';
+      color = '#f43f5e';
       target = 'blood';
     } else if (type === 'lipid') {
       label = 'Fatty Acid / Glycerol';
@@ -119,26 +115,26 @@ export const VillusLab: React.FC = () => {
     setParticles((prev) => [...prev.slice(-30), newParticle]);
   };
 
-  // Animate particles through the villus into capillary or lacteal
+  // Animate particles through the 2D villus epithelium into capillary or lacteal
   useEffect(() => {
     const timer = setInterval(() => {
       setParticles((prev) => {
         const next: NutrientParticle[] = [];
         prev.forEach((p) => {
           if (p.progress < 1) {
-            const newProg = p.progress + 0.03;
+            const newProg = p.progress + 0.035;
             let currentX = p.x;
             let currentY = p.y;
 
             if (p.target === 'lacteal') {
-              // Moves toward center green lacteal (x ~ 302, y ~ 305)
-              currentX = p.x + (302 - p.x) * newProg;
-              currentY = 40 + newProg * 265;
+              // Moves toward center green lacteal (x ~ 230, y ~ 260)
+              currentX = p.x + (230 - p.x) * newProg;
+              currentY = 45 + newProg * 235;
             } else {
-              // Moves toward capillary loop (x ~ 285 or 325, y ~ 188)
-              const sideX = p.x < 300 ? 285 : 325;
+              // Moves toward capillary loop (x ~ 170 or 290, y ~ 220)
+              const sideX = p.x < 230 ? 170 : 290;
               currentX = p.x + (sideX - p.x) * newProg;
-              currentY = 40 + newProg * 148;
+              currentY = 45 + newProg * 195;
             }
 
             if (newProg >= 1) {
@@ -173,191 +169,266 @@ export const VillusLab: React.FC = () => {
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex flex-col gap-6">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-4">
-        <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-amber-600 uppercase tracking-wider mb-1">
-            <span>IGCSE 0610 Topic 7.4</span>
-            <span aria-hidden="true">·</span>
-            <span>Absorption & Small Intestine Anatomy</span>
-          </div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
-            3D Intestinal Villus & Nutrient Absorption Model
-          </h2>
-          <p className="text-sm text-slate-600 mt-1 leading-relaxed">
-            Simplified diagram showing the three core structures required for Cambridge IGCSE: <strong className="text-slate-800">Microvilli</strong>, <strong className="text-slate-800">Capillary</strong>, and <strong className="text-slate-800">Lacteal</strong>.
-          </p>
+      <div className="border-b border-slate-100 pb-4">
+        <div className="flex items-center gap-2 text-xs font-semibold text-amber-600 uppercase tracking-wider mb-1">
+          <span>IGCSE 0610 Topic 7.4</span>
+          <span aria-hidden="true">·</span>
+          <span>Absorption & Small Intestine Anatomy</span>
         </div>
-
-        {/* 3D vs 2D Diagram Toggle */}
-        <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl border border-slate-200">
-          <button
-            onClick={() => setViewMode('3d')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-              viewMode === '3d'
-                ? 'bg-amber-600 text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <Box className="w-3.5 h-3.5" />
-            <span>3D Diagram</span>
-          </button>
-          <button
-            onClick={() => setViewMode('2d')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold rounded-lg transition-all cursor-pointer ${
-              viewMode === '2d'
-                ? 'bg-amber-600 text-white shadow-xs'
-                : 'text-slate-600 hover:text-slate-900'
-            }`}
-          >
-            <Layers className="w-3.5 h-3.5" />
-            <span>2D Schematic</span>
-          </button>
-        </div>
+        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+          2D Intestinal Villus Diagram: Microvilli · Capillary · Lacteal
+        </h2>
+        <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+          Examine the 2D cross-section diagram of an intestinal villus from the ileum. Observe how <strong className="text-slate-800">Microvilli</strong>, <strong className="text-slate-800">Capillaries</strong>, and the <strong className="text-slate-800">Lacteal</strong> absorb digested nutrients.
+        </p>
       </div>
 
       {/* Main Interactive Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left: 3D Villus Cutaway Viewport (7 cols) */}
-        <div className="lg:col-span-7 bg-slate-950 rounded-2xl p-4 border border-slate-800 text-white flex flex-col items-center relative select-none">
+        {/* Left: 2D Villus Diagram Viewport (7 cols) */}
+        <div className="lg:col-span-7 bg-slate-900 rounded-2xl p-4 border border-slate-800 text-white flex flex-col items-center relative select-none shadow-inner">
           <div className="w-full flex items-center justify-between pb-2 text-xs text-slate-400 border-b border-slate-800">
-            <span className="font-semibold text-slate-200">
-              {viewMode === '3d' ? '3D Villus: Microvilli · Capillary · Lacteal' : '2D Schematic Villus Cross-Section'}
+            <span className="font-semibold text-slate-200 flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+              2D Schematic Villus Cross-Section
             </span>
             <div className="flex items-center gap-2">
-              <span className="inline-flex items-center gap-1 text-[11px] font-mono text-amber-400">
-                <span className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                3 Key Labels
+              <span className="text-[11px] font-mono text-amber-400 font-semibold">
+                3 Key Labels for Cambridge 0610
               </span>
             </div>
           </div>
 
-          {/* Viewport Container */}
-          {viewMode === '3d' ? (
-            /* 3D Cutaway Diagram with ONLY Microvilli, Capillary, and Lacteal labels */
-            <div className="w-full max-w-[480px] aspect-[4/3] relative my-2 rounded-xl overflow-hidden border border-slate-800 bg-white shadow-2xl">
-              <img
-                src={villus3dImgUrl}
-                alt="3D cutaway diagram of human intestinal villus showing microvilli, capillary and lacteal"
-                className="w-full h-full object-contain"
-                referrerPolicy="no-referrer"
+          {/* 2D Vector SVG Villus Cross-Section Viewport (viewBox 0 0 460 520) */}
+          <div className="w-full max-w-[480px] aspect-[460/520] relative my-2 bg-slate-950 rounded-xl overflow-hidden border border-slate-800 shadow-2xl">
+            <svg viewBox="0 0 460 520" className="w-full h-full">
+              <defs>
+                {/* Central Lacteal Gradient */}
+                <linearGradient id="lacteal2DGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#34d399" />
+                  <stop offset="60%" stopColor="#10b981" />
+                  <stop offset="100%" stopColor="#047857" />
+                </linearGradient>
+
+                {/* Arteriole Red Gradient */}
+                <linearGradient id="arterioleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#f87171" />
+                  <stop offset="100%" stopColor="#dc2626" />
+                </linearGradient>
+
+                {/* Venule Blue Gradient */}
+                <linearGradient id="venuleGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#60a5fa" />
+                  <stop offset="100%" stopColor="#2563eb" />
+                </linearGradient>
+
+                {/* Villus Wall Tissue Shading */}
+                <linearGradient id="villusTissueGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#fef3c7" stopOpacity="0.9" />
+                  <stop offset="50%" stopColor="#fffbeb" stopOpacity="0.95" />
+                  <stop offset="100%" stopColor="#fef3c7" stopOpacity="0.9" />
+                </linearGradient>
+
+                {/* Glow Filter for Active Callout */}
+                <filter id="villusPinGlow" x="-30%" y="-30%" width="160%" height="160%">
+                  <feDropShadow dx="0" dy="0" stdDeviation="4.5" floodColor="#38bdf8" floodOpacity="0.9" />
+                </filter>
+              </defs>
+
+              {/* 1. Intestinal Lumen Zone (Top) */}
+              <rect x="0" y="0" width="460" height="75" fill="#0f172a" opacity="0.6" />
+              <text x="25" y="30" fill="#94a3b8" fontSize="11" fontWeight="bold" letterSpacing="0.05em">
+                INTESTINAL LUMEN (Digested Food Chyme)
+              </text>
+              <line x1="25" y1="36" x2="280" y2="36" stroke="#475569" strokeWidth="1" strokeDasharray="3 2" />
+
+              {/* 2. Villus Core Body (Lamina Propria & Columnar Epithelium) */}
+              <path
+                d="M 100 500 L 100 220 C 100 100, 160 70, 230 70 C 300 70, 360 100, 360 220 L 360 500 Z"
+                fill="url(#villusTissueGrad)"
+                stroke="#fde68a"
+                strokeWidth="2.5"
               />
 
-              {/* Interactive SVG Overlay for Particles & Highlight Rings (viewBox 0 0 600 450) */}
-              <svg viewBox="0 0 600 450" className="absolute inset-0 w-full h-full pointer-events-none" style={{ overflow: 'visible' }}>
-                <defs>
-                  <filter id="particleGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feDropShadow dx="0" dy="0" stdDeviation="3.5" floodColor="#ffffff" floodOpacity="0.8" />
-                  </filter>
-                  <filter id="villusHighlight" x="-30%" y="-30%" width="160%" height="160%">
-                    <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#38bdf8" floodOpacity="0.85" />
-                  </filter>
-                </defs>
+              {/* 3. Microvilli Brush Border (Detailed microscopic folds along outer surface) */}
+              {/* Outer microvillar fringe line */}
+              <path
+                d="M 94 500 L 94 220 C 94 94, 156 63, 230 63 C 304 63, 366 94, 366 220 L 366 500"
+                fill="none"
+                stroke="#f59e0b"
+                strokeWidth="5"
+                strokeDasharray="2 3"
+              />
+              <path
+                d="M 100 500 L 100 220 C 100 100, 160 70, 230 70 C 300 70, 360 100, 360 220 L 360 500"
+                fill="none"
+                stroke="#d97706"
+                strokeWidth="2"
+              />
 
-                {/* Highlight Indicator for Active Structure */}
-                {selectedStructureData && (
-                  <g filter="url(#villusHighlight)">
-                    <circle
-                      cx={selectedStructureData.pinX}
-                      cy={selectedStructureData.pinY}
-                      r="16"
-                      fill="none"
-                      stroke={selectedStructureData.highlightColor}
-                      strokeWidth="3.5"
-                      strokeDasharray="4 2"
-                      className="animate-spin"
-                      style={{
-                        transformOrigin: `${selectedStructureData.pinX}px ${selectedStructureData.pinY}px`,
-                        animationDuration: '5s',
-                      }}
-                    />
-                    <circle
-                      cx={selectedStructureData.pinX}
-                      cy={selectedStructureData.pinY}
-                      r="6"
-                      fill={selectedStructureData.highlightColor}
-                      stroke="#ffffff"
-                      strokeWidth="2"
-                    />
-                  </g>
-                )}
-
-                {/* Animated Nutrient Particles traveling into 3D Capillary or Lacteal */}
-                {particles.map((p) => (
-                  <g key={p.id} filter="url(#particleGlow)" className="transition-all duration-75">
-                    <circle cx={p.x} cy={p.y} r="5" fill={p.color} stroke="#ffffff" strokeWidth="1.5" />
-                  </g>
+              {/* Individual Columnar Epithelial Cells (One Cell Thick Barrier) */}
+              {/* Left wall cells */}
+              <g stroke="#fcd34d" strokeWidth="1" fill="none">
+                {[100, 140, 180, 220, 260, 300, 340, 380, 420, 460].map((y) => (
+                  <line key={`left-cell-${y}`} x1="100" y1={y} x2="120" y2={y} />
                 ))}
-              </svg>
+                {/* Right wall cells */}
+                {[100, 140, 180, 220, 260, 300, 340, 380, 420, 460].map((y) => (
+                  <line key={`right-cell-${y}`} x1="340" y1={y} x2="360" y2={y} />
+                ))}
+              </g>
 
-              {/* Clickable hotspots over the 3 labels to quickly select them */}
-              <div className="absolute inset-0 pointer-events-auto">
-                {structures.map((s) => (
-                  <button
-                    key={s.id}
-                    onClick={() => setActiveStructure(s.id)}
+              {/* Cell Nuclei (purple dots in columnar cells) */}
+              <g fill="#9333ea" opacity="0.6">
+                {[120, 160, 200, 240, 280, 320, 360, 400, 440, 480].map((y) => (
+                  <ellipse key={`nuc-l-${y}`} cx="110" cy={y} rx="3" ry="5" />
+                ))}
+                {[120, 160, 200, 240, 280, 320, 360, 400, 440, 480].map((y) => (
+                  <ellipse key={`nuc-r-${y}`} cx="350" cy={y} rx="3" ry="5" />
+                ))}
+                <ellipse cx="190" cy="85" rx="5" ry="3" />
+                <ellipse cx="230" cy="80" rx="5" ry="3" />
+                <ellipse cx="270" cy="85" rx="5" ry="3" />
+              </g>
+
+              {/* 4. Central Lacteal (Blind-ended lymphatic vessel in core) */}
+              <path
+                d="M 218 500 L 218 220 C 218 140, 222 118, 230 118 C 238 118, 242 140, 242 220 L 242 500 Z"
+                fill="url(#lacteal2DGrad)"
+                stroke="#047857"
+                strokeWidth="2.5"
+              />
+              {/* Lymph fluid droplets inside lacteal */}
+              <circle cx="230" cy="180" r="3" fill="#a7f3d0" opacity="0.8" />
+              <circle cx="227" cy="250" r="3.5" fill="#a7f3d0" opacity="0.8" />
+              <circle cx="232" cy="330" r="3" fill="#a7f3d0" opacity="0.8" />
+              <circle cx="228" cy="410" r="3.5" fill="#a7f3d0" opacity="0.8" />
+
+              {/* 5. Blood Capillary Network (Wrapping around lacteal) */}
+              {/* Arteriole (Red, brings blood) */}
+              <path
+                d="M 155 500 L 155 250 C 155 160, 185 125, 210 125"
+                fill="none"
+                stroke="url(#arterioleGrad)"
+                strokeWidth="5.5"
+                strokeLinecap="round"
+              />
+              {/* Venule (Blue, sweeps nutrients to Hepatic Portal Vein) */}
+              <path
+                d="M 250 125 C 275 125, 305 160, 305 250 L 305 500"
+                fill="none"
+                stroke="url(#venuleGrad)"
+                strokeWidth="5.5"
+                strokeLinecap="round"
+              />
+              {/* Connecting capillary loops & cross-vessels */}
+              <path d="M 155 190 C 185 185, 275 185, 305 190" fill="none" stroke="#dc2626" strokeWidth="3" />
+              <path d="M 155 270 C 185 265, 275 265, 305 270" fill="none" stroke="#7c3aed" strokeWidth="3" />
+              <path d="M 155 350 C 185 345, 275 345, 305 350" fill="none" stroke="#2563eb" strokeWidth="3" />
+              <path d="M 155 430 C 185 425, 275 425, 305 430" fill="none" stroke="#2563eb" strokeWidth="3" />
+
+              {/* Capillary Blood Flow Direction Arrows */}
+              <polygon points="155,300 151,312 159,312" fill="#ef4444" />
+              <polygon points="305,290 301,278 309,278" fill="#3b82f6" />
+
+              {/* 6. ONLY 3 ESSENTIAL LABELS & LEADER LINES */}
+              {/* 1. MICROVILLI LABEL */}
+              <g
+                className="cursor-pointer"
+                onClick={() => setActiveStructure('microvilli')}
+              >
+                <line x1="230" y1="63" x2="230" y2="28" stroke="#f59e0b" strokeWidth="2" strokeDasharray="3 2" />
+                <circle cx="230" cy="63" r="4.5" fill="#f59e0b" stroke="#ffffff" strokeWidth="1.5" />
+                <rect
+                  x="160"
+                  y="10"
+                  width="140"
+                  height="26"
+                  rx="6"
+                  fill="#0f172a"
+                  stroke="#f59e0b"
+                  strokeWidth={activeStructure === 'microvilli' ? '2.5' : '1.5'}
+                  filter="drop-shadow(0 2px 6px rgba(0,0,0,0.4))"
+                />
+                <text x="230" y="27" textAnchor="middle" fill="#fef08a" fontSize="12" fontWeight="bold">
+                  Microvilli
+                </text>
+              </g>
+
+              {/* 2. CAPILLARY LABEL */}
+              <g
+                className="cursor-pointer"
+                onClick={() => setActiveStructure('capillary')}
+              >
+                <line x1="155" y1="210" x2="60" y2="210" stroke="#ef4444" strokeWidth="2" strokeDasharray="3 2" />
+                <circle cx="155" cy="210" r="4.5" fill="#ef4444" stroke="#ffffff" strokeWidth="1.5" />
+                <rect
+                  x="15"
+                  y="197"
+                  width="95"
+                  height="26"
+                  rx="6"
+                  fill="#0f172a"
+                  stroke="#ef4444"
+                  strokeWidth={activeStructure === 'capillary' ? '2.5' : '1.5'}
+                  filter="drop-shadow(0 2px 6px rgba(0,0,0,0.4))"
+                />
+                <text x="62" y="214" textAnchor="middle" fill="#fca5a5" fontSize="12" fontWeight="bold">
+                  Capillary
+                </text>
+              </g>
+
+              {/* 3. LACTEAL LABEL */}
+              <g
+                className="cursor-pointer"
+                onClick={() => setActiveStructure('lacteal')}
+              >
+                <line x1="235" y1="290" x2="350" y2="290" stroke="#10b981" strokeWidth="2" strokeDasharray="3 2" />
+                <circle cx="235" cy="290" r="4.5" fill="#10b981" stroke="#ffffff" strokeWidth="1.5" />
+                <rect
+                  x="350"
+                  y="277"
+                  width="95"
+                  height="26"
+                  rx="6"
+                  fill="#0f172a"
+                  stroke="#10b981"
+                  strokeWidth={activeStructure === 'lacteal' ? '2.5' : '1.5'}
+                  filter="drop-shadow(0 2px 6px rgba(0,0,0,0.4))"
+                />
+                <text x="397" y="294" textAnchor="middle" fill="#86efac" fontSize="12" fontWeight="bold">
+                  Lacteal
+                </text>
+              </g>
+
+              {/* Active Selection Pin Indicator */}
+              {selectedStructureData && (
+                <g filter="url(#villusPinGlow)">
+                  <circle
+                    cx={selectedStructureData.pinX}
+                    cy={selectedStructureData.pinY}
+                    r="15"
+                    fill="none"
+                    stroke={selectedStructureData.highlightColor}
+                    strokeWidth="3"
+                    strokeDasharray="4 2"
+                    className="animate-spin"
                     style={{
-                      left: `${(s.pinX / 600) * 100}%`,
-                      top: `${(s.pinY / 450) * 100}%`,
+                      transformOrigin: `${selectedStructureData.pinX}px ${selectedStructureData.pinY}px`,
+                      animationDuration: '6s',
                     }}
-                    className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer group p-2"
-                    title={`Click to inspect ${s.title}`}
-                  >
-                    <span className="sr-only">Inspect {s.title}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-          ) : (
-            /* 2D Schematic Cross-Section Viewport with ONLY 3 Labels */
-            <div className="w-full max-w-[420px] aspect-[400/460] relative my-2">
-              <svg viewBox="0 0 400 460" className="w-full h-full">
-                <defs>
-                  <linearGradient id="lactealGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#86efac" />
-                    <stop offset="100%" stopColor="#10b981" />
-                  </linearGradient>
-                </defs>
+                  />
+                </g>
+              )}
 
-                {/* Intestinal Lumen */}
-                <rect x="0" y="0" width="400" height="90" fill="#334155" opacity="0.3" />
-                
-                {/* Villus outline */}
-                <path d="M 90 430 L 90 200 C 90 90, 140 70, 200 70 C 260 70, 310 90, 310 200 L 310 430 Z" fill="#fff7ed" stroke="#fed7aa" strokeWidth="2" />
-                
-                {/* Microvilli brush border */}
-                <path d="M 85 430 L 85 200 C 85 85, 135 63, 200 63 C 265 63, 315 85, 315 200 L 315 430" fill="none" stroke="#f59e0b" strokeWidth="4" strokeDasharray="2 3" />
-                <path d="M 90 430 L 90 200 C 90 90, 140 70, 200 70 C 260 70, 310 90, 310 200 L 310 430" fill="none" stroke="#fb923c" strokeWidth="8" strokeLinecap="round" />
-
-                {/* Central Lacteal */}
-                <path d="M 190 430 L 190 220 C 190 150, 195 130, 200 130 C 205 130, 210 150, 210 220 L 210 430 Z" fill="url(#lactealGrad)" stroke="#059669" strokeWidth="2" />
-
-                {/* Blood Capillaries */}
-                <path d="M 130 430 L 130 230 C 130 140, 155 110, 180 110" fill="none" stroke="#ef4444" strokeWidth="5" strokeLinecap="round" />
-                <path d="M 180 110 C 205 110, 270 130, 270 230 L 270 430" fill="none" stroke="#3b82f6" strokeWidth="5" strokeLinecap="round" />
-
-                {/* Clean 3 Labels on 2D Schematic */}
-                {/* 1. Microvilli */}
-                <line x1="200" y1="60" x2="200" y2="28" stroke="#f59e0b" strokeWidth="1.5" />
-                <rect x="140" y="10" width="120" height="20" rx="4" fill="#0f172a" stroke="#f59e0b" strokeWidth="1" />
-                <text x="200" y="24" textAnchor="middle" fill="#fef08a" fontSize="11" fontWeight="bold">Microvilli</text>
-
-                {/* 2. Capillary */}
-                <line x1="140" y1="200" x2="40" y2="200" stroke="#ef4444" strokeWidth="1.5" />
-                <rect x="5" y="190" width="80" height="20" rx="4" fill="#0f172a" stroke="#ef4444" strokeWidth="1" />
-                <text x="45" y="204" textAnchor="middle" fill="#fca5a5" fontSize="11" fontWeight="bold">Capillary</text>
-
-                {/* 3. Lacteal */}
-                <line x1="200" y1="260" x2="310" y2="260" stroke="#10b981" strokeWidth="1.5" />
-                <rect x="310" y="250" width="75" height="20" rx="4" fill="#0f172a" stroke="#10b981" strokeWidth="1" />
-                <text x="347" y="264" textAnchor="middle" fill="#86efac" fontSize="11" fontWeight="bold">Lacteal</text>
-
-                {/* Particles */}
-                {particles.map((p) => (
-                  <circle key={p.id} cx={p.x * (400 / 600)} cy={p.y} r="5" fill={p.color} stroke="#ffffff" strokeWidth="1.5" />
-                ))}
-              </svg>
-            </div>
-          )}
+              {/* Animated Nutrient Particles diffusing into 2D Capillary or Lacteal */}
+              {particles.map((p) => (
+                <g key={p.id}>
+                  <circle cx={p.x} cy={p.y} r="5.5" fill={p.color} stroke="#ffffff" strokeWidth="1.5" />
+                </g>
+              ))}
+            </svg>
+          </div>
 
           {/* Interactive Spawner Bar */}
           <div className="w-full flex flex-wrap items-center justify-center gap-2 pt-3 border-t border-slate-800">
@@ -453,7 +524,7 @@ export const VillusLab: React.FC = () => {
               <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700">
                 The 3 Core Villus Structures (IGCSE 0610)
               </h3>
-              <span className="text-[11px] text-slate-500">Click to highlight</span>
+              <span className="text-[11px] text-slate-500">Click to highlight on 2D diagram</span>
             </div>
 
             <div className="space-y-2">
