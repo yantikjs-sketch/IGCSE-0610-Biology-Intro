@@ -153,10 +153,10 @@ export default function App() {
       />
 
       {/* Mobile Tab Switcher */}
-      <div className="md:hidden flex items-center justify-around bg-white border-b border-slate-200 px-2 py-2 overflow-x-auto text-xs font-semibold">
+      <div className="md:hidden flex items-center justify-around bg-white border-b border-slate-200 px-2 py-2.5 overflow-x-auto text-sm font-bold">
         <button
           onClick={() => setActiveTab('tour')}
-          className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
+          className={`px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
             activeTab === 'tour' ? 'bg-blue-600 text-white' : 'text-slate-600'
           }`}
         >
@@ -164,7 +164,7 @@ export default function App() {
         </button>
         <button
           onClick={() => setActiveTab('teeth')}
-          className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
+          className={`px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
             activeTab === 'teeth' ? 'bg-blue-600 text-white' : 'text-slate-600'
           }`}
         >
@@ -172,7 +172,7 @@ export default function App() {
         </button>
         <button
           onClick={() => setActiveTab('peristalsis')}
-          className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
+          className={`px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
             activeTab === 'peristalsis' ? 'bg-blue-600 text-white' : 'text-slate-600'
           }`}
         >
@@ -180,7 +180,7 @@ export default function App() {
         </button>
         <button
           onClick={() => setActiveTab('villus')}
-          className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
+          className={`px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
             activeTab === 'villus' ? 'bg-blue-600 text-white' : 'text-slate-600'
           }`}
         >
@@ -188,7 +188,7 @@ export default function App() {
         </button>
         <button
           onClick={() => setActiveTab('enzymes')}
-          className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
+          className={`px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
             activeTab === 'enzymes' ? 'bg-blue-600 text-white' : 'text-slate-600'
           }`}
         >
@@ -196,7 +196,7 @@ export default function App() {
         </button>
         <button
           onClick={() => setActiveTab('quiz')}
-          className={`px-2.5 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
+          className={`px-3 py-1.5 rounded-lg whitespace-nowrap cursor-pointer ${
             activeTab === 'quiz' ? 'bg-blue-600 text-white' : 'text-slate-600'
           }`}
         >
@@ -209,9 +209,9 @@ export default function App() {
         {activeTab === 'tour' && (
           <div className="flex flex-col gap-6">
             {/* Quick Organ Jump Chips */}
-            <div className="bg-white border border-slate-200 rounded-xl p-3 shadow-xs">
-              <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs font-semibold">
-                <span className="text-slate-400 uppercase text-[10px] tracking-wider shrink-0 pl-1">
+            <div className="bg-white border border-slate-200 rounded-xl p-3.5 shadow-xs">
+              <div className="flex items-center gap-2 overflow-x-auto pb-1 text-sm font-bold">
+                <span className="text-slate-400 uppercase text-xs tracking-wider shrink-0 pl-1 font-bold">
                   Organs:
                 </span>
                 {ORGANS.map((org) => {
@@ -220,7 +220,7 @@ export default function App() {
                     <button
                       key={org.id}
                       onClick={() => handleSelectOrgan(org.id)}
-                      className={`px-2.5 py-1 rounded-lg border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
+                      className={`px-3 py-1.5 rounded-lg border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
                         isSelected
                           ? 'bg-blue-600 text-white border-blue-600 shadow-xs'
                           : org.isAccessory
@@ -304,7 +304,7 @@ export default function App() {
       />
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white py-4 px-6 text-center text-xs text-slate-500">
+      <footer className="border-t border-slate-200 bg-white py-4 px-6 text-center text-sm text-slate-600 font-medium">
         <p>
           Cambridge IGCSE™ Biology (0610) · Topic 7: Human Nutrition & Digestive System · Suitable for Secondary & Grade Students
         </p>

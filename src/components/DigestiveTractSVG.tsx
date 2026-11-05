@@ -101,17 +101,17 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
 
   // 12 Cambridge IGCSE labels & leader lines (viewBox 0 0 600 800)
   const labels: DiagramLabelConfig[] = [
-    // LEFT SIDE LABELS
+    // LEFT SIDE LABELS (tagWidth 154, tagHeight 28)
     {
       id: 'mouth',
       name: 'Mouth (Buccal cavity)',
       side: 'left',
       anchorX: 255,
       anchorY: 155,
-      tagX: 10,
-      tagY: 143,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 8,
+      tagY: 141,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 24,
     },
     {
@@ -120,10 +120,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'left',
       anchorX: 245,
       anchorY: 410,
-      tagX: 10,
-      tagY: 348,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 8,
+      tagY: 346,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 36,
     },
     {
@@ -132,10 +132,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'left',
       anchorX: 250,
       anchorY: 450,
-      tagX: 10,
-      tagY: 408,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 8,
+      tagY: 406,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 20,
     },
     {
@@ -144,10 +144,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'left',
       anchorX: 275,
       anchorY: 475,
-      tagX: 10,
-      tagY: 463,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 8,
+      tagY: 461,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 22,
     },
     {
@@ -156,10 +156,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'left',
       anchorX: 225,
       anchorY: 540,
-      tagX: 10,
-      tagY: 528,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 8,
+      tagY: 526,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 32,
     },
     {
@@ -168,24 +168,24 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'left',
       anchorX: 300,
       anchorY: 660,
-      tagX: 10,
-      tagY: 648,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 8,
+      tagY: 646,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 22,
     },
 
-    // RIGHT SIDE LABELS
+    // RIGHT SIDE LABELS (tagWidth 154, tagHeight 28)
     {
       id: 'salivary_glands',
       name: 'Salivary glands',
       side: 'right',
       anchorX: 285,
       anchorY: 180,
-      tagX: 458,
-      tagY: 168,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 438,
+      tagY: 166,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 20,
     },
     {
@@ -194,10 +194,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'right',
       anchorX: 300,
       anchorY: 290,
-      tagX: 458,
-      tagY: 278,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 438,
+      tagY: 276,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 24,
     },
     {
@@ -206,10 +206,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'right',
       anchorX: 345,
       anchorY: 430,
-      tagX: 458,
-      tagY: 378,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 438,
+      tagY: 376,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 34,
     },
     {
@@ -218,10 +218,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'right',
       anchorX: 315,
       anchorY: 480,
-      tagX: 458,
-      tagY: 438,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 438,
+      tagY: 436,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 22,
     },
     {
@@ -230,10 +230,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'right',
       anchorX: 310,
       anchorY: 560,
-      tagX: 458,
-      tagY: 523,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 438,
+      tagY: 521,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 38,
     },
     {
@@ -242,10 +242,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       side: 'right',
       anchorX: 300,
       anchorY: 692,
-      tagX: 458,
-      tagY: 680,
-      tagWidth: 132,
-      tagHeight: 24,
+      tagX: 438,
+      tagY: 678,
+      tagWidth: 154,
+      tagHeight: 28,
       hotspotRadius: 18,
     },
   ];
@@ -601,11 +601,11 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
                 {/* Label Text */}
                 <text
                   x={lbl.tagX + lbl.tagWidth / 2}
-                  y={lbl.tagY + lbl.tagHeight / 2 + 3.8}
+                  y={lbl.tagY + lbl.tagHeight / 2 + 4.2}
                   textAnchor="middle"
                   fill={active ? '#ffffff' : '#0f172a'}
-                  fontSize="9.8"
-                  fontWeight={active ? 'bold' : '600'}
+                  fontSize="12.5"
+                  fontWeight={active ? 'bold' : '700'}
                   className="font-sans"
                 >
                   {lbl.name}
@@ -651,10 +651,10 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
             top: `${(currentCoord.y / 800) * 100 - 2.5}%`,
           }}
         >
-          <div className="bg-slate-900/95 backdrop-blur-xs text-white text-[11px] font-semibold px-2.5 py-1.5 rounded-lg shadow-xl whitespace-nowrap flex items-center gap-1.5 border border-slate-700">
-            <span>{currentFood.icon}</span>
+          <div className="bg-slate-900/95 backdrop-blur-xs text-white text-xs sm:text-sm font-semibold px-3.5 py-1.5 rounded-lg shadow-xl whitespace-nowrap flex items-center gap-2 border border-slate-700">
+            <span className="text-base">{currentFood.icon}</span>
             <span className="font-bold text-amber-300">{currentFood.name}:</span>
-            <span className="text-slate-200">
+            <span className="text-slate-100 font-medium">
               {FOOD_JOURNEY_DETAILS[selectedFoodType]?.[currentCoord.organ]?.state || currentCoord.stageName}
             </span>
           </div>
@@ -662,7 +662,7 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       </div>
 
       {/* Interactive Helper caption */}
-      <div className="w-full text-center mt-3 pt-2.5 border-t border-slate-100 text-xs text-slate-500">
+      <div className="w-full text-center mt-3 pt-2.5 border-t border-slate-100 text-sm font-medium text-slate-600">
         💡 Click any organ directly on the 2D diagram to inspect enzymes, secretions, and Cambridge IGCSE exam tips.
       </div>
     </div>

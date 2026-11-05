@@ -170,15 +170,15 @@ export const VillusLab: React.FC = () => {
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex flex-col gap-6">
       {/* Header */}
       <div className="border-b border-slate-100 pb-4">
-        <div className="flex items-center gap-2 text-xs font-semibold text-amber-600 uppercase tracking-wider mb-1">
+        <div className="flex items-center gap-2 text-sm font-semibold text-amber-600 uppercase tracking-wider mb-1">
           <span>IGCSE 0610 Topic 7.4</span>
           <span aria-hidden="true">·</span>
           <span>Absorption & Small Intestine Anatomy</span>
         </div>
-        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+        <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
           2D Intestinal Villus Diagram: Microvilli · Capillary · Lacteal
         </h2>
-        <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+        <p className="text-base text-slate-600 mt-1 leading-relaxed">
           Examine the 2D cross-section diagram of an intestinal villus from the ileum. Observe how <strong className="text-slate-800">Microvilli</strong>, <strong className="text-slate-800">Capillaries</strong>, and the <strong className="text-slate-800">Lacteal</strong> absorb digested nutrients.
         </p>
       </div>
@@ -187,13 +187,13 @@ export const VillusLab: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* Left: 2D Villus Diagram Viewport (7 cols) */}
         <div className="lg:col-span-7 bg-slate-900 rounded-2xl p-4 border border-slate-800 text-white flex flex-col items-center relative select-none shadow-inner">
-          <div className="w-full flex items-center justify-between pb-2 text-xs text-slate-400 border-b border-slate-800">
-            <span className="font-semibold text-slate-200 flex items-center gap-1.5">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div className="w-full flex items-center justify-between pb-2 text-sm text-slate-300 border-b border-slate-800">
+            <span className="font-semibold text-slate-100 flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse" />
               2D Schematic Villus Cross-Section
             </span>
             <div className="flex items-center gap-2">
-              <span className="text-[11px] font-mono text-amber-400 font-semibold">
+              <span className="text-xs sm:text-sm font-mono text-amber-400 font-bold">
                 3 Key Labels for Cambridge 0610
               </span>
             </div>
@@ -237,7 +237,7 @@ export const VillusLab: React.FC = () => {
 
               {/* 1. Intestinal Lumen Zone (Top) */}
               <rect x="0" y="0" width="460" height="75" fill="#0f172a" opacity="0.6" />
-              <text x="25" y="30" fill="#94a3b8" fontSize="11" fontWeight="bold" letterSpacing="0.05em">
+              <text x="25" y="30" fill="#94a3b8" fontSize="13" fontWeight="bold" letterSpacing="0.05em">
                 INTESTINAL LUMEN (Digested Food Chyme)
               </text>
               <line x1="25" y1="36" x2="280" y2="36" stroke="#475569" strokeWidth="1" strokeDasharray="3 2" />
@@ -337,20 +337,20 @@ export const VillusLab: React.FC = () => {
                 className="cursor-pointer"
                 onClick={() => setActiveStructure('microvilli')}
               >
-                <line x1="230" y1="63" x2="230" y2="28" stroke="#f59e0b" strokeWidth="2" strokeDasharray="3 2" />
-                <circle cx="230" cy="63" r="4.5" fill="#f59e0b" stroke="#ffffff" strokeWidth="1.5" />
+                <line x1="230" y1="63" x2="230" y2="28" stroke="#f59e0b" strokeWidth="2.5" strokeDasharray="3 2" />
+                <circle cx="230" cy="63" r="5" fill="#f59e0b" stroke="#ffffff" strokeWidth="1.5" />
                 <rect
-                  x="160"
-                  y="10"
-                  width="140"
-                  height="26"
-                  rx="6"
+                  x="150"
+                  y="8"
+                  width="160"
+                  height="30"
+                  rx="7"
                   fill="#0f172a"
                   stroke="#f59e0b"
                   strokeWidth={activeStructure === 'microvilli' ? '2.5' : '1.5'}
                   filter="drop-shadow(0 2px 6px rgba(0,0,0,0.4))"
                 />
-                <text x="230" y="27" textAnchor="middle" fill="#fef08a" fontSize="12" fontWeight="bold">
+                <text x="230" y="28" textAnchor="middle" fill="#fef08a" fontSize="14.5" fontWeight="bold">
                   Microvilli
                 </text>
               </g>
@@ -360,20 +360,20 @@ export const VillusLab: React.FC = () => {
                 className="cursor-pointer"
                 onClick={() => setActiveStructure('capillary')}
               >
-                <line x1="155" y1="210" x2="60" y2="210" stroke="#ef4444" strokeWidth="2" strokeDasharray="3 2" />
-                <circle cx="155" cy="210" r="4.5" fill="#ef4444" stroke="#ffffff" strokeWidth="1.5" />
+                <line x1="155" y1="210" x2="60" y2="210" stroke="#ef4444" strokeWidth="2.5" strokeDasharray="3 2" />
+                <circle cx="155" cy="210" r="5" fill="#ef4444" stroke="#ffffff" strokeWidth="1.5" />
                 <rect
-                  x="15"
-                  y="197"
-                  width="95"
-                  height="26"
-                  rx="6"
+                  x="8"
+                  y="195"
+                  width="112"
+                  height="30"
+                  rx="7"
                   fill="#0f172a"
                   stroke="#ef4444"
                   strokeWidth={activeStructure === 'capillary' ? '2.5' : '1.5'}
                   filter="drop-shadow(0 2px 6px rgba(0,0,0,0.4))"
                 />
-                <text x="62" y="214" textAnchor="middle" fill="#fca5a5" fontSize="12" fontWeight="bold">
+                <text x="64" y="215" textAnchor="middle" fill="#fca5a5" fontSize="14.5" fontWeight="bold">
                   Capillary
                 </text>
               </g>
@@ -383,20 +383,20 @@ export const VillusLab: React.FC = () => {
                 className="cursor-pointer"
                 onClick={() => setActiveStructure('lacteal')}
               >
-                <line x1="235" y1="290" x2="350" y2="290" stroke="#10b981" strokeWidth="2" strokeDasharray="3 2" />
-                <circle cx="235" cy="290" r="4.5" fill="#10b981" stroke="#ffffff" strokeWidth="1.5" />
+                <line x1="235" y1="290" x2="345" y2="290" stroke="#10b981" strokeWidth="2.5" strokeDasharray="3 2" />
+                <circle cx="235" cy="290" r="5" fill="#10b981" stroke="#ffffff" strokeWidth="1.5" />
                 <rect
-                  x="350"
-                  y="277"
-                  width="95"
-                  height="26"
-                  rx="6"
+                  x="345"
+                  y="275"
+                  width="105"
+                  height="30"
+                  rx="7"
                   fill="#0f172a"
                   stroke="#10b981"
                   strokeWidth={activeStructure === 'lacteal' ? '2.5' : '1.5'}
                   filter="drop-shadow(0 2px 6px rgba(0,0,0,0.4))"
                 />
-                <text x="397" y="294" textAnchor="middle" fill="#86efac" fontSize="12" fontWeight="bold">
+                <text x="397" y="295" textAnchor="middle" fill="#86efac" fontSize="14.5" fontWeight="bold">
                   Lacteal
                 </text>
               </g>
@@ -431,36 +431,36 @@ export const VillusLab: React.FC = () => {
           </div>
 
           {/* Interactive Spawner Bar */}
-          <div className="w-full flex flex-wrap items-center justify-center gap-2 pt-3 border-t border-slate-800">
+          <div className="w-full flex flex-wrap items-center justify-center gap-2.5 pt-3 border-t border-slate-800">
             <button
               onClick={() => spawnNutrient('glucose')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-amber-600 hover:bg-amber-500 text-white transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+              className="px-3.5 py-2 rounded-lg text-sm font-bold bg-amber-600 hover:bg-amber-500 text-white transition-colors cursor-pointer flex items-center gap-2 shadow-xs"
             >
-              <span>🥖</span>
+              <span className="text-base">🥖</span>
               <span>+ Carbohydrates (Glucose)</span>
             </button>
 
             <button
               onClick={() => spawnNutrient('amino_acid')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-rose-600 hover:bg-rose-500 text-white transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+              className="px-3.5 py-2 rounded-lg text-sm font-bold bg-rose-600 hover:bg-rose-500 text-white transition-colors cursor-pointer flex items-center gap-2 shadow-xs"
             >
-              <span>🥩</span>
+              <span className="text-base">🥩</span>
               <span>+ Proteins (Amino Acids)</span>
             </button>
 
             <button
               onClick={() => spawnNutrient('lipid')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+              className="px-3.5 py-2 rounded-lg text-sm font-bold bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer flex items-center gap-2 shadow-xs"
             >
-              <span>🥑</span>
+              <span className="text-base">🥑</span>
               <span>+ Fats (Fatty Acids)</span>
             </button>
 
             <button
               onClick={() => spawnNutrient('water')}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold bg-cyan-700 hover:bg-cyan-600 text-white transition-colors cursor-pointer flex items-center gap-1.5 shadow-xs"
+              className="px-3.5 py-2 rounded-lg text-sm font-bold bg-cyan-700 hover:bg-cyan-600 text-white transition-colors cursor-pointer flex items-center gap-2 shadow-xs"
             >
-              <Droplets className="w-3.5 h-3.5" />
+              <Droplets className="w-4 h-4" />
               <span>+ Water (Osmosis)</span>
             </button>
           </div>
@@ -470,49 +470,49 @@ export const VillusLab: React.FC = () => {
         <div className="lg:col-span-5 flex flex-col gap-5">
           {/* Absorption Tally Box */}
           <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+            <div className="flex items-center justify-between mb-2.5">
+              <span className="text-sm font-bold uppercase tracking-wider text-slate-700">
                 Nutrient Absorption Tracker
               </span>
               <button
                 onClick={resetStats}
-                className="text-xs text-slate-500 hover:text-slate-800 flex items-center gap-1 cursor-pointer"
+                className="text-xs sm:text-sm text-slate-500 hover:text-slate-800 flex items-center gap-1 cursor-pointer font-medium"
               >
-                <RefreshCw className="w-3 h-3" />
+                <RefreshCw className="w-3.5 h-3.5" />
                 <span>Reset</span>
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-2 text-xs">
-              <div className="p-2.5 bg-amber-50/70 border border-amber-200 rounded-lg">
-                <span className="text-[11px] text-amber-800 font-semibold block">🥖 Carbohydrates:</span>
-                <p className="text-lg font-bold text-amber-900 font-mono">
+            <div className="grid grid-cols-2 gap-2.5 text-sm">
+              <div className="p-3 bg-amber-50/70 border border-amber-200 rounded-lg">
+                <span className="text-xs sm:text-sm text-amber-800 font-semibold block">🥖 Carbohydrates:</span>
+                <p className="text-xl font-bold text-amber-900 font-mono mt-0.5">
                   {absorbedStats.glucose}{' '}
-                  <span className="text-[10px] font-normal text-slate-500">→ Capillary</span>
+                  <span className="text-xs font-normal text-slate-500">→ Capillary</span>
                 </p>
               </div>
 
-              <div className="p-2.5 bg-rose-50/70 border border-rose-200 rounded-lg">
-                <span className="text-[11px] text-rose-800 font-semibold block">🥩 Proteins:</span>
-                <p className="text-lg font-bold text-rose-900 font-mono">
+              <div className="p-3 bg-rose-50/70 border border-rose-200 rounded-lg">
+                <span className="text-xs sm:text-sm text-rose-800 font-semibold block">🥩 Proteins:</span>
+                <p className="text-xl font-bold text-rose-900 font-mono mt-0.5">
                   {absorbedStats.amino_acid}{' '}
-                  <span className="text-[10px] font-normal text-slate-500">→ Capillary</span>
+                  <span className="text-xs font-normal text-slate-500">→ Capillary</span>
                 </p>
               </div>
 
-              <div className="p-2.5 bg-emerald-50/70 border border-emerald-200 rounded-lg">
-                <span className="text-[11px] text-emerald-800 font-semibold block">🥑 Fats / Lipids:</span>
-                <p className="text-lg font-bold text-emerald-900 font-mono">
+              <div className="p-3 bg-emerald-50/70 border border-emerald-200 rounded-lg">
+                <span className="text-xs sm:text-sm text-emerald-800 font-semibold block">🥑 Fats / Lipids:</span>
+                <p className="text-xl font-bold text-emerald-900 font-mono mt-0.5">
                   {absorbedStats.lipid}{' '}
-                  <span className="text-[10px] font-normal text-slate-500">→ Lacteal</span>
+                  <span className="text-xs font-normal text-slate-500">→ Lacteal</span>
                 </p>
               </div>
 
-              <div className="p-2.5 bg-cyan-50/70 border border-cyan-200 rounded-lg">
-                <span className="text-[11px] text-cyan-800 font-semibold block">💧 Water (Osmosis):</span>
-                <p className="text-lg font-bold text-cyan-900 font-mono">
+              <div className="p-3 bg-cyan-50/70 border border-cyan-200 rounded-lg">
+                <span className="text-xs sm:text-sm text-cyan-800 font-semibold block">💧 Water (Osmosis):</span>
+                <p className="text-xl font-bold text-cyan-900 font-mono mt-0.5">
                   {absorbedStats.water}{' '}
-                  <span className="text-[10px] font-normal text-slate-500">→ Capillary</span>
+                  <span className="text-xs font-normal text-slate-500">→ Capillary</span>
                 </p>
               </div>
             </div>
@@ -520,50 +520,50 @@ export const VillusLab: React.FC = () => {
 
           {/* The 3 Core Syllabus Structures */}
           <div>
-            <div className="flex items-center justify-between mb-2">
-              <h3 className="text-xs font-bold uppercase tracking-wider text-slate-700">
+            <div className="flex items-center justify-between mb-2.5">
+              <h3 className="text-sm font-bold uppercase tracking-wider text-slate-700">
                 The 3 Core Villus Structures (IGCSE 0610)
               </h3>
-              <span className="text-[11px] text-slate-500">Click to highlight on 2D diagram</span>
+              <span className="text-xs text-slate-500 font-medium">Click to highlight on 2D diagram</span>
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2.5">
               {structures.map((s) => {
                 const isSelected = activeStructure === s.id;
                 return (
                   <button
                     key={s.id}
                     onClick={() => setActiveStructure(s.id)}
-                    className={`w-full text-left p-3.5 rounded-xl border transition-all cursor-pointer ${
+                    className={`w-full text-left p-4 rounded-xl border transition-all cursor-pointer ${
                       isSelected
                         ? 'bg-amber-50/80 border-amber-400 shadow-xs ring-1 ring-amber-300'
                         : 'bg-white border-slate-200 hover:border-slate-300'
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center gap-2">
+                      <div className="flex items-center gap-2.5">
                         <span
-                          className="w-3 h-3 rounded-full"
+                          className="w-3.5 h-3.5 rounded-full"
                           style={{ backgroundColor: s.highlightColor }}
                         />
-                        <span className="font-bold text-sm text-slate-900">{s.title}</span>
+                        <span className="font-bold text-base text-slate-900">{s.title}</span>
                       </div>
                       {isSelected ? (
-                        <CheckCircle2 className="w-4 h-4 text-amber-600 shrink-0" />
+                        <CheckCircle2 className="w-5 h-5 text-amber-600 shrink-0" />
                       ) : (
-                        <span className="text-[11px] text-slate-400 font-medium">{s.subtitle}</span>
+                        <span className="text-xs text-slate-400 font-medium">{s.subtitle}</span>
                       )}
                     </div>
 
-                    <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                    <p className="text-sm text-slate-600 mt-2 leading-relaxed">
                       {s.description}
                     </p>
 
-                    <div className="mt-2 flex flex-wrap gap-1">
+                    <div className="mt-2.5 flex flex-wrap gap-1.5">
                       {s.absorbedSubstances.map((sub, i) => (
                         <span
                           key={i}
-                          className="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 font-medium"
+                          className="text-xs px-2.5 py-0.5 rounded-md bg-slate-100 text-slate-700 font-medium"
                         >
                           {sub}
                         </span>
@@ -576,9 +576,9 @@ export const VillusLab: React.FC = () => {
           </div>
 
           {/* Exam Summary Note */}
-          <div className="p-3.5 bg-blue-50/80 border border-blue-200 rounded-xl text-xs text-blue-900 space-y-1">
-            <div className="flex items-center gap-1.5 font-bold text-blue-950">
-              <Info className="w-4 h-4 text-blue-600 shrink-0" />
+          <div className="p-4 bg-blue-50/80 border border-blue-200 rounded-xl text-sm text-blue-900 space-y-1.5">
+            <div className="flex items-center gap-2 font-bold text-base text-blue-950">
+              <Info className="w-5 h-5 text-blue-600 shrink-0" />
               <span>Cambridge 0610 Exam Key Points:</span>
             </div>
             <p className="leading-relaxed">
