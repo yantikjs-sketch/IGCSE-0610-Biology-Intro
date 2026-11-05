@@ -177,7 +177,7 @@ export const IgcseQuiz: React.FC = () => {
             </h3>
             <p className="text-sm text-slate-600 mt-1">
               You scored <strong className="text-slate-900">{score}</strong> out of{' '}
-              <strong className="text-slate-900">{IGCSE_QUIZ_QUESTIONS.length}</strong> ({Math.round((score / IGCSE_QUIZ_QUESTIONS.length) * 100)}%)
+              <strong className="text-slate-900">{IGCSE_QUIZ_QUESTIONS.length}</strong> questions correctly ({score} of {IGCSE_QUIZ_QUESTIONS.length} correct)
             </p>
           </div>
 

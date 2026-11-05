@@ -140,8 +140,8 @@ export const JourneyControls: React.FC<JourneyControlsProps> = ({
       <div className="flex flex-col gap-2">
         <div className="flex items-center justify-between text-sm text-slate-600 font-medium">
           <span>👄 Mouth (Ingestion)</span>
-          <span className="font-mono text-slate-800 font-bold text-sm sm:text-base">
-            {Math.round(bolusProgress * 100)}% Journey Completed
+          <span className="text-slate-800 font-bold text-sm sm:text-base">
+            Alimentary Canal Journey Progression
           </span>
           <span>🚽 Anus (Egestion)</span>
         </div>

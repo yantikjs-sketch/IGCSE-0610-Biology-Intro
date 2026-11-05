@@ -11,22 +11,29 @@ import {
   Layers,
   ChevronRight,
   Utensils,
+  Edit3,
 } from 'lucide-react';
 
 interface OrganDetailsCardProps {
   organ: OrganInfo;
   onSelectConnectedOrgan?: (id: OrganId) => void;
   selectedFoodType?: FoodType;
+  pancreasLabel?: string;
+  onEditPancreasLabel?: () => void;
 }
 
 export const OrganDetailsCard: React.FC<OrganDetailsCardProps> = ({
   organ,
   onSelectConnectedOrgan,
   selectedFoodType = 'carbohydrates',
+  pancreasLabel,
+  onEditPancreasLabel,
 }) => {
   const currentStage = STAGES.find((s) => s.id === organ.stage);
   const currentFood = FOOD_TYPES[selectedFoodType];
   const foodDetails = FOOD_JOURNEY_DETAILS[selectedFoodType]?.[organ.id];
+
+  const displayName = organ.id === 'pancreas' && pancreasLabel ? pancreasLabel : organ.name;
 
   return (
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex flex-col gap-5">
@@ -41,9 +48,21 @@ export const OrganDetailsCard: React.FC<OrganDetailsCardProps> = ({
             {organ.isAccessory ? 'Accessory Gland' : `Pathway Step ${organ.positionInPath + 1} of 8`}
           </span>
         </div>
-        <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
-          {organ.name}
-        </h2>
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="text-3xl font-bold text-slate-900 tracking-tight">
+            {displayName}
+          </h2>
+          {organ.id === 'pancreas' && onEditPancreasLabel && (
+            <button
+              onClick={onEditPancreasLabel}
+              className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 rounded-lg transition-colors cursor-pointer shadow-2xs shrink-0"
+              title="Edit pancreas label"
+            >
+              <Edit3 className="w-3.5 h-3.5 text-amber-600" />
+              <span>Edit Label</span>
+            </button>
+          )}
+        </div>
         <p className="text-base text-slate-600 mt-1 leading-relaxed">
           {organ.description}
         </p>

@@ -21,6 +21,7 @@ export default function App() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1.0);
   const [isSummaryOpen, setIsSummaryOpen] = useState(false);
+  const [pancreasLabel, setPancreasLabel] = useState('Pancreas (Accessory Gland)');
 
   // Map progress (0 to 1) to main path organ
   const getOrganFromProgress = (prog: number): OrganId => {
@@ -229,7 +230,9 @@ export default function App() {
                       }`}
                     >
                       {org.isAccessory && '⭐ '}
-                      {org.name.split(' (')[0]}
+                      {org.id === 'pancreas'
+                        ? pancreasLabel.split(' (')[0]
+                        : org.name.split(' (')[0]}
                     </button>
                   );
                 })}
@@ -246,6 +249,8 @@ export default function App() {
                   bolusProgress={bolusProgress}
                   isPlaying={isPlaying}
                   selectedFoodType={selectedFoodType}
+                  pancreasLabel={pancreasLabel}
+                  onUpdatePancreasLabel={setPancreasLabel}
                 />
               </div>
 
@@ -255,6 +260,7 @@ export default function App() {
                   organ={currentOrganInfo}
                   onSelectConnectedOrgan={handleSelectOrgan}
                   selectedFoodType={selectedFoodType}
+                  pancreasLabel={pancreasLabel}
                 />
               </div>
             </div>

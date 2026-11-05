@@ -698,7 +698,7 @@ export const TeethLab: React.FC = () => {
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="font-bold text-rose-600">Step 5:</span>
-                  <span>Decay reaches the <strong>pulp cavity</strong>; bacteria infect living nerves $\to$ intense <strong>toothache</strong> and abscess!</span>
+                  <span>Decay reaches the <strong>pulp cavity</strong>; bacteria infect living nerves → intense <strong>toothache</strong> and abscess!</span>
                 </li>
               </ul>
             </div>

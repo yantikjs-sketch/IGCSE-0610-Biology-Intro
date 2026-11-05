@@ -129,7 +129,7 @@ export const RevisionSummaryModal: React.FC<RevisionSummaryModalProps> = ({
                 <p>• <strong>Canines (4):</strong> Pointed cone shape for gripping and tearing tough food.</p>
                 <p>• <strong>Premolars (8):</strong> Two cusps (bicuspid) for chewing, crushing, and tearing.</p>
                 <p>• <strong>Molars (12):</strong> Broad flat crowns with 4–5 cusps and 2–3 roots for heavy grinding and crushing into a paste.</p>
-                <p>• <strong>Tooth Decay:</strong> Sugar + Bacteria in plaque $\to$ Acid $\to$ Dissolves enamel $\to$ Spreads through dentine $\to$ Reaches pulp nerves (toothache).</p>
+                <p>• <strong>Tooth Decay:</strong> Sugar + Bacteria in plaque → Acid → Dissolves enamel → Spreads through dentine → Reaches pulp nerves (toothache).</p>
               </div>
             </div>
           </div>

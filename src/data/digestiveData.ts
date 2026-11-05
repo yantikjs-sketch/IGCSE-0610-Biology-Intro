@@ -195,9 +195,9 @@ export const ORGANS: OrganInfo[] = [
     connectedTo: ['duodenum'],
     mechanicalDigestion: ['None'],
     chemicalDigestion: [
-      'Pancreatic Amylase: digests remaining starch $\\to$ maltose.',
-      'Trypsin (Protease): digests proteins and peptides $\\to$ amino acids/peptides.',
-      'Pancreatic Lipase: digests lipids (fats & oils) $\\to$ fatty acids + glycerol.'
+      'Pancreatic Amylase: digests remaining starch → maltose.',
+      'Trypsin (Protease): digests proteins and peptides → amino acids/peptides.',
+      'Pancreatic Lipase: digests lipids (fats & oils) → fatty acids + glycerol.'
     ],
     secretions: [
       'Pancreatic juice containing amylase, trypsin, lipase, and sodium hydrogencarbonate (alkaline).'
@@ -249,7 +249,7 @@ export const ORGANS: OrganInfo[] = [
       'Peristaltic mixing keeps digested molecules in close contact with villi for absorption.'
     ],
     chemicalDigestion: [
-      'Maltase (on epithelial cell membranes): breaks maltose $\\to$ glucose.',
+      'Maltase (on epithelial cell membranes): breaks maltose → glucose.',
       'Peptidases: break remaining peptides into amino acids.'
     ],
     secretions: ['Intestinal enzymes bound to microvilli membranes'],
@@ -259,7 +259,7 @@ export const ORGANS: OrganInfo[] = [
       'Main site of absorption of digested food molecules and water.',
       'Lined with millions of microscopic finger-like projections called villi.',
       'Villi have microvilli on epithelial cells, creating an immense surface area.',
-      'Glucose & amino acids absorb into blood capillaries $\\to$ Hepatic Portal Vein to liver.',
+      'Glucose & amino acids absorb into blood capillaries → Hepatic Portal Vein to liver.',
       'Fatty acids and glycerol absorb into the central lacteal (lymphatic vessel).'
     ],
     examinerTip: 'Four key adaptations of villi for exam questions: 1. Millions of villi & microvilli give huge surface area; 2. Wall is one cell thick for short diffusion path; 3. Dense capillary network maintains steep concentration gradient; 4. Lacteals absorb fatty acids and glycerol.',

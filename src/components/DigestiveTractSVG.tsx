@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { OrganId, FoodType } from '../types/digestive';
 import { ORGANS, FOOD_TYPES, FOOD_JOURNEY_DETAILS } from '../data/digestiveData';
-import { Eye, EyeOff, Layers, PenTool } from 'lucide-react';
+import { Eye, EyeOff, Layers, PenTool, Edit3, Check, X, RotateCcw } from 'lucide-react';
 
 interface DigestiveTractSVGProps {
   selectedOrganId: OrganId;
@@ -11,6 +11,8 @@ interface DigestiveTractSVGProps {
   quizTargetOrganId?: OrganId | null;
   onQuizClickOrgan?: (id: OrganId) => void;
   selectedFoodType?: FoodType;
+  pancreasLabel?: string;
+  onUpdatePancreasLabel?: (newLabel: string) => void;
 }
 
 interface DiagramLabelConfig {
@@ -34,10 +36,38 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
   quizTargetOrganId,
   onQuizClickOrgan,
   selectedFoodType = 'carbohydrates',
+  pancreasLabel,
+  onUpdatePancreasLabel,
 }) => {
   const [diagramMode, setDiagramMode] = useState<'vector' | 'illustrated'>('vector');
   const [showLabels, setShowLabels] = useState(true);
   const [hoveredOrgan, setHoveredOrgan] = useState<OrganId | null>(null);
+
+  // Editable Pancreas label state
+  const [internalPancreasLabel, setInternalPancreasLabel] = useState(
+    pancreasLabel || 'Pancreas (Accessory Gland)'
+  );
+  const activePancreasLabel = pancreasLabel || internalPancreasLabel;
+  const [isEditingPancreas, setIsEditingPancreas] = useState(false);
+  const [tempPancreasText, setTempPancreasText] = useState(activePancreasLabel);
+
+  const handleSavePancreasLabel = () => {
+    const trimmed = tempPancreasText.trim() || 'Pancreas';
+    setInternalPancreasLabel(trimmed);
+    if (onUpdatePancreasLabel) {
+      onUpdatePancreasLabel(trimmed);
+    }
+    setIsEditingPancreas(false);
+  };
+
+  const handleResetPancreasLabel = () => {
+    setTempPancreasText('Pancreas');
+    setInternalPancreasLabel('Pancreas');
+    if (onUpdatePancreasLabel) {
+      onUpdatePancreasLabel('Pancreas');
+    }
+    setIsEditingPancreas(false);
+  };
 
   const currentFood = FOOD_TYPES[selectedFoodType];
 
@@ -60,8 +90,8 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
     { x: 245, y: 600, organ: 'ileum', stageName: 'Ileocaecal valve' },
     { x: 225, y: 575, organ: 'colon', stageName: 'Caecum & Ascending Colon' },
     { x: 225, y: 505, organ: 'colon', stageName: 'Ascending Colon: Water Reabsorption' },
-    { x: 275, y: 495, organ: 'colon', stageName: 'Transverse Colon' },
-    { x: 355, y: 495, organ: 'colon', stageName: 'Transverse Colon' },
+    { x: 275, y: 498, organ: 'colon', stageName: 'Transverse Colon' },
+    { x: 355, y: 498, organ: 'colon', stageName: 'Transverse Colon' },
     { x: 385, y: 545, organ: 'colon', stageName: 'Descending Colon: Compacting Faeces' },
     { x: 385, y: 615, organ: 'colon', stageName: 'Descending Colon' },
     { x: 340, y: 635, organ: 'colon', stageName: 'Sigmoid Colon' },
@@ -214,15 +244,15 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
     },
     {
       id: 'pancreas',
-      name: 'Pancreas',
+      name: activePancreasLabel,
       side: 'right',
-      anchorX: 315,
-      anchorY: 480,
-      tagX: 438,
-      tagY: 436,
-      tagWidth: 154,
+      anchorX: 326,
+      anchorY: 462,
+      tagX: 418,
+      tagY: 442,
+      tagWidth: 174,
       tagHeight: 28,
-      hotspotRadius: 22,
+      hotspotRadius: 24,
     },
     {
       id: 'ileum',
@@ -309,6 +339,19 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
                 <span>Show Labels</span>
               </>
             )}
+          </button>
+
+          {/* Edit Pancreas Label Button */}
+          <button
+            onClick={() => {
+              setTempPancreasText(activePancreasLabel);
+              setIsEditingPancreas(true);
+            }}
+            className="flex items-center gap-1.5 px-2.5 py-1 text-xs font-bold text-amber-800 bg-amber-50 hover:bg-amber-100 border border-amber-300 rounded-lg transition-colors cursor-pointer shadow-2xs"
+            title="Edit the label of the pancreas"
+          >
+            <Edit3 className="w-3.5 h-3.5 text-amber-600" />
+            <span>Edit Pancreas</span>
           </button>
         </div>
       </div>
@@ -432,13 +475,23 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
                 strokeWidth={isOrganActive('stomach') ? 3 : 2.2}
               />
 
-              {/* Pancreas (in Duodenum C-loop) */}
-              <path
-                d="M 285 468 C 295 460 330 460 355 468 C 360 475 350 482 335 480 C 310 478 290 478 285 468 Z"
-                fill={isOrganActive('pancreas') ? '#facc15' : '#fef08a'}
-                stroke="#ca8a04"
-                strokeWidth={isOrganActive('pancreas') ? 2.5 : 1.8}
-              />
+              {/* Pancreas (nestled cleanly in Duodenum C-loop) */}
+              <g>
+                <path
+                  d="M 282 462 C 292 453 322 452 356 459 C 362 465 352 473 330 472 C 304 471 286 470 282 462 Z"
+                  fill={isOrganActive('pancreas') ? '#facc15' : '#fef08a'}
+                  stroke="#ca8a04"
+                  strokeWidth={isOrganActive('pancreas') ? 2.8 : 1.8}
+                />
+                {/* Pancreatic Duct line */}
+                <path
+                  d="M 284 463 C 300 462 325 462 348 463"
+                  fill="none"
+                  stroke="#b45309"
+                  strokeWidth="1.2"
+                  strokeDasharray="2 1.5"
+                />
+              </g>
 
               {/* Duodenum (C-loop curve) */}
               <path
@@ -451,7 +504,7 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
 
               {/* Colon (Large Intestine: Ascending, Transverse, Descending, Sigmoid) */}
               <path
-                d="M 225 595 L 225 485 L 375 485 L 375 605 L 340 635 L 300 650"
+                d="M 225 595 L 225 498 L 375 498 L 375 605 L 340 635 L 300 650"
                 fill="none"
                 stroke={isOrganActive('colon') ? '#0284c7' : '#38bdf8'}
                 strokeWidth={isOrganActive('colon') ? 18 : 15}
@@ -460,7 +513,7 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
               />
               {/* Colon segmentation bands (Haustra rings) */}
               <path
-                d="M 225 595 L 225 485 L 375 485 L 375 605 L 340 635 L 300 650"
+                d="M 225 595 L 225 498 L 375 498 L 375 605 L 340 635 L 300 650"
                 fill="none"
                 stroke="#0369a1"
                 strokeWidth="1.5"
@@ -604,7 +657,7 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
                   y={lbl.tagY + lbl.tagHeight / 2 + 4.2}
                   textAnchor="middle"
                   fill={active ? '#ffffff' : '#0f172a'}
-                  fontSize="12.5"
+                  fontSize={lbl.name.length > 20 ? '9.5' : lbl.name.length > 15 ? '10.5' : '12'}
                   fontWeight={active ? 'bold' : '700'}
                   className="font-sans"
                 >
@@ -665,6 +718,118 @@ export const DigestiveTractSVG: React.FC<DigestiveTractSVGProps> = ({
       <div className="w-full text-center mt-3 pt-2.5 border-t border-slate-100 text-sm font-medium text-slate-600">
         💡 Click any organ directly on the 2D diagram to inspect enzymes, secretions, and Cambridge IGCSE exam tips.
       </div>
+
+      {/* Edit Pancreas Label Modal */}
+      {isEditingPancreas && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-150">
+          <div className="bg-white rounded-2xl shadow-2xl border border-slate-200 max-w-md w-full p-6 flex flex-col gap-5">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div className="flex items-center gap-2.5">
+                <div className="p-2 bg-amber-100 text-amber-800 rounded-xl">
+                  <Edit3 className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900">
+                    Edit Pancreas Label
+                  </h3>
+                  <p className="text-xs text-slate-500">
+                    Customize the label on the 2D diagram and organ details
+                  </p>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsEditingPancreas(false)}
+                className="p-1.5 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Input Field */}
+            <div className="flex flex-col gap-2">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                Pancreas Display Label
+              </label>
+              <input
+                type="text"
+                value={tempPancreasText}
+                onChange={(e) => setTempPancreasText(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') handleSavePancreasLabel();
+                  if (e.key === 'Escape') setIsEditingPancreas(false);
+                }}
+                maxLength={45}
+                placeholder="e.g. Pancreas (Accessory Gland)"
+                className="w-full px-3.5 py-2.5 text-sm font-medium text-slate-900 bg-slate-50 border border-slate-300 rounded-xl focus:bg-white focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all"
+                autoFocus
+              />
+              <span className="text-[11px] text-slate-500">
+                {tempPancreasText.length}/45 characters
+              </span>
+            </div>
+
+            {/* Cambridge IGCSE Quick Presets */}
+            <div className="flex flex-col gap-2">
+              <span className="text-xs font-bold text-slate-700">
+                Cambridge IGCSE Presets:
+              </span>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  'Pancreas',
+                  'Pancreas (Accessory Gland)',
+                  'Pancreas (Enzyme Gland)',
+                  'Pancreas (Amylase, Trypsin, Lipase)',
+                ].map((preset) => (
+                  <button
+                    key={preset}
+                    type="button"
+                    onClick={() => setTempPancreasText(preset)}
+                    className={`text-left text-xs px-2.5 py-2 rounded-lg border transition-all cursor-pointer truncate ${
+                      tempPancreasText === preset
+                        ? 'bg-amber-100 border-amber-400 text-amber-900 font-bold'
+                        : 'bg-slate-50 border-slate-200 text-slate-700 hover:bg-slate-100 hover:border-slate-300 font-medium'
+                    }`}
+                    title={preset}
+                  >
+                    {preset}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+              <button
+                type="button"
+                onClick={handleResetPancreasLabel}
+                className="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+              >
+                <RotateCcw className="w-3.5 h-3.5" />
+                <span>Reset Default</span>
+              </button>
+
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsEditingPancreas(false)}
+                  className="px-3.5 py-2 text-xs font-semibold text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  onClick={handleSavePancreasLabel}
+                  className="flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-white bg-amber-600 hover:bg-amber-700 rounded-lg shadow-xs transition-colors cursor-pointer"
+                >
+                  <Check className="w-4 h-4" />
+                  <span>Save Label</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -362,8 +362,9 @@ export const EnzymeSandbox: React.FC = () => {
                         isDenatured ? 'text-rose-400' : hclActivity > 70 ? 'text-emerald-400' : 'text-amber-400'
                       }`}
                     >
-                      {hclActivity}%
+                      {hclActivity}
                     </span>
+                    <span className="text-slate-400 text-xs">Relative Units</span>
                   </div>
                 </div>
 
@@ -525,7 +526,7 @@ export const EnzymeSandbox: React.FC = () => {
                     <strong>1. Why Pepsin Thrives in HCl:</strong> Pepsin is secreted by gastric glands in the stomach wall. It has adapted to work at an optimum of <strong>pH 1.5–2.0</strong>. At neutral pH 7, pepsin is inactive; at alkaline pH in the duodenum, pepsin is denatured!
                   </p>
                   <p>
-                    <strong>2. Why HCl Denatures Other Enzymes:</strong> High concentration of $H^+$ ions from hydrochloric acid interferes with the hydrogen and ionic bonds holding the enzyme&apos;s tertiary 3D structure together. The active site permanently loses its shape (denaturation).
+                    <strong>2. Why HCl Denatures Other Enzymes:</strong> High concentration of H⁺ ions from hydrochloric acid interferes with the hydrogen and ionic bonds holding the enzyme&apos;s tertiary 3D structure together. The active site permanently loses its shape (denaturation).
                   </p>
                   <p>
                     <strong>3. Denaturing Pathogens & Salivary Amylase:</strong>
@@ -676,9 +677,9 @@ export const EnzymeSandbox: React.FC = () => {
                 </span>
                 <div className="flex items-center gap-2 font-mono">
                   <span className="text-2xl font-black text-amber-400">
-                    {reactionRate}%
+                    {reactionRate}
                   </span>
-                  <span className="text-xs text-slate-400">of maximum</span>
+                  <span className="text-xs text-slate-400">Relative Velocity Units</span>
                 </div>
               </div>
 
