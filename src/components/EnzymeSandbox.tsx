@@ -144,35 +144,35 @@ export const EnzymeSandbox: React.FC = () => {
       {/* Header & Mode Switcher */}
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-100 pb-4">
         <div>
-          <div className="flex items-center gap-2 text-xs font-semibold text-purple-600 uppercase tracking-wider mb-1">
+          <div className="flex items-center gap-2 text-sm font-bold text-purple-600 uppercase tracking-wider mb-1">
             <span>IGCSE 0610 Topic 7.3</span>
             <span aria-hidden="true">·</span>
             <span>Enzyme Action & Stomach HCl Chemistry</span>
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
             Stomach Hydrochloric Acid (HCl) & Enzyme Denaturation Lab
           </h2>
-          <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 mt-1 leading-relaxed">
             Investigate how stomach acid (HCl) alters environmental pH, denatures swallowed salivary amylase and bacterial pathogen enzymes, while activating stomach pepsin.
           </p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-3">
           {/* Enzyme Cheat Sheet Side Panel / Modal Trigger */}
           <button
             onClick={() => setIsCheatSheetOpen(true)}
-            className="flex items-center gap-1.5 px-3 py-2 text-xs font-bold rounded-xl border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 transition-colors cursor-pointer shadow-xs"
+            className="flex items-center gap-2 px-4 py-2.5 text-sm sm:text-base font-bold rounded-xl border border-purple-200 bg-purple-50 hover:bg-purple-100 text-purple-700 transition-colors cursor-pointer shadow-xs"
             title="Open Cambridge IGCSE Enzyme Cheat Sheet"
           >
-            <BookOpen className="w-4 h-4 text-purple-600" />
+            <BookOpen className="w-5 h-5 text-purple-600" />
             <span>Enzyme Cheat Sheet</span>
           </button>
 
           {/* Mode Selector Tabs */}
-          <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl border border-slate-200">
+          <div className="flex items-center gap-1.5 p-1.5 bg-slate-100 rounded-xl border border-slate-200">
             <button
               onClick={() => setActiveMode('hcl_simulation')}
-              className={`flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-4 py-2 text-sm sm:text-base font-bold rounded-lg transition-all cursor-pointer ${
                 activeMode === 'hcl_simulation'
                   ? 'bg-purple-600 text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
@@ -183,7 +183,7 @@ export const EnzymeSandbox: React.FC = () => {
             </button>
             <button
               onClick={() => setActiveMode('general_sandbox')}
-              className={`flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+              className={`flex items-center gap-2 px-4 py-2 text-sm sm:text-base font-bold rounded-lg transition-all cursor-pointer ${
                 activeMode === 'general_sandbox'
                   ? 'bg-purple-600 text-white shadow-xs'
                   : 'text-slate-600 hover:text-slate-900'
@@ -206,29 +206,29 @@ export const EnzymeSandbox: React.FC = () => {
             {/* Left Column: Interactive HCl Dropper & Controls (5 cols) */}
             <div className="md:col-span-5 flex flex-col gap-4">
               {/* 1. Choose Target Enzyme to Test */}
-              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-2">
-                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+                <span className="text-sm sm:text-base font-bold text-slate-800 uppercase tracking-wider block">
                   1. Select Enzyme in Stomach Environment:
                 </span>
-                <div className="space-y-2">
+                <div className="space-y-2.5">
                   <button
                     onClick={() => {
                       setTargetEnzyme('pepsin');
                       setHclLevel(1.8);
                     }}
-                    className={`w-full p-3 text-left rounded-xl border text-xs transition-all cursor-pointer ${
+                    className={`w-full p-3.5 sm:p-4 text-left rounded-xl border transition-all cursor-pointer ${
                       targetEnzyme === 'pepsin'
                         ? 'bg-purple-50/80 border-purple-500 shadow-xs ring-2 ring-purple-500/20'
                         : 'bg-white border-slate-200 hover:bg-slate-100'
                     }`}
                   >
-                    <div className="flex items-center justify-between font-bold text-slate-900">
+                    <div className="flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
                       <span>Pepsin (Stomach Protease)</span>
-                      <span className="text-[10px] bg-purple-100 text-purple-800 font-mono px-2 py-0.5 rounded">
+                      <span className="text-xs sm:text-sm bg-purple-100 text-purple-800 font-mono px-2.5 py-1 rounded-md font-bold">
                         Optimum ~pH 2.0
                       </span>
                     </div>
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       Adapted to high acidity. Hydrolyses proteins into peptides.
                     </p>
                   </button>
@@ -238,19 +238,19 @@ export const EnzymeSandbox: React.FC = () => {
                       setTargetEnzyme('salivary_amylase');
                       setHclLevel(7.0);
                     }}
-                    className={`w-full p-3 text-left rounded-xl border text-xs transition-all cursor-pointer ${
+                    className={`w-full p-3.5 sm:p-4 text-left rounded-xl border transition-all cursor-pointer ${
                       targetEnzyme === 'salivary_amylase'
                         ? 'bg-purple-50/80 border-purple-500 shadow-xs ring-2 ring-purple-500/20'
                         : 'bg-white border-slate-200 hover:bg-slate-100'
                     }`}
                   >
-                    <div className="flex items-center justify-between font-bold text-slate-900">
+                    <div className="flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
                       <span>Salivary Amylase (From Mouth)</span>
-                      <span className="text-[10px] bg-blue-100 text-blue-800 font-mono px-2 py-0.5 rounded">
+                      <span className="text-xs sm:text-sm bg-blue-100 text-blue-800 font-mono px-2.5 py-1 rounded-md font-bold">
                         Optimum ~pH 7.0
                       </span>
                     </div>
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       Enters with chewed bolus. Watch HCl denature it instantly!
                     </p>
                   </button>
@@ -260,19 +260,19 @@ export const EnzymeSandbox: React.FC = () => {
                       setTargetEnzyme('bacterial_enzyme');
                       setHclLevel(7.0);
                     }}
-                    className={`w-full p-3 text-left rounded-xl border text-xs transition-all cursor-pointer ${
+                    className={`w-full p-3.5 sm:p-4 text-left rounded-xl border transition-all cursor-pointer ${
                       targetEnzyme === 'bacterial_enzyme'
                         ? 'bg-purple-50/80 border-purple-500 shadow-xs ring-2 ring-purple-500/20'
                         : 'bg-white border-slate-200 hover:bg-slate-100'
                     }`}
                   >
-                    <div className="flex items-center justify-between font-bold text-slate-900">
+                    <div className="flex items-center justify-between font-bold text-slate-900 text-sm sm:text-base">
                       <span>Bacterial Pathogen Enzyme</span>
-                      <span className="text-[10px] bg-rose-100 text-rose-800 font-mono px-2 py-0.5 rounded">
+                      <span className="text-xs sm:text-sm bg-rose-100 text-rose-800 font-mono px-2.5 py-1 rounded-md font-bold">
                         Microbe on food
                       </span>
                     </div>
-                    <p className="text-[11px] text-slate-500 mt-1">
+                    <p className="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
                       Stomach acid denatures bacterial enzymes to sterilise food.
                     </p>
                   </button>
@@ -280,29 +280,29 @@ export const EnzymeSandbox: React.FC = () => {
               </div>
 
               {/* 2. Interactive Stomach HCl Titration Controls */}
-              <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl space-y-3">
+              <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3.5">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                  <span className="text-sm sm:text-base font-bold text-slate-800 uppercase tracking-wider">
                     2. Stomach Acid Titration:
                   </span>
-                  <span className="text-sm font-bold font-mono px-2.5 py-0.5 rounded-md bg-white border border-slate-300 text-slate-900">
+                  <span className="text-base sm:text-lg font-extrabold font-mono px-3 py-1 rounded-lg bg-white border border-slate-300 text-slate-900 shadow-2xs">
                     pH {hclLevel.toFixed(1)}
                   </span>
                 </div>
 
                 {/* HCl Dropper Quick Actions */}
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-2.5">
                   <button
                     onClick={addHclDrop}
-                    className="flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-bold bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3.5 text-xs sm:text-sm font-bold bg-rose-600 hover:bg-rose-700 text-white rounded-xl transition-colors cursor-pointer shadow-xs"
                   >
-                    <Droplets className="w-3.5 h-3.5" />
+                    <Droplets className="w-4 h-4" />
                     <span>+ Add HCl (Acidify)</span>
                   </button>
 
                   <button
                     onClick={addAlkali}
-                    className="flex items-center justify-center gap-1.5 py-2 px-3 text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors cursor-pointer shadow-xs"
+                    className="flex items-center justify-center gap-2 py-2.5 px-3.5 text-xs sm:text-sm font-bold bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-colors cursor-pointer shadow-xs"
                   >
                     <span>+ Neutralise (Alkali)</span>
                   </button>
@@ -310,10 +310,10 @@ export const EnzymeSandbox: React.FC = () => {
 
                 {/* Smooth Slider */}
                 <div className="pt-2">
-                  <div className="flex justify-between text-[11px] font-semibold text-slate-600 mb-1">
-                    <span>Strong Acid (HCl)</span>
-                    <span>Neutral</span>
-                    <span>Alkaline</span>
+                  <div className="flex justify-between text-xs sm:text-sm font-semibold text-slate-600 mb-1.5">
+                    <span className="text-rose-600 font-bold">Strong Acid (HCl)</span>
+                    <span className="text-slate-700 font-bold">Neutral</span>
+                    <span className="text-blue-600 font-bold">Alkaline</span>
                   </div>
                   <input
                     type="range"
@@ -322,9 +322,9 @@ export const EnzymeSandbox: React.FC = () => {
                     step="0.1"
                     value={hclLevel}
                     onChange={(e) => setHclLevel(parseFloat(e.target.value))}
-                    className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                    className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
                   />
-                  <div className="flex justify-between text-[10px] text-slate-400 mt-1 font-mono">
+                  <div className="flex justify-between text-xs text-slate-500 mt-1.5 font-mono font-medium">
                     <span>pH 1.0 (Stomach)</span>
                     <span>pH 7.0 (Mouth)</span>
                     <span>pH 8.5 (Duodenum)</span>
@@ -334,9 +334,9 @@ export const EnzymeSandbox: React.FC = () => {
                 <div className="flex justify-end pt-1">
                   <button
                     onClick={resetHclSim}
-                    className="flex items-center gap-1 text-[11px] font-semibold text-slate-500 hover:text-slate-800 cursor-pointer"
+                    className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-purple-700 hover:text-purple-900 cursor-pointer"
                   >
-                    <RotateCcw className="w-3 h-3" />
+                    <RotateCcw className="w-3.5 h-3.5" />
                     <span>Reset to Normal Gastric pH (1.8)</span>
                   </button>
                 </div>
@@ -349,22 +349,22 @@ export const EnzymeSandbox: React.FC = () => {
               <div className="bg-slate-900 rounded-2xl p-5 border border-slate-800 text-white flex flex-col items-center relative overflow-hidden select-none">
                 {/* Top readout */}
                 <div className="w-full flex items-center justify-between pb-3 border-b border-slate-800">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
-                    <span className="text-xs font-bold text-slate-200 uppercase tracking-wider">
+                  <div className="flex items-center gap-2.5">
+                    <span className="w-3 h-3 rounded-full bg-purple-500 animate-pulse" />
+                    <span className="text-sm sm:text-base font-bold text-slate-100 uppercase tracking-wider">
                       Stomach Gastric Lumen Simulation
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 font-mono text-xs">
-                    <span className="text-slate-400">Activity:</span>
+                  <div className="flex items-center gap-2 font-mono text-sm">
+                    <span className="text-slate-300 font-medium">Activity:</span>
                     <span
-                      className={`text-xl font-black ${
+                      className={`text-2xl sm:text-3xl font-black ${
                         isDenatured ? 'text-rose-400' : hclActivity > 70 ? 'text-emerald-400' : 'text-amber-400'
                       }`}
                     >
                       {hclActivity}
                     </span>
-                    <span className="text-slate-400 text-xs">Relative Units</span>
+                    <span className="text-slate-300 text-xs sm:text-sm font-medium">Relative Units</span>
                   </div>
                 </div>
 
@@ -391,7 +391,7 @@ export const EnzymeSandbox: React.FC = () => {
 
                     {/* Floating H+ ions density depends on acidity */}
                     {hclLevel < 3.5 && (
-                      <g className="text-[10px] font-mono font-bold text-rose-300 opacity-70">
+                      <g className="font-mono font-bold text-rose-300 opacity-80" fontSize="13">
                         <text x="30" y="40">H⁺</text>
                         <text x="80" y="70">H⁺</text>
                         <text x="140" y="35">H⁺ (HCl)</text>
@@ -414,13 +414,13 @@ export const EnzymeSandbox: React.FC = () => {
                           stroke="#c084fc"
                           strokeWidth="2.5"
                         />
-                        <text x="230" y="165" textAnchor="middle" fill="#f3e8ff" fontSize="12" fontWeight="bold">
+                        <text x="230" y="165" textAnchor="middle" fill="#f3e8ff" fontSize="14" fontWeight="bold">
                           {hclEnzymeName.split(' (')[0]} Molecule
                         </text>
 
                         {/* Active Site Marker */}
-                        <rect x="180" y="80" width="100" height="18" rx="4" fill="#581c87" opacity="0.8" />
-                        <text x="230" y="93" textAnchor="middle" fill="#e9d5ff" fontSize="9" fontWeight="bold">
+                        <rect x="175" y="80" width="110" height="20" rx="5" fill="#581c87" opacity="0.9" />
+                        <text x="230" y="94" textAnchor="middle" fill="#e9d5ff" fontSize="11" fontWeight="bold">
                           Active Site (Complementary)
                         </text>
 
@@ -432,17 +432,17 @@ export const EnzymeSandbox: React.FC = () => {
                             stroke="#e0f2fe"
                             strokeWidth="1.8"
                           />
-                          <text x="230" y="72" textAnchor="middle" fill="#ffffff" fontSize="9" fontWeight="bold">
+                          <text x="230" y="73" textAnchor="middle" fill="#ffffff" fontSize="11" fontWeight="bold">
                             Substrate
                           </text>
 
                           {/* Arrow of catalytic breakdown */}
-                          <line x1="285" y1="70" x2="315" y2="70" stroke="#38bdf8" strokeWidth="2" strokeDasharray="2 2" />
-                          <polygon points="320,70 312,66 312,74" fill="#38bdf8" />
+                          <line x1="285" y1="70" x2="315" y2="70" stroke="#38bdf8" strokeWidth="2.5" strokeDasharray="2 2" />
+                          <polygon points="320,70 312,65 312,75" fill="#38bdf8" />
                         </g>
 
                         {/* Status Label */}
-                        <text x="230" y="210" textAnchor="middle" fill="#4ade80" fontSize="11" fontWeight="bold">
+                        <text x="230" y="210" textAnchor="middle" fill="#4ade80" fontSize="13" fontWeight="bold">
                           ✓ Enzyme Active: Substrate binds to complementary active site
                         </text>
                       </g>
@@ -459,15 +459,15 @@ export const EnzymeSandbox: React.FC = () => {
                         />
 
                         {/* Warped Active Site Banner */}
-                        <rect x="170" y="95" width="120" height="20" rx="4" fill="#4c0519" opacity="0.9" stroke="#f43f5e" strokeWidth="1" />
-                        <text x="230" y="109" textAnchor="middle" fill="#fecdd3" fontSize="9" fontWeight="bold">
+                        <rect x="160" y="93" width="140" height="22" rx="5" fill="#4c0519" opacity="0.95" stroke="#f43f5e" strokeWidth="1.2" />
+                        <text x="230" y="108" textAnchor="middle" fill="#fecdd3" fontSize="11" fontWeight="bold">
                           Active Site Warped / Destroyed!
                         </text>
 
                         {/* Substrate bouncing off because shape no longer fits */}
                         <g>
-                          <rect x="210" y="25" width="40" height="25" rx="4" fill="#0284c7" stroke="#38bdf8" strokeWidth="1.5" />
-                          <text x="230" y="41" textAnchor="middle" fill="#ffffff" fontSize="9" fontWeight="bold">
+                          <rect x="208" y="22" width="44" height="28" rx="4" fill="#0284c7" stroke="#38bdf8" strokeWidth="1.5" />
+                          <text x="230" y="40" textAnchor="middle" fill="#ffffff" fontSize="11" fontWeight="bold">
                             Substrate
                           </text>
 
@@ -477,12 +477,12 @@ export const EnzymeSandbox: React.FC = () => {
                           <line x1="222" y1="70" x2="238" y2="85" stroke="#f43f5e" strokeWidth="2.5" />
                         </g>
 
-                        <text x="230" y="160" textAnchor="middle" fill="#fecdd3" fontSize="12" fontWeight="bold">
+                        <text x="230" y="160" textAnchor="middle" fill="#fecdd3" fontSize="14" fontWeight="bold">
                           DENATURED {hclEnzymeName.split(' (')[0].toUpperCase()}
                         </text>
 
                         {/* Status Label */}
-                        <text x="230" y="210" textAnchor="middle" fill="#f87171" fontSize="11" fontWeight="bold">
+                        <text x="230" y="210" textAnchor="middle" fill="#f87171" fontSize="13" fontWeight="bold">
                           ✕ DENATURED: Hydrogen & ionic bonds broken; substrate cannot fit
                         </text>
                       </g>
@@ -491,24 +491,24 @@ export const EnzymeSandbox: React.FC = () => {
                 </div>
 
                 {/* Diagnostic summary strip */}
-                <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2 pt-2 border-t border-slate-800 text-[11px]">
-                  <div className="p-2 bg-slate-800/60 rounded-lg">
-                    <span className="text-slate-400 block text-[10px]">Stomach Environment:</span>
-                    <strong className="text-white">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3 border-t border-slate-800">
+                  <div className="p-2.5 bg-slate-800/70 rounded-xl space-y-0.5">
+                    <span className="text-slate-400 block text-xs font-medium">Stomach Environment:</span>
+                    <strong className="text-white text-xs sm:text-sm font-bold block">
                       {hclLevel < 3.0 ? 'Strongly Acidic (HCl)' : hclLevel < 6.0 ? 'Weak Acid' : 'Neutral / Alkaline'}
                     </strong>
                   </div>
 
-                  <div className="p-2 bg-slate-800/60 rounded-lg">
-                    <span className="text-slate-400 block text-[10px]">Enzyme Conformation:</span>
-                    <strong className={isDenatured ? 'text-rose-400' : 'text-emerald-400'}>
+                  <div className="p-2.5 bg-slate-800/70 rounded-xl space-y-0.5">
+                    <span className="text-slate-400 block text-xs font-medium">Enzyme Conformation:</span>
+                    <strong className={`text-xs sm:text-sm font-bold block ${isDenatured ? 'text-rose-400' : 'text-emerald-400'}`}>
                       {isDenatured ? 'Permanently Denatured' : 'Normal / Functional'}
                     </strong>
                   </div>
 
-                  <div className="p-2 bg-slate-800/60 rounded-lg">
-                    <span className="text-slate-400 block text-[10px]">Catalytic Action:</span>
-                    <strong className="text-white">
+                  <div className="p-2.5 bg-slate-800/70 rounded-xl space-y-0.5">
+                    <span className="text-slate-400 block text-xs font-medium">Catalytic Action:</span>
+                    <strong className="text-white text-xs sm:text-sm font-bold block">
                       {hclActivity > 0 ? `${hclSubstrate} → ${hclProducts}` : 'No Enzyme-Substrate Complexes'}
                     </strong>
                   </div>
@@ -516,21 +516,20 @@ export const EnzymeSandbox: React.FC = () => {
               </div>
 
               {/* IGCSE 0610 Exam Explanation Card */}
-              <div className="p-4 bg-purple-50/70 border border-purple-200 rounded-xl text-xs text-purple-950 space-y-2">
-                <div className="flex items-center gap-2 font-bold text-sm text-purple-950">
-                  <Info className="w-4 h-4 text-purple-600 shrink-0" />
+              <div className="p-5 sm:p-6 bg-purple-50/80 border border-purple-200 rounded-2xl text-purple-950 space-y-3 shadow-2xs">
+                <div className="flex items-center gap-2.5 font-bold text-base sm:text-lg text-purple-950">
+                  <Info className="w-5 h-5 text-purple-600 shrink-0" />
                   <span>Cambridge IGCSE 0610: How Hydrochloric Acid Works</span>
                 </div>
-                <div className="space-y-1.5 text-purple-900 leading-relaxed">
+                <div className="space-y-2.5 text-sm sm:text-base text-purple-900 leading-relaxed font-normal">
                   <p>
-                    <strong>1. Why Pepsin Thrives in HCl:</strong> Pepsin is secreted by gastric glands in the stomach wall. It has adapted to work at an optimum of <strong>pH 1.5–2.0</strong>. At neutral pH 7, pepsin is inactive; at alkaline pH in the duodenum, pepsin is denatured!
+                    <strong className="text-purple-950 font-bold">1. Why Pepsin Thrives in HCl:</strong> Pepsin is secreted by gastric glands in the stomach wall. It has adapted to work at an optimum of <strong>pH 1.5–2.0</strong>. At neutral pH 7, pepsin is inactive; at alkaline pH in the duodenum, pepsin is denatured!
                   </p>
                   <p>
-                    <strong>2. Why HCl Denatures Other Enzymes:</strong> High concentration of H⁺ ions from hydrochloric acid interferes with the hydrogen and ionic bonds holding the enzyme&apos;s tertiary 3D structure together. The active site permanently loses its shape (denaturation).
+                    <strong className="text-purple-950 font-bold">2. Why HCl Denatures Other Enzymes:</strong> High concentration of H⁺ ions from hydrochloric acid interferes with the hydrogen and ionic bonds holding the enzyme&apos;s tertiary 3D structure together. The active site permanently loses its shape (denaturation).
                   </p>
                   <p>
-                    <strong>3. Denaturing Pathogens & Salivary Amylase:</strong>
-                    Stomach HCl immediately denatures bacterial enzymes (sterilising food to prevent disease) and denatures salivary amylase (ending mouth starch digestion until pancreatic amylase in the duodenum).
+                    <strong className="text-purple-950 font-bold">3. Denaturing Pathogens & Salivary Amylase:</strong> Stomach HCl immediately denatures bacterial enzymes (sterilising food to prevent disease) and denatures salivary amylase (ending mouth starch digestion until pancreatic amylase in the duodenum).
                   </p>
                 </div>
               </div>
@@ -547,24 +546,24 @@ export const EnzymeSandbox: React.FC = () => {
           {/* Controls Column (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
             {/* Substrate Selector */}
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-2">
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+              <span className="text-sm sm:text-base font-bold text-slate-800 uppercase tracking-wider block">
                 1. Select Substrate (Food Nutrient)
               </span>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2.5">
                 <button
                   onClick={() => setSelectedSubstrate('starch')}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all cursor-pointer ${
+                  className={`py-2.5 px-3 text-sm sm:text-base font-bold rounded-xl border transition-all cursor-pointer ${
                     selectedSubstrate === 'starch'
                       ? 'bg-amber-600 text-white border-amber-600 shadow-xs'
                       : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
                   }`}
                 >
-                  🥖 Carbohydrates
+                  🥖 Carbs
                 </button>
                 <button
                   onClick={() => setSelectedSubstrate('protein')}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all cursor-pointer ${
+                  className={`py-2.5 px-3 text-sm sm:text-base font-bold rounded-xl border transition-all cursor-pointer ${
                     selectedSubstrate === 'protein'
                       ? 'bg-rose-600 text-white border-rose-600 shadow-xs'
                       : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
@@ -574,7 +573,7 @@ export const EnzymeSandbox: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setSelectedSubstrate('lipid')}
-                  className={`py-2 px-3 text-xs font-semibold rounded-lg border transition-all cursor-pointer ${
+                  className={`py-2.5 px-3 text-sm sm:text-base font-bold rounded-xl border transition-all cursor-pointer ${
                     selectedSubstrate === 'lipid'
                       ? 'bg-emerald-600 text-white border-emerald-600 shadow-xs'
                       : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
@@ -586,27 +585,27 @@ export const EnzymeSandbox: React.FC = () => {
             </div>
 
             {/* Enzyme Selector */}
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-              <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block mb-2">
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
+              <span className="text-sm sm:text-base font-bold text-slate-800 uppercase tracking-wider block">
                 2. Select Digestive Enzyme
               </span>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-2.5">
                 {ENZYMES.map((enz, idx) => {
                   const isSelected = selectedEnzymeIndex === idx;
                   return (
                     <button
                       key={enz.name}
                       onClick={() => setSelectedEnzymeIndex(idx)}
-                      className={`p-2.5 text-left rounded-lg border text-xs font-semibold transition-all cursor-pointer ${
+                      className={`p-3 text-left rounded-xl border text-sm font-bold transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-purple-600 text-white border-purple-600 shadow-xs'
-                          : 'bg-white text-slate-700 border-slate-200 hover:bg-slate-100'
+                          ? 'bg-purple-600 text-white border-purple-600 shadow-xs ring-2 ring-purple-600/20'
+                          : 'bg-white text-slate-800 border-slate-200 hover:bg-slate-100'
                       }`}
                     >
-                      <div className="truncate">{enz.name}</div>
+                      <div className="truncate text-sm sm:text-base">{enz.name}</div>
                       <div
-                        className={`text-[10px] font-normal truncate ${
-                          isSelected ? 'text-purple-200' : 'text-slate-500'
+                        className={`text-xs sm:text-sm font-medium truncate mt-0.5 ${
+                          isSelected ? 'text-purple-100' : 'text-slate-500'
                         }`}
                       >
                         Optimum pH ~{enz.optimumPh}
@@ -618,12 +617,12 @@ export const EnzymeSandbox: React.FC = () => {
             </div>
 
             {/* pH Slider */}
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3">
               <div className="flex items-center justify-between mb-1.5">
-                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider">
+                <span className="text-sm sm:text-base font-bold text-slate-800 uppercase tracking-wider">
                   3. Solution pH Level:
                 </span>
-                <span className="text-sm font-bold font-mono px-2 py-0.5 rounded bg-white border border-slate-300 text-slate-900">
+                <span className="text-base sm:text-lg font-extrabold font-mono px-3 py-1 rounded-lg bg-white border border-slate-300 text-slate-900 shadow-2xs">
                   pH {ph.toFixed(1)}
                 </span>
               </div>
@@ -635,10 +634,10 @@ export const EnzymeSandbox: React.FC = () => {
                 step="0.1"
                 value={ph}
                 onChange={(e) => setPh(parseFloat(e.target.value))}
-                className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
+                className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
               />
 
-              <div className="flex justify-between text-[10px] font-semibold text-slate-500 mt-1">
+              <div className="flex justify-between text-xs sm:text-sm font-bold mt-1.5">
                 <span className="text-red-600">Acidic (Stomach ~2)</span>
                 <span className="text-emerald-600">Neutral (Mouth ~7)</span>
                 <span className="text-blue-600">Alkaline (Duodenum ~8)</span>
@@ -646,21 +645,21 @@ export const EnzymeSandbox: React.FC = () => {
             </div>
 
             {/* Bile Toggle */}
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl flex items-center justify-between">
+            <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl flex items-center justify-between gap-3">
               <div>
-                <span className="text-xs font-bold text-slate-700 uppercase tracking-wider block">
+                <span className="text-sm sm:text-base font-bold text-slate-800 uppercase tracking-wider block">
                   4. Bile Salts Present
                 </span>
-                <span className="text-[11px] text-slate-500">
+                <span className="text-xs sm:text-sm text-slate-600 font-medium">
                   Emulsifies fats into micro-droplets
                 </span>
               </div>
               <button
                 onClick={() => setHasBile(!hasBile)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer shrink-0 ${
                   hasBile
                     ? 'bg-emerald-600 text-white shadow-xs'
-                    : 'bg-slate-200 text-slate-600 hover:bg-slate-300'
+                    : 'bg-slate-200 text-slate-700 hover:bg-slate-300'
                 }`}
               >
                 {hasBile ? '✓ Bile Added' : '+ Add Bile'}
@@ -671,19 +670,19 @@ export const EnzymeSandbox: React.FC = () => {
           {/* Reaction Visualization & Diagnostics (7 cols) */}
           <div className="lg:col-span-7 flex flex-col gap-5">
             <div className="bg-slate-900 rounded-2xl p-6 border border-slate-800 text-white flex flex-col items-center relative overflow-hidden select-none">
-              <div className="w-full flex items-center justify-between pb-3 border-b border-slate-800">
-                <span className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              <div className="w-full flex items-center justify-between pb-3.5 border-b border-slate-800">
+                <span className="text-sm sm:text-base font-bold text-slate-200 uppercase tracking-wider">
                   Reaction Velocity:
                 </span>
-                <div className="flex items-center gap-2 font-mono">
-                  <span className="text-2xl font-black text-amber-400">
+                <div className="flex items-center gap-2.5 font-mono">
+                  <span className="text-3xl sm:text-4xl font-black text-amber-400">
                     {reactionRate}
                   </span>
-                  <span className="text-xs text-slate-400">Relative Velocity Units</span>
+                  <span className="text-xs sm:text-sm text-slate-400 font-medium">Relative Velocity Units</span>
                 </div>
               </div>
 
-              <div className="w-full h-2.5 bg-slate-800 rounded-full my-3 overflow-hidden">
+              <div className="w-full h-3 bg-slate-800 rounded-full my-4 overflow-hidden">
                 <div
                   className={`h-full transition-all duration-300 ${
                     status === 'optimum'
@@ -696,39 +695,39 @@ export const EnzymeSandbox: React.FC = () => {
                 />
               </div>
 
-              <div className="w-full h-44 flex flex-col items-center justify-center relative">
+              <div className="w-full h-48 flex flex-col items-center justify-center relative">
                 {status === 'mismatch' ? (
                   <div className="text-center p-4">
-                    <div className="text-3xl mb-2">🚫</div>
-                    <p className="text-sm font-bold text-rose-400">
+                    <div className="text-4xl mb-2">🚫</div>
+                    <p className="text-base sm:text-lg font-bold text-rose-400">
                       Active Site Mismatch (Lock and Key Theory)
                     </p>
-                    <p className="text-xs text-slate-400 max-w-sm mt-1">
+                    <p className="text-sm sm:text-base text-slate-300 max-w-md mt-1.5 leading-relaxed">
                       {currentEnzyme.name} active site is not complementary to {selectedSubstrate}.
                     </p>
                   </div>
                 ) : status === 'denatured' ? (
                   <div className="text-center p-4">
-                    <div className="text-3xl mb-2">🔥</div>
-                    <p className="text-sm font-bold text-rose-400">
+                    <div className="text-4xl mb-2">🔥</div>
+                    <p className="text-base sm:text-lg font-bold text-rose-400">
                       Enzyme Denatured at pH {ph.toFixed(1)}!
                     </p>
-                    <p className="text-xs text-slate-400 max-w-sm mt-1">
+                    <p className="text-sm sm:text-base text-slate-300 max-w-md mt-1.5 leading-relaxed">
                       Extreme pH broke hydrogen and ionic bonds, permanently changing the active site shape.
                     </p>
                   </div>
                 ) : (
                   <div className="text-center p-2 flex flex-col items-center">
-                    <div className="flex items-center gap-3 my-2">
-                      <div className="px-3 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs font-bold text-slate-200">
+                    <div className="flex items-center gap-3.5 my-3">
+                      <div className="px-4 py-2 rounded-xl bg-slate-800 border border-slate-700 text-sm sm:text-base font-bold text-slate-100">
                         {currentEnzyme.substrate}
                       </div>
-                      <span className="text-amber-400 font-bold text-lg">→</span>
-                      <div className="px-3 py-1.5 rounded-lg bg-emerald-950 border border-emerald-700 text-xs font-bold text-emerald-300">
+                      <span className="text-amber-400 font-bold text-2xl">→</span>
+                      <div className="px-4 py-2 rounded-xl bg-emerald-950 border border-emerald-700 text-sm sm:text-base font-bold text-emerald-300">
                         {currentEnzyme.products}
                       </div>
                     </div>
-                    <p className="text-xs font-medium text-emerald-400 mt-2">
+                    <p className="text-sm sm:text-base font-semibold text-emerald-400 mt-2">
                       {status === 'optimum'
                         ? '⚡ Peak Activity: Optimal ES complex formation!'
                         : '⚠️ Suboptimal Reaction Rate: pH deviates from optimum.'}
@@ -738,12 +737,12 @@ export const EnzymeSandbox: React.FC = () => {
               </div>
             </div>
 
-            <div className="p-4 bg-purple-50/70 border border-purple-200 rounded-xl text-xs text-purple-950 space-y-2">
-              <div className="flex items-center gap-2 font-bold text-sm text-purple-950">
-                <Info className="w-4 h-4 text-purple-600" />
+            <div className="p-5 sm:p-6 bg-purple-50/80 border border-purple-200 rounded-2xl text-purple-950 space-y-2.5 shadow-2xs">
+              <div className="flex items-center gap-2 font-bold text-base sm:text-lg text-purple-950">
+                <Info className="w-5 h-5 text-purple-600 shrink-0" />
                 <span>Enzyme Specificity & Optimum Curve</span>
               </div>
-              <p className="text-purple-900 leading-relaxed">
+              <p className="text-sm sm:text-base text-purple-900 leading-relaxed font-normal">
                 Enzymes are biological catalysts made of protein. Each enzyme has a specific active site that fits only one substrate. Altering pH alters the charges and ionic bonds, denaturing the enzyme.
               </p>
             </div>

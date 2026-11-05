@@ -172,24 +172,24 @@ export const TeethLab: React.FC = () => {
     <div className="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex flex-col gap-6">
       {/* Header */}
       <div>
-        <div className="flex items-center gap-2 text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">
+        <div className="flex items-center gap-2 text-sm font-bold text-blue-600 uppercase tracking-wider mb-1">
           <span>IGCSE 0610 Topic 7.2</span>
           <span aria-hidden="true">·</span>
           <span>Physical Digestion & Dental Anatomy</span>
         </div>
-        <h2 className="text-2xl font-bold text-slate-900 tracking-tight">
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
           Human Teeth: Internal Structure, 4 Types & Dental Caries
         </h2>
-        <p className="text-sm text-slate-600 mt-1 leading-relaxed">
+        <p className="text-base sm:text-lg text-slate-600 mt-1 leading-relaxed">
           Explore the internal anatomy of a tooth (enamel, dentine, pulp cavity), compare the 4 human tooth types, and investigate the chemical mechanism of tooth decay (dental caries).
         </p>
       </div>
 
       {/* Sub-Tabs: Structure / Types / Decay */}
-      <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl w-fit">
+      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-slate-100 rounded-xl w-fit">
         <button
           onClick={() => setSubTab('structure')}
-          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+          className={`px-4 sm:px-5 py-2.5 text-sm sm:text-base font-bold rounded-lg transition-all cursor-pointer ${
             subTab === 'structure'
               ? 'bg-white text-blue-700 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
@@ -199,7 +199,7 @@ export const TeethLab: React.FC = () => {
         </button>
         <button
           onClick={() => setSubTab('types')}
-          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+          className={`px-4 sm:px-5 py-2.5 text-sm sm:text-base font-bold rounded-lg transition-all cursor-pointer ${
             subTab === 'types'
               ? 'bg-white text-blue-700 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
@@ -209,7 +209,7 @@ export const TeethLab: React.FC = () => {
         </button>
         <button
           onClick={() => setSubTab('decay')}
-          className={`px-4 py-2 text-xs font-bold rounded-lg transition-all cursor-pointer ${
+          className={`px-4 sm:px-5 py-2.5 text-sm sm:text-base font-bold rounded-lg transition-all cursor-pointer ${
             subTab === 'decay'
               ? 'bg-white text-blue-700 shadow-xs'
               : 'text-slate-600 hover:text-slate-900'
@@ -223,12 +223,12 @@ export const TeethLab: React.FC = () => {
       {subTab === 'structure' && (
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
           {/* Left: Interactive Tooth Cross-Section SVG (7 cols) */}
-          <div className="lg:col-span-7 bg-slate-900 rounded-2xl p-4 border border-slate-800 text-white flex flex-col items-center select-none relative">
-            <div className="w-full flex items-center justify-between pb-2 text-xs text-slate-400 border-b border-slate-800">
-              <span className="font-semibold text-slate-200">
+          <div className="lg:col-span-7 bg-slate-900 rounded-2xl p-4 sm:p-5 border border-slate-800 text-white flex flex-col items-center select-none relative">
+            <div className="w-full flex items-center justify-between pb-3 text-sm text-slate-300 border-b border-slate-800">
+              <span className="font-bold text-slate-100 text-sm sm:text-base">
                 Molar Tooth Cross-Section (Crown, Neck & Root)
               </span>
-              <span className="text-[11px] font-mono text-cyan-400">
+              <span className="text-xs sm:text-sm font-mono text-cyan-400 font-semibold">
                 Click parts to inspect 🔬
               </span>
             </div>
@@ -266,18 +266,18 @@ export const TeethLab: React.FC = () => {
                 {/* Region boundary guidelines & labels */}
                 {/* Crown Region (Top to y=155) */}
                 <line x1="25" y1="155" x2="375" y2="155" stroke="#475569" strokeWidth="1" strokeDasharray="3 3" />
-                <text x="35" y="100" fill="#94a3b8" fontSize="11" fontWeight="bold">
+                <text x="35" y="100" fill="#94a3b8" fontSize="14" fontWeight="bold" letterSpacing="1">
                   CROWN
                 </text>
 
                 {/* Neck Region (y=155 to y=185) */}
                 <line x1="25" y1="185" x2="375" y2="185" stroke="#475569" strokeWidth="1" strokeDasharray="3 3" />
-                <text x="35" y="172" fill="#94a3b8" fontSize="10" fontWeight="bold">
+                <text x="35" y="172" fill="#94a3b8" fontSize="13" fontWeight="bold" letterSpacing="1">
                   NECK
                 </text>
 
                 {/* Root Region (y=185 down) */}
-                <text x="35" y="280" fill="#94a3b8" fontSize="11" fontWeight="bold">
+                <text x="35" y="280" fill="#94a3b8" fontSize="14" fontWeight="bold" letterSpacing="1">
                   ROOT
                 </text>
 
@@ -443,15 +443,15 @@ export const TeethLab: React.FC = () => {
             </div>
 
             {/* Quick Part Selector Pills */}
-            <div className="w-full flex flex-wrap gap-1.5 pt-2 border-t border-slate-800 justify-center">
+            <div className="w-full flex flex-wrap gap-2 pt-3 border-t border-slate-800 justify-center">
               {Object.values(toothParts).map((p) => (
                 <button
                   key={p.id}
                   onClick={() => setSelectedPart(p.id)}
-                  className={`px-2.5 py-1 rounded-md text-[11px] font-semibold transition-all cursor-pointer ${
+                  className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all cursor-pointer ${
                     selectedPart === p.id
                       ? 'bg-blue-600 text-white shadow-xs'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      : 'bg-slate-800 text-slate-200 hover:bg-slate-700'
                   }`}
                 >
                   {p.name}
@@ -462,13 +462,13 @@ export const TeethLab: React.FC = () => {
 
           {/* Right: Detailed Syllabus Anatomy Card (5 cols) */}
           <div className="lg:col-span-5 flex flex-col gap-4">
-            <div className="bg-slate-50 border border-slate-200 rounded-xl p-5 space-y-3">
+            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 sm:p-6 space-y-4">
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                <span className="text-sm font-extrabold uppercase tracking-wider text-blue-600">
                   {activePartData.region} Region
                 </span>
                 <span
-                  className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${
+                  className={`text-xs sm:text-sm font-bold px-3 py-1 rounded-full ${
                     activePartData.living
                       ? 'bg-emerald-100 text-emerald-800'
                       : 'bg-slate-200 text-slate-700'
@@ -478,42 +478,48 @@ export const TeethLab: React.FC = () => {
                 </span>
               </div>
 
-              <h3 className="text-xl font-bold text-slate-900">
+              <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
                 {activePartData.name}
               </h3>
 
-              <p className="text-xs text-slate-700 leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal">
                 {activePartData.description}
               </p>
 
-              <div className="p-3 bg-white border border-slate-200 rounded-lg text-xs">
-                <strong className="text-slate-900 block mb-0.5">Key Biological Function:</strong>
-                <p className="text-slate-600">{activePartData.function}</p>
+              <div className="p-4 bg-white border border-slate-200 rounded-xl space-y-1">
+                <strong className="text-sm sm:text-base font-bold text-slate-900 block">
+                  Key Biological Function:
+                </strong>
+                <p className="text-sm sm:text-base text-slate-700 leading-relaxed">
+                  {activePartData.function}
+                </p>
               </div>
 
-              <div className="p-3 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-900 space-y-1">
-                <div className="flex items-center gap-1.5 font-bold text-amber-950">
-                  <Award className="w-4 h-4 text-amber-600 shrink-0" />
+              <div className="p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-1.5 text-amber-950">
+                <div className="flex items-center gap-2 font-bold text-sm sm:text-base text-amber-950">
+                  <Award className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600 shrink-0" />
                   <span>Cambridge IGCSE 0610 Exam Tip</span>
                 </div>
-                <p className="leading-relaxed">{activePartData.igcseExamTip}</p>
+                <p className="text-sm sm:text-base leading-relaxed text-amber-900 font-medium">
+                  {activePartData.igcseExamTip}
+                </p>
               </div>
             </div>
 
             {/* Crown vs Neck vs Root summary table */}
-            <div className="border border-slate-200 rounded-xl p-3.5 bg-white text-xs space-y-2">
-              <span className="font-bold text-slate-800 uppercase text-[11px] tracking-wider block">
+            <div className="border border-slate-200 rounded-2xl p-4 sm:p-5 bg-white space-y-2.5">
+              <span className="font-extrabold text-slate-800 uppercase text-xs sm:text-sm tracking-wider block">
                 The Three Anatomical Regions
               </span>
-              <div className="space-y-1.5 text-slate-600 text-[11px]">
+              <div className="space-y-2 text-slate-700 text-xs sm:text-sm leading-relaxed">
                 <p>
-                  <strong>• Crown:</strong> The visible portion projecting above the gumline, covered by hard enamel.
+                  <strong className="text-slate-900 font-bold">• Crown:</strong> The visible portion projecting above the gumline, covered by hard enamel.
                 </p>
                 <p>
-                  <strong>• Neck:</strong> The constricted zone where the crown meets the root, sealed tightly by the gum.
+                  <strong className="text-slate-900 font-bold">• Neck:</strong> The constricted zone where the crown meets the root, sealed tightly by the gum.
                 </p>
                 <p>
-                  <strong>• Root:</strong> Embedded firmly into the jawbone socket, coated with cementum and anchored by periodontal fibres.
+                  <strong className="text-slate-900 font-bold">• Root:</strong> Embedded firmly into the jawbone socket, coated with cementum and anchored by periodontal fibres.
                 </p>
               </div>
             </div>
@@ -534,22 +540,22 @@ export const TeethLab: React.FC = () => {
                 <button
                   key={typeId}
                   onClick={() => setSelectedToothType(typeId)}
-                  className={`p-4 rounded-xl border text-left transition-all cursor-pointer ${
+                  className={`p-4 sm:p-5 rounded-2xl border text-left transition-all cursor-pointer ${
                     isSelected
                       ? 'bg-blue-50/80 border-blue-500 shadow-xs ring-2 ring-blue-500/20'
                       : 'bg-white border-slate-200 hover:border-slate-300'
                   }`}
                 >
                   <div className="flex items-center justify-between mb-2">
-                    <span className="text-2xl">
+                    <span className="text-3xl">
                       {typeId === 'incisor' ? '🪓' : typeId === 'canine' ? '🦷' : typeId === 'premolar' ? '⚙️' : '🪨'}
                     </span>
-                    <span className="text-[11px] font-mono font-bold text-blue-700 bg-blue-100/60 px-1.5 py-0.5 rounded">
+                    <span className="text-xs sm:text-sm font-mono font-bold text-blue-700 bg-blue-100/70 px-2 py-0.5 rounded-md">
                       {tooth.totalAdult} in adult
                     </span>
                   </div>
-                  <h4 className="text-sm font-bold text-slate-900">{tooth.name}</h4>
-                  <p className="text-[11px] text-slate-500 line-clamp-2 mt-1">
+                  <h4 className="text-base sm:text-lg font-bold text-slate-900">{tooth.name}</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 line-clamp-2 mt-1">
                     {tooth.shape}
                   </p>
                 </button>
@@ -561,73 +567,73 @@ export const TeethLab: React.FC = () => {
           {(() => {
             const current = toothTypes[selectedToothType];
             return (
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 bg-slate-50 border border-slate-200 rounded-2xl items-center">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6 p-6 sm:p-7 bg-slate-50 border border-slate-200 rounded-2xl items-center">
                 <div className="md:col-span-8 space-y-4">
                   <div className="flex items-center gap-2">
-                    <span className="text-xs font-bold uppercase tracking-wider text-blue-600">
+                    <span className="text-sm font-extrabold uppercase tracking-wider text-blue-600">
                       Syllabus Classification
                     </span>
-                    <span aria-hidden="true">·</span>
-                    <span className="text-xs text-slate-500 font-medium">
+                    <span aria-hidden="true" className="text-slate-400">·</span>
+                    <span className="text-sm font-semibold text-slate-600">
                       {current.position}
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-bold text-slate-900">
+                  <h3 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
                     {current.name}
                   </h3>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                    <div className="p-3 bg-white rounded-xl border border-slate-200">
-                      <span className="font-bold text-slate-800 block mb-0.5">Crown Shape:</span>
-                      <p className="text-slate-600">{current.shape}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-sm sm:text-base font-bold text-slate-800 block">Crown Shape:</span>
+                      <p className="text-sm sm:text-base text-slate-700 leading-relaxed">{current.shape}</p>
                     </div>
 
-                    <div className="p-3 bg-white rounded-xl border border-slate-200">
-                      <span className="font-bold text-slate-800 block mb-0.5">Root Architecture:</span>
-                      <p className="text-slate-600">{current.roots}</p>
+                    <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-sm sm:text-base font-bold text-slate-800 block">Root Architecture:</span>
+                      <p className="text-sm sm:text-base text-slate-700 leading-relaxed">{current.roots}</p>
                     </div>
 
-                    <div className="p-3 bg-white rounded-xl border border-slate-200">
-                      <span className="font-bold text-slate-800 block mb-0.5">Cusps (Raised Points):</span>
-                      <p className="text-slate-600">{current.cusps}</p>
+                    <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-sm sm:text-base font-bold text-slate-800 block">Cusps (Raised Points):</span>
+                      <p className="text-sm sm:text-base text-slate-700 leading-relaxed">{current.cusps}</p>
                     </div>
 
-                    <div className="p-3 bg-white rounded-xl border border-slate-200">
-                      <span className="font-bold text-slate-800 block mb-0.5">Role in Physical Digestion:</span>
-                      <p className="text-slate-600 font-medium text-blue-700">{current.function}</p>
+                    <div className="p-4 bg-white rounded-xl border border-slate-200 space-y-1">
+                      <span className="text-sm sm:text-base font-bold text-slate-800 block">Role in Physical Digestion:</span>
+                      <p className="text-sm sm:text-base text-blue-800 font-semibold leading-relaxed">{current.function}</p>
                     </div>
                   </div>
 
-                  <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-xl text-xs text-blue-950">
-                    <strong>💡 Cambridge 0610 Exam Fact:</strong> {current.igcseNote}
+                  <div className="p-4 bg-blue-50 border border-blue-200 rounded-xl text-sm sm:text-base text-blue-950 leading-relaxed">
+                    <strong className="font-bold text-blue-900">💡 Cambridge 0610 Exam Fact:</strong> {current.igcseNote}
                   </div>
                 </div>
 
                 {/* Right side: Adult Dental Formula breakdown */}
-                <div className="md:col-span-4 bg-white p-5 rounded-xl border border-slate-200 space-y-3 text-xs">
-                  <span className="font-bold text-slate-900 block text-xs uppercase tracking-wider">
+                <div className="md:col-span-4 bg-white p-5 sm:p-6 rounded-2xl border border-slate-200 space-y-3.5">
+                  <span className="font-extrabold text-slate-900 block text-xs sm:text-sm uppercase tracking-wider">
                     Adult Dental Formula (32 Teeth)
                   </span>
-                  <div className="space-y-2 text-slate-700">
-                    <div className="flex justify-between pb-1 border-b border-slate-100">
-                      <span>• Incisors (I):</span>
-                      <span className="font-mono font-bold">8 total</span>
+                  <div className="space-y-2.5 text-sm sm:text-base text-slate-700">
+                    <div className="flex justify-between pb-1.5 border-b border-slate-100">
+                      <span className="font-medium">• Incisors (I):</span>
+                      <span className="font-mono font-bold text-slate-900">8 total</span>
                     </div>
-                    <div className="flex justify-between pb-1 border-b border-slate-100">
-                      <span>• Canines (C):</span>
-                      <span className="font-mono font-bold">4 total</span>
+                    <div className="flex justify-between pb-1.5 border-b border-slate-100">
+                      <span className="font-medium">• Canines (C):</span>
+                      <span className="font-mono font-bold text-slate-900">4 total</span>
                     </div>
-                    <div className="flex justify-between pb-1 border-b border-slate-100">
-                      <span>• Premolars (PM):</span>
-                      <span className="font-mono font-bold">8 total</span>
+                    <div className="flex justify-between pb-1.5 border-b border-slate-100">
+                      <span className="font-medium">• Premolars (PM):</span>
+                      <span className="font-mono font-bold text-slate-900">8 total</span>
                     </div>
-                    <div className="flex justify-between pb-1 border-b border-slate-100">
-                      <span>• Molars (M):</span>
-                      <span className="font-mono font-bold">12 total</span>
+                    <div className="flex justify-between pb-1.5 border-b border-slate-100">
+                      <span className="font-medium">• Molars (M):</span>
+                      <span className="font-mono font-bold text-slate-900">12 total</span>
                     </div>
                   </div>
-                  <p className="text-[11px] text-slate-500 pt-1 leading-snug">
+                  <p className="text-xs sm:text-sm text-slate-600 pt-1 leading-relaxed">
                     Arrangement per half jaw: 2 Incisors, 1 Canine, 2 Premolars, 3 Molars (Formula: 2.1.2.3 / 2.1.2.3).
                   </p>
                 </div>
@@ -640,12 +646,12 @@ export const TeethLab: React.FC = () => {
       {/* TAB 3: TOOTH DECAY (DENTAL CARIES) SIMULATOR */}
       {subTab === 'decay' && (
         <div className="flex flex-col gap-6">
-          <div className="p-4 bg-slate-50 border border-slate-200 rounded-xl">
-            <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
-              <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+          <div className="p-5 bg-slate-50 border border-slate-200 rounded-2xl">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span className="text-sm sm:text-base font-bold uppercase tracking-wider text-slate-800">
                 Interactive Decay Progression Simulator
               </span>
-              <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800">
+              <span className="text-xs sm:text-sm font-bold px-3 py-1 rounded-full bg-rose-100 text-rose-800 border border-rose-200">
                 {decayStage === 0 && 'Stage 1: Healthy Clean Tooth'}
                 {decayStage === 1 && 'Stage 2: Plaque Bacteria & Acid Dissolution'}
                 {decayStage === 2 && 'Stage 3: Rapid Dentine Penetration'}
@@ -661,65 +667,65 @@ export const TeethLab: React.FC = () => {
               step="1"
               value={decayStage}
               onChange={(e) => setDecayStage(parseInt(e.target.value))}
-              className="w-full h-2.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-600"
+              className="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-rose-600"
             />
 
-            <div className="flex justify-between text-[11px] font-semibold text-slate-500 mt-2">
-              <span className={decayStage === 0 ? 'text-emerald-600 font-bold' : ''}>1. Healthy Enamel</span>
-              <span className={decayStage === 1 ? 'text-amber-600 font-bold' : ''}>2. Acid Dissolves Enamel</span>
-              <span className={decayStage === 2 ? 'text-orange-600 font-bold' : ''}>3. Dentine Decay</span>
-              <span className={decayStage === 3 ? 'text-rose-600 font-bold' : ''}>4. Pulp Abscess (Pain!)</span>
+            <div className="flex justify-between text-xs sm:text-sm font-semibold text-slate-600 mt-2.5">
+              <span className={decayStage === 0 ? 'text-emerald-700 font-bold' : ''}>1. Healthy Enamel</span>
+              <span className={decayStage === 1 ? 'text-amber-700 font-bold' : ''}>2. Acid Dissolves Enamel</span>
+              <span className={decayStage === 2 ? 'text-orange-700 font-bold' : ''}>3. Dentine Decay</span>
+              <span className={decayStage === 3 ? 'text-rose-700 font-bold' : ''}>4. Pulp Abscess (Pain!)</span>
             </div>
           </div>
 
           {/* Visual Stage Breakdown */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-5 bg-white border border-slate-200 rounded-xl space-y-3">
-              <h4 className="text-sm font-bold text-slate-900 flex items-center gap-2">
-                <AlertTriangle className="w-4 h-4 text-amber-500" />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div className="p-5 sm:p-6 bg-white border border-slate-200 rounded-2xl space-y-3.5 shadow-2xs">
+              <h4 className="text-base sm:text-lg font-bold text-slate-900 flex items-center gap-2">
+                <AlertTriangle className="w-5 h-5 text-amber-500 shrink-0" />
                 <span>The Chemical Process of Dental Caries (IGCSE 0610)</span>
               </h4>
-              <ul className="text-xs text-slate-700 space-y-2 leading-relaxed">
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-rose-600">Step 1:</span>
+              <ul className="text-sm sm:text-base text-slate-700 space-y-2.5 leading-relaxed">
+                <li className="flex items-start gap-2.5">
+                  <span className="font-bold text-rose-600 shrink-0">Step 1:</span>
                   <span>Food containing sugars (glucose, sucrose) sticks to the teeth, mixing with saliva to form sticky <strong>plaque</strong>.</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-rose-600">Step 2:</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="font-bold text-rose-600 shrink-0">Step 2:</span>
                   <span><strong>Bacteria</strong> in the plaque respire the sugars anaerobically, producing <strong>acid</strong> as a waste product.</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-rose-600">Step 3:</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="font-bold text-rose-600 shrink-0">Step 3:</span>
                   <span>The acid dissolves the hard calcium salts in the <strong>enamel</strong>, forming a microscopic hole (cavity).</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-rose-600">Step 4:</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="font-bold text-rose-600 shrink-0">Step 4:</span>
                   <span>Once through the enamel, decay reaches the softer <strong>dentine</strong> and spreads much faster.</span>
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="font-bold text-rose-600">Step 5:</span>
+                <li className="flex items-start gap-2.5">
+                  <span className="font-bold text-rose-600 shrink-0">Step 5:</span>
                   <span>Decay reaches the <strong>pulp cavity</strong>; bacteria infect living nerves → intense <strong>toothache</strong> and abscess!</span>
                 </li>
               </ul>
             </div>
 
-            <div className="p-5 bg-emerald-50/70 border border-emerald-200 rounded-xl space-y-3 text-xs text-emerald-950">
-              <h4 className="text-sm font-bold text-emerald-950 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" />
+            <div className="p-5 sm:p-6 bg-emerald-50/80 border border-emerald-200 rounded-2xl space-y-3.5 text-emerald-950 shadow-2xs">
+              <h4 className="text-base sm:text-lg font-bold text-emerald-950 flex items-center gap-2">
+                <ShieldCheck className="w-5 h-5 text-emerald-600 shrink-0" />
                 <span>How to Prevent Tooth Decay (Syllabus Strategies)</span>
               </h4>
-              <div className="space-y-2 text-emerald-900 leading-relaxed">
+              <div className="space-y-2.5 text-sm sm:text-base text-emerald-900 leading-relaxed">
                 <p>
-                  <strong>1. Regular Brushing with Fluoride Toothpaste:</strong> Removes plaque bacteria and food residues. Fluoride incorporates into enamel to form fluorapatite, which is much more resistant to acid dissolution.
+                  <strong className="text-emerald-950 font-bold">1. Regular Brushing with Fluoride Toothpaste:</strong> Removes plaque bacteria and food residues. Fluoride incorporates into enamel to form fluorapatite, which is much more resistant to acid dissolution.
                 </p>
                 <p>
-                  <strong>2. Reduce Frequency of Sugary Snacks & Acidic Drinks:</strong> Limiting sweet intake starves plaque bacteria, reducing the frequency of acid attacks.
+                  <strong className="text-emerald-950 font-bold">2. Reduce Frequency of Sugary Snacks & Acidic Drinks:</strong> Limiting sweet intake starves plaque bacteria, reducing the frequency of acid attacks.
                 </p>
                 <p>
-                  <strong>3. Flossing:</strong> Cleans between teeth where toothbrushes cannot reach.
+                  <strong className="text-emerald-950 font-bold">3. Flossing:</strong> Cleans between teeth where toothbrushes cannot reach.
                 </p>
                 <p>
-                  <strong>4. Regular Dental Check-ups:</strong> Catches cavities early before they penetrate dentine and infect the pulp cavity.
+                  <strong className="text-emerald-950 font-bold">4. Regular Dental Check-ups:</strong> Catches cavities early before they penetrate dentine and infect the pulp cavity.
                 </p>
               </div>
             </div>
