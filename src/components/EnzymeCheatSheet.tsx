@@ -42,14 +42,14 @@ export const EnzymeCheatSheet: React.FC<EnzymeCheatSheetProps> = ({
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 bg-slate-50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-base shadow-xs">
-              <BookOpen className="w-5 h-5" />
+            <div className="w-11 h-11 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-base shadow-xs shrink-0">
+              <BookOpen className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-slate-900">
+              <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
                 IGCSE 0610: Digestive Enzyme Master Cheat Sheet
               </h3>
-              <p className="text-sm text-slate-500">
+              <p className="text-sm sm:text-base text-slate-600">
                 Optimal pH, Secretion Locations, Substrates & Chemical Products
               </p>
             </div>
@@ -60,31 +60,31 @@ export const EnzymeCheatSheet: React.FC<EnzymeCheatSheetProps> = ({
             className="p-2 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
             title="Close Cheat Sheet"
           >
-            <X className="w-5 h-5" />
+            <X className="w-6 h-6" />
           </button>
         </div>
 
         {/* Search & Category Filter Toolbar */}
-        <div className="p-4 bg-white border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
+        <div className="p-4 sm:p-5 bg-white border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
           {/* Search Input */}
           <div className="relative flex-1 min-w-[240px]">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+            <Search className="w-5 h-5 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               placeholder="Search enzyme, substrate, or organ (e.g. Pepsin, Stomach, Lipids)..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-9 pr-3 py-2 text-sm bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 text-slate-800 placeholder-slate-400"
+              className="w-full pl-10 pr-3.5 py-2.5 text-sm sm:text-base bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 text-slate-800 placeholder-slate-400"
             />
           </div>
 
           {/* Type Filter Buttons */}
-          <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-lg text-sm font-semibold">
+          <div className="flex items-center gap-1.5 p-1 bg-slate-100 rounded-xl text-sm sm:text-base font-bold">
             {(['All', 'Carbohydrase', 'Protease', 'Lipase'] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setSelectedTypeFilter(t)}
-                className={`px-3 py-1.5 rounded-md transition-all cursor-pointer ${
+                className={`px-3.5 py-2 rounded-lg transition-all cursor-pointer ${
                   selectedTypeFilter === t
                     ? 'bg-white text-purple-700 shadow-xs'
                     : 'text-slate-600 hover:text-slate-900'
@@ -106,23 +106,23 @@ export const EnzymeCheatSheet: React.FC<EnzymeCheatSheetProps> = ({
               return (
                 <div
                   key={enz.name}
-                  className="bg-slate-50/80 border border-slate-200 rounded-xl p-4.5 flex flex-col justify-between hover:border-purple-300 transition-all shadow-xs"
+                  className="bg-slate-50/80 border border-slate-200 rounded-2xl p-5 flex flex-col justify-between hover:border-purple-300 transition-all shadow-xs space-y-4"
                 >
-                  <div className="space-y-3">
+                  <div className="space-y-3.5">
                     {/* Top Row: Name & pH Badge */}
                     <div className="flex items-start justify-between gap-2">
                       <div>
-                        <span className="text-xs font-bold uppercase tracking-wider text-purple-700 block mb-0.5">
+                        <span className="text-xs sm:text-sm font-extrabold uppercase tracking-wider text-purple-700 block mb-0.5">
                           {enz.type}
                         </span>
-                        <h4 className="text-lg font-bold text-slate-900">
+                        <h4 className="text-xl font-bold text-slate-900">
                           {enz.name}
                         </h4>
                       </div>
 
                       <div className="text-right">
                         <span
-                          className={`inline-block px-3 py-1 rounded-full text-xs font-mono font-bold ${
+                          className={`inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-mono font-bold ${
                             isAcidic
                               ? 'bg-rose-100 text-rose-800 border border-rose-200'
                               : isAlkaline
@@ -132,59 +132,59 @@ export const EnzymeCheatSheet: React.FC<EnzymeCheatSheetProps> = ({
                         >
                           Opt. pH ~{enz.optimumPh}
                         </span>
-                        <span className="text-xs text-slate-500 block mt-0.5 font-medium">
+                        <span className="text-xs sm:text-sm text-slate-500 block mt-0.5 font-medium">
                           {isAcidic ? 'Strongly Acidic' : isAlkaline ? 'Alkaline' : 'Neutral'}
                         </span>
                       </div>
                     </div>
 
                     {/* Site of Action & Production */}
-                    <div className="grid grid-cols-2 gap-2 text-sm p-3 bg-white rounded-lg border border-slate-100">
+                    <div className="grid grid-cols-2 gap-2 text-sm p-3.5 bg-white rounded-xl border border-slate-100">
                       <div>
-                        <span className="text-xs font-semibold text-slate-400 block uppercase">
+                        <span className="text-xs font-bold text-slate-400 block uppercase tracking-wider mb-0.5">
                           Produced By:
                         </span>
-                        <strong className="text-slate-800 text-xs sm:text-sm">
+                        <strong className="text-slate-900 text-sm sm:text-base font-bold block">
                           {enz.producedBy.join(', ')}
                         </strong>
                       </div>
                       <div>
-                        <span className="text-xs font-semibold text-slate-400 block uppercase">
+                        <span className="text-xs font-bold text-slate-400 block uppercase tracking-wider mb-0.5">
                           Location of Action:
                         </span>
-                        <strong className="text-purple-700 text-xs sm:text-sm">
+                        <strong className="text-purple-700 text-sm sm:text-base font-bold block">
                           {enz.secretedInto.join(', ')}
                         </strong>
                       </div>
                     </div>
 
                     {/* Substrate to Products Reaction */}
-                    <div className="text-sm p-3 bg-purple-50/50 rounded-lg border border-purple-100">
-                      <div className="flex items-center gap-2 font-mono text-xs sm:text-sm">
+                    <div className="p-3.5 bg-purple-50/50 rounded-xl border border-purple-100 space-y-1">
+                      <div className="flex items-center gap-2 font-mono text-sm sm:text-base">
                         <span className="font-semibold text-slate-700">Substrate:</span>
                         <span className="text-slate-900 font-bold">{enz.substrate}</span>
                       </div>
-                      <div className="flex items-center gap-2 font-mono text-xs sm:text-sm mt-1">
+                      <div className="flex items-center gap-2 font-mono text-sm sm:text-base">
                         <span className="font-semibold text-purple-700">Product(s):</span>
                         <span className="text-emerald-700 font-bold">{enz.products}</span>
                       </div>
                     </div>
 
                     {/* IGCSE Syllabus Note */}
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed italic">
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed italic">
                       📌 {enz.igcseSummary}
                     </p>
                   </div>
 
                   {/* Action: Test in Sandbox */}
                   {onSelectForSandbox && (
-                    <div className="pt-3 mt-3 border-t border-slate-200 flex justify-end">
+                    <div className="pt-3 border-t border-slate-200 flex justify-end">
                       <button
                         onClick={() => {
                           onSelectForSandbox(enz.name, enz.optimumPh, getSubstrateCategory(enz));
                           onClose();
                         }}
-                        className="flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold text-purple-700 hover:text-white bg-purple-100/70 hover:bg-purple-600 rounded-lg transition-colors cursor-pointer"
+                        className="flex items-center gap-2 px-4 py-2.5 text-sm font-bold text-purple-700 hover:text-white bg-purple-100/70 hover:bg-purple-600 rounded-xl transition-colors cursor-pointer shadow-2xs"
                       >
                         <span>Test in Sandbox</span>
                         <ArrowRight className="w-4 h-4" />
@@ -197,12 +197,12 @@ export const EnzymeCheatSheet: React.FC<EnzymeCheatSheetProps> = ({
           </div>
 
           {/* Quick Memory Mnemonic Card */}
-          <div className="p-4 bg-amber-50/80 border border-amber-200 rounded-xl space-y-2 text-sm text-amber-950">
-            <div className="flex items-center gap-2 font-bold text-base text-amber-950">
+          <div className="p-5 sm:p-6 bg-amber-50/80 border border-amber-200 rounded-2xl space-y-3 text-amber-950 shadow-2xs">
+            <div className="flex items-center gap-2 font-bold text-base sm:text-lg text-amber-950">
               <Award className="w-5 h-5 text-amber-600 shrink-0" />
               <span>Cambridge IGCSE 0610 Enzyme Memory Mnemonics</span>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-amber-900 text-xs sm:text-sm leading-relaxed">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-amber-900 text-sm sm:text-base leading-relaxed">
               <p>
                 <strong>• Pancreas produces &apos;ATL&apos;:</strong> <strong>A</strong>mylase, <strong>T</strong>rypsin (protease), and <strong>L</strong>ipase. All secreted into the duodenum where conditions are neutralised to alkaline pH 7.5–8.5.
               </p>

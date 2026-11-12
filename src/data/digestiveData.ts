@@ -515,6 +515,111 @@ export const IGCSE_QUIZ_QUESTIONS: QuizQuestion[] = [
     correctIndex: 0,
     explanation: 'Peristalsis is caused by antagonistic muscle pairs. Behind the bolus, circular muscles contract (narrowing the lumen) and longitudinal muscles relax, forcing the food downward.',
     examTip: 'Behind bolus: Circular contract, lumen narrows. In front of bolus: Circular relax, longitudinal contract.'
+  },
+  {
+    id: 'q9_growth',
+    type: 'multiple-choice',
+    syllabusRef: '0610 Topic 1.1',
+    question: 'Which phrase correctly defines growth according to the Cambridge IGCSE Biology syllabus?',
+    options: [
+      'A temporary increase in volume and wet weight due to water intake',
+      'A permanent increase in size and dry mass',
+      'The intake of materials for energy and cellular division',
+      'The release of energy from nutrient molecules inside mitochondria'
+    ],
+    correctIndex: 1,
+    explanation: 'Growth is defined specifically as a permanent increase in size and dry mass (mass excluding water). Water absorption causes temporary mass changes, not biological growth.',
+    examTip: 'Always include "dry mass" in your definition to earn full marks on paper 2 and paper 4.'
+  },
+  {
+    id: 'q10_cells',
+    type: 'multiple-choice',
+    syllabusRef: '0610 Topic 2.1',
+    question: 'A cell has a cellulose cell wall, cell membrane, mitochondria, and a large permanent central vacuole, but NO chloroplasts. Which cell is it?',
+    options: [
+      'Palisade mesophyll cell in a green leaf',
+      'Root hair cell in underground soil',
+      'Cheek epithelial cell in an animal',
+      'Bacterial prokaryotic cell'
+    ],
+    correctIndex: 1,
+    explanation: 'Root hair cells are plant cells (have cellulose wall and permanent vacuole), but because they grow underground in dark soil where no light penetrates, they do not contain chloroplasts.',
+    examTip: 'Examiners frequently test root cells and onion epidermis: they are plant cells but have no chloroplasts.'
+  },
+  {
+    id: 'q11_mag',
+    type: 'multiple-choice',
+    syllabusRef: '0610 Topic 2.2',
+    question: 'A diagram of a cell measures 30 mm across. The actual width of the cell is 60 μm. What is the magnification of the diagram?',
+    options: [
+      '×50',
+      '×200',
+      '×500',
+      '×2000'
+    ],
+    correctIndex: 2,
+    explanation: 'First convert units to match: Image size (I) = 30 mm = 30,000 μm. Actual size (A) = 60 μm. Magnification (M) = I ÷ A = 30,000 ÷ 60 = ×500.',
+    examTip: 'Golden Rule for Magnification calculations: Always convert Image (mm) to micrometers (μm) by multiplying by 1000 before dividing!'
+  },
+  {
+    id: 'q12_osmosis',
+    type: 'multiple-choice',
+    syllabusRef: '0610 Topic 3.2',
+    question: 'What happens when a red blood cell is placed in pure distilled water, and why does this differ from a plant cell?',
+    options: [
+      'Red blood cell shrivels; plant cell bursts',
+      'Red blood cell bursts (lysis); plant cell becomes turgid because of its rigid cellulose cell wall',
+      'Both cells remain completely unchanged',
+      'Red blood cell actively pumps water out; plant cell plasmolyses'
+    ],
+    correctIndex: 1,
+    explanation: 'Water enters both cells down the water potential gradient by osmosis. Animal cells lack a cell wall, so the membrane stretches and bursts (haemolysis). Plant cells have a rigid cellulose cell wall that exerts wall pressure, making the cell turgid without bursting.',
+    examTip: 'Animal cell in hypotonic water = lysis (bursts). Plant cell in hypotonic water = turgid.'
+  },
+  {
+    id: 'q13_active',
+    type: 'multiple-choice',
+    syllabusRef: '0610 Topic 3.3',
+    question: 'Why does active transport of nitrate ions into root hair cells stop if the soil becomes waterlogged and depleted of oxygen?',
+    options: [
+      'Oxygen is needed to chemically dissolve nitrate ions in soil',
+      'Active transport requires ATP energy released by aerobic respiration in mitochondria',
+      'Waterlogged soil reverses the concentration gradient of nitrates',
+      'Carrier proteins freeze in cold wet soil'
+    ],
+    correctIndex: 1,
+    explanation: 'Active transport moves particles against a concentration gradient using energy released from aerobic respiration in mitochondria. Aerobic respiration requires oxygen; without oxygen, ATP generation ceases and active transport halts.',
+    examTip: 'Whenever asked why active transport stops under cyanide or lack of oxygen, link it directly to respiration and ATP energy.'
+  },
+  {
+    id: 'q14_foodtest',
+    type: 'multiple-choice',
+    syllabusRef: '0610 Topic 4.2',
+    question: 'Which test requires heating in a boiling water bath, and what is its positive result for a reducing sugar?',
+    options: [
+      'Iodine test; turns blue-black at room temperature',
+      'Biuret test; turns purple/violet with heat',
+      'Benedict’s test; turns from blue to a brick-red precipitate with heat',
+      'Ethanol emulsion test; forms a milky white layer with heat'
+    ],
+    correctIndex: 2,
+    explanation: 'The Benedict’s test is the only standard food test that requires heating in a boiling water bath (80–100°C). A positive result is a color change from blue → green → yellow → brick-red precipitate.',
+    examTip: 'Examiners always award a mark for mentioning "heat in water bath" when describing the Benedict’s test method.'
+  },
+  {
+    id: 'q15_enzyme',
+    type: 'multiple-choice',
+    syllabusRef: '0610 Topic 5.1',
+    question: 'Why does an enzyme become inactive when heated to 65°C?',
+    options: [
+      'High temperature kills the enzyme because it is alive',
+      'Molecules lose all kinetic energy and cease colliding',
+      'Thermal energy breaks chemical bonds holding the tertiary protein structure, permanently changing the active site shape',
+      'The substrate molecules evaporate at high temperatures'
+    ],
+    correctIndex: 2,
+    explanation: 'Enzymes are protein molecules (not living organisms, so they cannot be "killed"). At high temperatures, intense vibrations break hydrogen and ionic bonds, denaturing the active site so substrates can no longer fit.',
+    examTip: 'Never say enzymes are "killed". Always say they are "denatured" because the shape of the active site changes!'
   }
 ];
 
