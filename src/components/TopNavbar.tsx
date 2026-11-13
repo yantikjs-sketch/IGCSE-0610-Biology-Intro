@@ -20,10 +20,10 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
   ];
 
   return (
-    <header className="flex items-center justify-between gap-4 px-6 py-4 bg-white border-b border-slate-200 sticky top-0 z-40 shadow-xs">
+    <header className="flex items-center justify-between gap-4 px-6 py-4 bg-white/85 backdrop-blur-md border-b border-teal-200/70 sticky top-0 z-40 shadow-sm shadow-teal-900/5">
       {/* Zone 1: Wordmark & Title */}
       <div className="flex items-center gap-3 shrink-0">
-        <div className="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-extrabold text-base shadow-sm">
+        <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-600 via-teal-600 to-blue-600 text-white flex items-center justify-center font-extrabold text-base shadow-sm">
           0610
         </div>
         <div>
@@ -52,8 +52,8 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
                 onClick={() => onSelectChapter(ch.id)}
                 className={`px-3 py-1.5 rounded-xl transition-all cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${
                   isActive
-                    ? 'bg-blue-600 text-white font-bold shadow-xs'
-                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                    ? 'bg-gradient-to-r from-teal-600 to-blue-600 text-white font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-teal-50/80'
                 }`}
               >
                 <span className={`w-4 h-4 rounded-full text-[10px] font-bold flex items-center justify-center ${
@@ -70,8 +70,8 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
 
       {/* Zone 3: Badge indicator */}
       <div className="flex items-center gap-2 shrink-0">
-        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-200 text-xs font-bold text-slate-700">
-          <BookOpen className="w-3.5 h-3.5 text-blue-600" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-teal-50 border border-teal-200 text-xs font-bold text-teal-800">
+          <BookOpen className="w-3.5 h-3.5 text-teal-600" />
           <span>Cambridge 0610</span>
         </div>
       </div>

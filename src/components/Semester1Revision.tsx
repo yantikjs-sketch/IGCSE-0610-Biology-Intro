@@ -53,6 +53,256 @@ import { SpecialisedCellDiagram, AnimalClassificationDiagram } from './BiologyDi
 import { ORGANS, STAGES } from '../data/digestiveData';
 import { OrganId, FoodType } from '../types/digestive';
 
+// 3D Biological Diagrams & Specialised Cell Micrograph Renders
+import plantCell3dImg from '../assets/images/plant_cell_3d_1794529010340.jpg';
+import animalCell3dImg from '../assets/images/animal_cell_3d_1794529009968.jpg';
+import bacterialCell3dImg from '../assets/images/bacterial_cell_3d_1794529011421.jpg';
+import dnaStructure3dImg from '../assets/images/dna_structure_3d_1794529011821.jpg';
+import ciliatedCell3dImg from '../assets/images/ciliated_cell_3d_1794529012493.jpg';
+import rootHairCell3dImg from '../assets/images/root_hair_cell_3d_1794529013673.jpg';
+import xylemVessel3dImg from '../assets/images/xylem_vessel_3d_1794529013713.jpg';
+import phloemCell3dImg from '../assets/images/phloem_cell_3d_1794529031181.jpg';
+import palisadeCell3dImg from '../assets/images/palisade_cell_3d_1794529016674.jpg';
+import guardCells3dImg from '../assets/images/guard_cells_3d_1794529016207.jpg';
+import redBloodCell3dImg from '../assets/images/red_blood_cell_3d_1794529016865.jpg';
+import motorNeurone3dImg from '../assets/images/motor_neurone_3d_1794529018146.jpg';
+import spermCell3dImg from '../assets/images/sperm_cell_3d_1794529017935.jpg';
+import eggCell3dImg from '../assets/images/egg_cell_3d_1794529019038.jpg';
+import muscleCell3dImg from '../assets/images/muscle_cell_3d_1794529018990.jpg';
+
+// 3D Real Animal Wildlife Renders (Chapter 1 Classification)
+import insect3dRealImg from '../assets/images/insect_3d_real_1794531116199.jpg';
+import crustacean3dRealImg from '../assets/images/crustacean_3d_real_1794531116686.jpg';
+import arachnid3dRealImg from '../assets/images/arachnid_3d_real_1794531116989.jpg';
+import myriapod3dRealImg from '../assets/images/myriapod_3d_real_1794531117148.jpg';
+import annelid3dRealImg from '../assets/images/annelid_3d_real_1794531118541.jpg';
+import nematode3dRealImg from '../assets/images/nematode_3d_real_1794531118491.jpg';
+import mollusc3dRealImg from '../assets/images/mollusc_3d_real_1794531119009.jpg';
+import fish3dRealImg from '../assets/images/fish_3d_real_1794531119531.jpg';
+import amphibian3dRealImg from '../assets/images/amphibian_3d_real_1794531120244.jpg';
+import reptile3dRealImg from '../assets/images/reptile_3d_real_1794531121504.jpg';
+import bird3dRealImg from '../assets/images/bird_3d_real_1794531121933.jpg';
+import mammal3dRealImg from '../assets/images/mammal_3d_real_1794531121762.jpg';
+
+// 3D Osmosis Cell States (Chapter 3: Palisade Mesophyll vs Red Blood Cell)
+import rbcHypotonicImg from '../assets/images/rbc_hypotonic_lysis_3d_1794531267880.jpg';
+import rbcIsotonicImg from '../assets/images/rbc_isotonic_normal_3d_1794531268591.jpg';
+import rbcHypertonicImg from '../assets/images/rbc_hypertonic_crenated_3d_1794531268422.jpg';
+import palisadeHypotonicImg from '../assets/images/palisade_hypotonic_turgid_3d_1794531269105.jpg';
+import palisadeIsotonicImg from '../assets/images/palisade_isotonic_flaccid_3d_1794531268648.jpg';
+import palisadeHypertonicImg from '../assets/images/palisade_hypertonic_plasmolysed_3d_1794531269245.jpg';
+
+const OSMOSIS_CELL_VISUALS: Record<
+  '-1' | '0' | '1',
+  {
+    conditionLabel: string;
+    waterPotentialNote: string;
+    plant: {
+      state: string;
+      arrowLabel: string;
+      badgeClass: string;
+      image: string;
+      alt: string;
+    };
+    animal: {
+      state: string;
+      arrowLabel: string;
+      badgeClass: string;
+      image: string;
+      alt: string;
+    };
+  }
+> = {
+  '-1': {
+    conditionLabel: 'Hypotonic (Pure Water)',
+    waterPotentialNote: 'Higher Ψ outside → Water enters cells by osmosis',
+    plant: {
+      state: 'Turgid (Turgor Pressure)',
+      arrowLabel: '💧 Net H₂O Enters Cell → Swollen Vacuole',
+      badgeClass: 'bg-emerald-500/90 text-slate-950',
+      image: palisadeHypotonicImg,
+      alt: '3D cutaway of a turgid palisade mesophyll plant cell in hypotonic pure water with swollen blue vacuole pressing against the cell wall',
+    },
+    animal: {
+      state: 'Lysis (Bursting / Haemolysis)',
+      arrowLabel: '💧 Net H₂O Enters Cell → Swells & Bursts',
+      badgeClass: 'bg-rose-500/90 text-white',
+      image: rbcHypotonicImg,
+      alt: '3D illustration of a red blood cell undergoing lysis and bursting in hypotonic pure water',
+    },
+  },
+  '0': {
+    conditionLabel: 'Isotonic (Equilibrium)',
+    waterPotentialNote: 'Equal Ψ inside & outside → No net water movement',
+    plant: {
+      state: 'Flaccid (Incipient Plasmolysis)',
+      arrowLabel: '⚖️ Equal H₂O In & Out → Relaxed Vacuole',
+      badgeClass: 'bg-sky-400/90 text-slate-950',
+      image: palisadeIsotonicImg,
+      alt: '3D cutaway of a flaccid palisade mesophyll plant cell in isotonic solution with relaxed central vacuole',
+    },
+    animal: {
+      state: 'Normal (Biconcave Disc)',
+      arrowLabel: '⚖️ Equal H₂O In & Out → Normal Shape',
+      badgeClass: 'bg-emerald-400/90 text-slate-950',
+      image: rbcIsotonicImg,
+      alt: '3D illustration of a normal healthy biconcave disc red blood cell in isotonic plasma',
+    },
+  },
+  '1': {
+    conditionLabel: 'Hypertonic (Concentrated Solution)',
+    waterPotentialNote: 'Lower Ψ outside → Water leaves cells by osmosis',
+    plant: {
+      state: 'Plasmolysed (Membrane Detaches)',
+      arrowLabel: '🧂 Net H₂O Leaves Cell → Vacuole Shrinks',
+      badgeClass: 'bg-amber-400/95 text-slate-950',
+      image: palisadeHypertonicImg,
+      alt: '3D cutaway of a plasmolysed palisade mesophyll plant cell in hypertonic solution showing cell membrane pulled away from the cell wall',
+    },
+    animal: {
+      state: 'Crenated (Shrivelled)',
+      arrowLabel: '🧂 Net H₂O Leaves Cell → Shrivelled Spikes',
+      badgeClass: 'bg-amber-500/95 text-slate-950',
+      image: rbcHypertonicImg,
+      alt: '3D illustration of a crenated shrivelled red blood cell in concentrated hypertonic solution',
+    },
+  },
+};
+
+const ARTHROPOD_REAL_IMAGES: Record<string, { image: string; specimen: string; alt: string }> = {
+  insects: {
+    image: insect3dRealImg,
+    specimen: 'Honeybee (Apis mellifera)',
+    alt: '3D real wildlife render of a honeybee showing head, thorax, abdomen, 6 jointed legs, 1 pair of antennae, and wings',
+  },
+  crustaceans: {
+    image: crustacean3dRealImg,
+    specimen: 'Lobster & Crab (Crustacea)',
+    alt: '3D real wildlife render of a lobster and crab showing hard carapace, 2 pairs of antennae, pincer claws, and walking legs',
+  },
+  arachnids: {
+    image: arachnid3dRealImg,
+    specimen: 'Garden Orb-Weaver Spider',
+    alt: '3D real wildlife render of a garden spider showing cephalothorax, abdomen, 8 walking legs, and no antennae',
+  },
+  myriapods: {
+    image: myriapod3dRealImg,
+    specimen: 'Giant Centipede (Chilopoda)',
+    alt: '3D real wildlife render of a centipede showing head with 1 pair of antennae and many repeated segments with jointed legs',
+  },
+};
+
+const INVERTEBRATE_REAL_IMAGES: Record<string, { image: string; specimen: string; alt: string }> = {
+  Annelids: {
+    image: annelid3dRealImg,
+    specimen: 'Earthworm (Lumbricus terrestris)',
+    alt: '3D real wildlife render of an earthworm showing distinct ring-like segments and clitellum',
+  },
+  Nematodes: {
+    image: nematode3dRealImg,
+    specimen: 'Roundworm (Nematoda)',
+    alt: '3D real macro render of a smooth unsegmented cylindrical roundworm tapering at both ends',
+  },
+  Molluscs: {
+    image: mollusc3dRealImg,
+    specimen: 'Garden Snail (Helix aspersa)',
+    alt: '3D real wildlife render of a garden snail showing coiled shell, soft muscular foot, and tentacles',
+  },
+};
+
+const VERTEBRATE_REAL_IMAGES: Record<string, { image: string; specimen: string; alt: string }> = {
+  'Fish (Pisces)': {
+    image: fish3dRealImg,
+    specimen: 'Rainbow Trout',
+    alt: '3D real wildlife render of a rainbow trout showing wet overlapping scales, fins, and gill cover',
+  },
+  Amphibians: {
+    image: amphibian3dRealImg,
+    specimen: 'Green Tree Frog',
+    alt: '3D real wildlife render of a green tree frog showing smooth moist naked skin and 4 limbs',
+  },
+  Reptiles: {
+    image: reptile3dRealImg,
+    specimen: 'Green Iguana',
+    alt: '3D real wildlife render of a green iguana showing dry waterproof scales and clawed limbs',
+  },
+  'Birds (Aves)': {
+    image: bird3dRealImg,
+    specimen: 'Golden Eagle',
+    alt: '3D real wildlife render of a golden eagle showing feathers, wings, and hooked toothless beak',
+  },
+  Mammals: {
+    image: mammal3dRealImg,
+    specimen: 'Red Fox',
+    alt: '3D real wildlife render of a red fox showing thick fur coat and external ear pinnae',
+  },
+};
+
+const SPECIALIZED_CELL_IMAGES: Record<string, string> = {
+  'Ciliated Epithelial Cell': ciliatedCell3dImg,
+  'Root Hair Cell': rootHairCell3dImg,
+  'Xylem Vessel': xylemVessel3dImg,
+  'Phloem Sieve Tube & Companion Cell': phloemCell3dImg,
+  'Palisade Mesophyll Cell': palisadeCell3dImg,
+  'Guard Cells': guardCells3dImg,
+  'Red Blood Cell (Erythrocyte)': redBloodCell3dImg,
+  'Motor Neurone (Nerve Cell)': motorNeurone3dImg,
+  'Sperm Cell (Male Gamete)': spermCell3dImg,
+  'Egg Cell (Ovum / Female Gamete)': eggCell3dImg,
+  'Skeletal Muscle Cell (Muscle Fibre)': muscleCell3dImg,
+};
+
+const CELL_3D_MODELS: Record<
+  'plant' | 'animal' | 'bacteria',
+  {
+    title: string;
+    subtitle: string;
+    image: string;
+    alt: string;
+    keyItems: { label: string; colorClass: string; organelle: string }[];
+  }
+> = {
+  plant: {
+    title: '🌿 3D Plant Cell Cutaway (Eukaryotic)',
+    subtitle: 'Rigid cellulose cell wall, permanent central vacuole, chloroplasts & nucleus',
+    image: plantCell3dImg,
+    alt: '3D cutaway diagram of a plant cell showing cellulose cell wall, chloroplasts, large blue vacuole, purple nucleus, and orange mitochondria',
+    keyItems: [
+      { label: 'Cell Wall (Outer Green)', colorClass: 'bg-emerald-500', organelle: 'Cell Wall' },
+      { label: 'Nucleus (Purple)', colorClass: 'bg-purple-500', organelle: 'Nucleus' },
+      { label: 'Central Vacuole (Blue)', colorClass: 'bg-sky-400', organelle: 'Permanent Central Vacuole' },
+      { label: 'Chloroplasts (Green Discs)', colorClass: 'bg-lime-500', organelle: 'Chloroplasts' },
+      { label: 'Mitochondria (Orange)', colorClass: 'bg-orange-500', organelle: 'Mitochondria' },
+    ],
+  },
+  animal: {
+    title: '🐾 3D Animal Cell Cutaway (Eukaryotic)',
+    subtitle: 'Flexible cell membrane, prominent nucleus, mitochondria & ribosomes (no cell wall)',
+    image: animalCell3dImg,
+    alt: '3D cutaway diagram of an animal cell showing blue cell membrane, purple nucleus, orange mitochondria, and ribosomes',
+    keyItems: [
+      { label: 'Cell Membrane (Outer Blue)', colorClass: 'bg-indigo-400', organelle: 'Cell Membrane' },
+      { label: 'Nucleus (Purple)', colorClass: 'bg-purple-500', organelle: 'Nucleus' },
+      { label: 'Mitochondria (Orange)', colorClass: 'bg-orange-500', organelle: 'Mitochondria' },
+      { label: 'Ribosomes (Small Dots)', colorClass: 'bg-amber-400', organelle: 'Ribosomes' },
+      { label: 'Cytoplasm (Gel Interior)', colorClass: 'bg-cyan-500', organelle: 'Cytoplasm' },
+    ],
+  },
+  bacteria: {
+    title: '🦠 3D Bacterial Cell Cutaway (Prokaryotic)',
+    subtitle: 'Cell wall, circular DNA loop (no nucleus), small plasmid rings, ribosomes & flagellum',
+    image: bacterialCell3dImg,
+    alt: '3D cutaway diagram of a bacterial cell showing yellow cell wall, blue membrane, magenta circular DNA, gold plasmids, ribosomes, and purple flagellum',
+    keyItems: [
+      { label: 'Bacterial Cell Wall (Yellow)', colorClass: 'bg-yellow-400', organelle: 'Cell Wall' },
+      { label: 'Cell Membrane (Blue)', colorClass: 'bg-sky-500', organelle: 'Cell Membrane' },
+      { label: 'Circular DNA Loop (Pink)', colorClass: 'bg-pink-500', organelle: 'Nucleus' },
+      { label: 'Plasmids (Gold Rings)', colorClass: 'bg-amber-400', organelle: 'Cytoplasm' },
+      { label: 'Ribosomes (Red Dots)', colorClass: 'bg-rose-500', organelle: 'Ribosomes' },
+    ],
+  },
+};
+
 export type Semester1Chapter =
   | 'characteristics'
   | 'cells'
@@ -95,6 +345,7 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
   const [selectedMrsGren, setSelectedMrsGren] = useState<string>('M');
   const [classificationSubTab, setClassificationSubTab] = useState<'mrs_gren' | 'kingdoms' | 'arthropods' | 'invertebrates' | 'vertebrates' | 'keys' | 'quiz'>('mrs_gren');
   const [selectedArthropodId, setSelectedArthropodId] = useState<string>('insects');
+  const [animalViewMode, setAnimalViewMode] = useState<'3d' | '2d'>('3d');
 
   // Chapter 2 State: Plant vs Animal vs Bacteria, Magnification calculator, Specialized Cells & Quiz
   const [cellSubTab, setCellSubTab] = useState<'diagrams' | 'specialized' | 'magnification' | 'organisation' | 'quiz'>('diagrams');
@@ -102,6 +353,7 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
   const [selectedOrganelle, setSelectedOrganelle] = useState<string>('Nucleus');
   const [specializedFilter, setSpecializedFilter] = useState<'All' | 'Plant' | 'Animal'>('All');
   const [selectedSpecializedCell, setSelectedSpecializedCell] = useState<string>('Ciliated Epithelial Cell');
+  const [specializedViewMode, setSpecializedViewMode] = useState<'3d' | '2d'>('3d');
   // Magnification Triangle: I = A x M
   const [imageSizeMm, setImageSizeMm] = useState<number>(24); // mm
   const [magnification, setMagnification] = useState<number>(400); // 400x
@@ -268,7 +520,7 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
     ORGANS.find((o) => o.id === selectedOrganId) || ORGANS[0];
 
   return (
-    <div className="bg-white border border-slate-200 rounded-3xl p-6 sm:p-8 shadow-xs flex flex-col gap-8">
+    <div className="bg-white/92 backdrop-blur-md border border-teal-200/80 rounded-3xl p-6 sm:p-8 shadow-xl shadow-teal-950/5 flex flex-col gap-8">
       {/* Top Banner: Cambridge IGCSE 0610 Year 9 Semester 1 Revision */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-100">
         <div>
@@ -282,26 +534,10 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
             Complete Semester 1 Revision
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 mt-1 max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg text-slate-600 mt-1 max-w-4xl leading-relaxed">
             Master the core definitions, cell organelles, transport mechanisms, biological molecules, enzyme kinetics, and digestive system for Year 9 Cambridge 0610 examination success.
           </p>
         </div>
-
-        {/* Quick Jump to Digestion / Stomach Labs */}
-        <button
-          onClick={() => {
-            setActiveChapter('digestion');
-            setDigestiveSubTab('journey');
-          }}
-          className={`flex items-center gap-2 px-4 py-2.5 rounded-xl border transition-colors text-sm font-bold shrink-0 cursor-pointer shadow-2xs ${
-            activeChapter === 'digestion'
-              ? 'bg-blue-600 text-white border-blue-600'
-              : 'bg-blue-50 hover:bg-blue-100 text-blue-800 border-blue-200'
-          }`}
-        >
-          <span>Explore Digestive System</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
       </div>
 
       {/* 6 Chapter Navigation Tabs */}
@@ -539,22 +775,35 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {ARTHROPOD_GROUPS.map((grp) => {
                   const isSelected = selectedArthropodId === grp.id;
+                  const realAsset = ARTHROPOD_REAL_IMAGES[grp.id];
                   return (
                     <button
                       key={grp.id}
                       onClick={() => setSelectedArthropodId(grp.id)}
-                      className={`p-4 rounded-2xl border text-left transition-all cursor-pointer ${
+                      className={`group p-3 rounded-2xl border text-left transition-all cursor-pointer flex flex-col justify-between ${
                         isSelected
                           ? 'bg-blue-600 text-white border-blue-600 shadow-md ring-4 ring-blue-500/20'
-                          : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50'
+                          : 'bg-white border-slate-200 text-slate-800 hover:bg-slate-50 hover:border-teal-300'
                       }`}
                     >
-                      <span className={`text-xs font-mono font-bold block ${isSelected ? 'text-blue-200' : 'text-blue-600'}`}>
-                        {grp.scientificGroup}
-                      </span>
-                      <h4 className="text-xl font-black mt-0.5">{grp.name}</h4>
-                      <div className={`text-xs mt-1 font-semibold ${isSelected ? 'text-blue-100' : 'text-slate-500'}`}>
-                        {grp.pairsOfLegs.split(' (')[0]}
+                      {realAsset && (
+                        <div className="w-full aspect-[4/3] rounded-xl overflow-hidden bg-slate-900 mb-2.5 border border-black/10">
+                          <img
+                            src={realAsset.image}
+                            alt={realAsset.alt}
+                            referrerPolicy="no-referrer"
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <span className={`text-xs font-mono font-bold block ${isSelected ? 'text-blue-200' : 'text-blue-600'}`}>
+                          {grp.scientificGroup}
+                        </span>
+                        <h4 className="text-lg sm:text-xl font-black mt-0.5">{grp.name}</h4>
+                        <div className={`text-xs mt-1 font-semibold ${isSelected ? 'text-blue-100' : 'text-slate-500'}`}>
+                          {grp.pairsOfLegs.split(' (')[0]}
+                        </div>
                       </div>
                     </button>
                   );
@@ -564,6 +813,7 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
               {/* Selected Arthropod Detailed Card */}
               {(() => {
                 const current = ARTHROPOD_GROUPS.find((g) => g.id === selectedArthropodId) || ARTHROPOD_GROUPS[0];
+                const realAsset = ARTHROPOD_REAL_IMAGES[current.id];
                 return (
                   <div className="p-6 bg-slate-50 border border-slate-200 rounded-3xl space-y-4">
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
@@ -571,16 +821,65 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
                         <h4 className="text-2xl font-black text-slate-900">{current.name} ({current.scientificGroup})</h4>
                         <span className="text-xs font-medium text-slate-500">Cambridge IGCSE 0610 Classification Spec</span>
                       </div>
-                      <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200">
-                        {current.pairsOfLegs}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex items-center p-1 bg-slate-200/80 rounded-xl border border-slate-300">
+                          <button
+                            onClick={() => setAnimalViewMode('3d')}
+                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              animalViewMode === '3d'
+                                ? 'bg-blue-600 text-white shadow-xs'
+                                : 'text-slate-700 hover:text-slate-900'
+                            }`}
+                          >
+                            3D Real Animal
+                          </button>
+                          <button
+                            onClick={() => setAnimalViewMode('2d')}
+                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              animalViewMode === '2d'
+                                ? 'bg-blue-600 text-white shadow-xs'
+                                : 'text-slate-700 hover:text-slate-900'
+                            }`}
+                          >
+                            2D Body Plan
+                          </button>
+                        </div>
+                        <span className="px-3 py-1 rounded-full text-xs font-bold bg-blue-100 text-blue-800 border border-blue-200">
+                          {current.pairsOfLegs}
+                        </span>
+                      </div>
                     </div>
 
-                    {/* Integrated Biological Diagram */}
-                    <AnimalClassificationDiagram
-                      animalGroup={current.id}
-                      className="w-full h-44 sm:h-52 bg-white rounded-2xl border border-slate-200 p-2 shadow-2xs"
-                    />
+                    {/* Integrated 3D Real Animal Image or 2D Schematic */}
+                    {animalViewMode === '3d' && realAsset ? (
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 items-center bg-slate-950 rounded-2xl border border-slate-800 p-4 text-white">
+                        <div className="lg:col-span-7 rounded-xl overflow-hidden bg-slate-900 border border-slate-800">
+                          <img
+                            src={realAsset.image}
+                            alt={realAsset.alt}
+                            referrerPolicy="no-referrer"
+                            className="w-full max-h-[320px] object-cover"
+                          />
+                        </div>
+                        <div className="lg:col-span-5 space-y-2.5 text-sm">
+                          <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 block">
+                            3D Specimen View
+                          </span>
+                          <h5 className="text-xl font-extrabold text-white">{realAsset.specimen}</h5>
+                          <p className="text-slate-300 leading-relaxed text-xs sm:text-sm">
+                            {current.keyFeatures}
+                          </p>
+                          <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 text-xs text-emerald-300 font-semibold">
+                            Diagnostic Count: {current.pairsOfLegs} · {current.antennae}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <AnimalClassificationDiagram
+                        animalGroup={current.id}
+                        className="w-full h-48 sm:h-56 bg-white rounded-2xl border border-slate-200 p-2 shadow-2xs"
+                      />
+                    )}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 text-xs sm:text-sm">
                       <div className="p-3.5 bg-white rounded-xl border border-slate-200">
@@ -659,54 +958,95 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
           {/* View 4: Other Invertebrate Phyla (Annelids, Nematodes, Molluscs) */}
           {classificationSubTab === 'invertebrates' && (
             <div className="space-y-6">
-              <div>
-                <h4 className="text-xl font-bold text-slate-900">Non-Arthropod Invertebrate Groups</h4>
-                <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-                  The Cambridge 0610 syllabus tests distinctions between worms (segmented Annelids vs unsegmented Nematodes) and Molluscs.
-                </p>
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                  <h4 className="text-xl font-bold text-slate-900">Non-Arthropod Invertebrate Groups</h4>
+                  <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
+                    The Cambridge 0610 syllabus tests distinctions between worms (segmented Annelids vs unsegmented Nematodes) and Molluscs.
+                  </p>
+                </div>
+                <div className="flex items-center p-1 bg-slate-100 rounded-xl border border-slate-200">
+                  <button
+                    onClick={() => setAnimalViewMode('3d')}
+                    className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      animalViewMode === '3d'
+                        ? 'bg-blue-600 text-white shadow-xs'
+                        : 'text-slate-700 hover:text-slate-900'
+                    }`}
+                  >
+                    3D Real Animals
+                  </button>
+                  <button
+                    onClick={() => setAnimalViewMode('2d')}
+                    className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                      animalViewMode === '2d'
+                        ? 'bg-blue-600 text-white shadow-xs'
+                        : 'text-slate-700 hover:text-slate-900'
+                    }`}
+                  >
+                    2D Body Plan
+                  </button>
+                </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                {OTHER_INVERTEBRATES.map((phylum) => (
-                  <div key={phylum.name} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-xl font-bold text-slate-900">{phylum.name}</h4>
-                        <span className="text-xs font-semibold px-2.5 py-0.5 bg-blue-100 text-blue-800 rounded-md">
-                          {phylum.commonName}
-                        </span>
-                      </div>
+                {OTHER_INVERTEBRATES.map((phylum) => {
+                  const realAsset = INVERTEBRATE_REAL_IMAGES[phylum.name];
+                  return (
+                    <div key={phylum.name} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-xl font-bold text-slate-900">{phylum.name}</h4>
+                          <span className="text-xs font-semibold px-2.5 py-0.5 bg-blue-100 text-blue-800 rounded-md">
+                            {phylum.commonName}
+                          </span>
+                        </div>
 
-                      {/* Biological Diagram for Phylum */}
-                      <AnimalClassificationDiagram
-                        animalGroup={phylum.name.toLowerCase()}
-                        className="w-full h-36 bg-white rounded-xl border border-slate-200 p-2 shadow-2xs"
-                      />
-
-                      <div className="text-xs sm:text-sm space-y-1.5 text-slate-700 pt-1">
-                        <p><strong>Body Plan:</strong> {phylum.bodyPlan}</p>
-                        <p><strong>Segmentation:</strong> {phylum.segmentation}</p>
-                        <p><strong>Limbs & Movement:</strong> {phylum.limbsAndLocomotion}</p>
-                        <p><strong>Covering / Shell:</strong> {phylum.shellOrCuticle}</p>
-                      </div>
-
-                      <div className="pt-1">
-                        <strong className="text-xs font-bold text-slate-900 block mb-1">Examples:</strong>
-                        <div className="flex flex-wrap gap-1">
-                          {phylum.examples.map((ex) => (
-                            <span key={ex} className="text-xs px-2 py-0.5 bg-white border border-slate-200 rounded-md text-slate-700">
-                              {ex}
+                        {/* 3D Real Animal Image or 2D Schematic */}
+                        {animalViewMode === '3d' && realAsset ? (
+                          <div className="relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800/70 aspect-[4/3]">
+                            <img
+                              src={realAsset.image}
+                              alt={realAsset.alt}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover"
+                            />
+                            <span className="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-md bg-slate-950/80 text-white text-xs font-semibold backdrop-blur-xs">
+                              {realAsset.specimen}
                             </span>
-                          ))}
+                          </div>
+                        ) : (
+                          <AnimalClassificationDiagram
+                            animalGroup={phylum.name.toLowerCase()}
+                            className="w-full h-44 bg-white rounded-xl border border-slate-200 p-2 shadow-2xs"
+                          />
+                        )}
+
+                        <div className="text-xs sm:text-sm space-y-1.5 text-slate-700 pt-1">
+                          <p><strong>Body Plan:</strong> {phylum.bodyPlan}</p>
+                          <p><strong>Segmentation:</strong> {phylum.segmentation}</p>
+                          <p><strong>Limbs & Movement:</strong> {phylum.limbsAndLocomotion}</p>
+                          <p><strong>Covering / Shell:</strong> {phylum.shellOrCuticle}</p>
+                        </div>
+
+                        <div className="pt-1">
+                          <strong className="text-xs font-bold text-slate-900 block mb-1">Examples:</strong>
+                          <div className="flex flex-wrap gap-1">
+                            {phylum.examples.map((ex) => (
+                              <span key={ex} className="text-xs px-2 py-0.5 bg-white border border-slate-200 rounded-md text-slate-700">
+                                {ex}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
-                    </div>
 
-                    <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 font-medium">
-                      <strong>💡 Exam Key:</strong> {phylum.examIdentifier}
+                      <div className="p-3 bg-amber-50 border border-amber-200 rounded-xl text-xs sm:text-sm text-amber-950 font-medium">
+                        <strong>💡 Exam Key:</strong> {phylum.examIdentifier}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -717,40 +1057,51 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
               <div>
                 <h4 className="text-xl font-bold text-slate-900">Vertebrate Animals (Phylum Chordata)</h4>
                 <p className="text-xs sm:text-sm text-slate-600 mt-0.5">
-                  Animals possessing an internal vertebral column (backbone). Compare the 5 major vertebrate classes:
+                  Animals possessing an internal vertebral column (backbone). Compare the 5 major vertebrate classes with real 3D animal specimens:
                 </p>
               </div>
 
-              {/* Master Vertebrates Overview Diagram */}
-              <AnimalClassificationDiagram
-                animalGroup="vertebrates"
-                className="w-full h-48 bg-white rounded-2xl border border-slate-200 p-2 shadow-2xs"
-              />
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {VERTEBRATE_CLASSES.map((vert) => {
+                  const realAsset = VERTEBRATE_REAL_IMAGES[vert.name];
+                  return (
+                    <div key={vert.name} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
+                      <div className="space-y-3">
+                        {realAsset && (
+                          <div className="relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800/70 aspect-[4/3]">
+                            <img
+                              src={realAsset.image}
+                              alt={realAsset.alt}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover"
+                            />
+                            <span className="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-md bg-slate-950/80 text-white text-xs font-semibold backdrop-blur-xs">
+                              {realAsset.specimen}
+                            </span>
+                          </div>
+                        )}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {VERTEBRATE_CLASSES.map((vert) => (
-                  <div key={vert.name} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-3 flex flex-col justify-between">
-                    <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <h4 className="text-xl font-bold text-slate-900">{vert.name}</h4>
-                        <span className="text-xs font-semibold px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-md">
-                          Vertebrate
-                        </span>
+                        <div className="flex items-center justify-between">
+                          <h4 className="text-xl font-bold text-slate-900">{vert.name}</h4>
+                          <span className="text-xs font-semibold px-2.5 py-0.5 bg-emerald-100 text-emerald-800 rounded-md">
+                            Vertebrate
+                          </span>
+                        </div>
+
+                        <div className="text-xs sm:text-sm space-y-1.5 text-slate-700 pt-1">
+                          <p><strong>Body Covering:</strong> {vert.bodyCovering}</p>
+                          <p><strong>Temperature:</strong> {vert.thermoregulation}</p>
+                          <p><strong>Breathing:</strong> {vert.breathing}</p>
+                          <p><strong>Reproduction:</strong> {vert.reproduction}</p>
+                        </div>
                       </div>
 
-                      <div className="text-xs sm:text-sm space-y-1.5 text-slate-700 pt-1">
-                        <p><strong>Body Covering:</strong> {vert.bodyCovering}</p>
-                        <p><strong>Temperature:</strong> {vert.thermoregulation}</p>
-                        <p><strong>Breathing:</strong> {vert.breathing}</p>
-                        <p><strong>Reproduction:</strong> {vert.reproduction}</p>
+                      <div className="p-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800">
+                        <strong>📌 Cambridge Key Point:</strong> {vert.keyExamPoint}
                       </div>
                     </div>
-
-                    <div className="p-3 bg-white border border-slate-200 rounded-xl text-xs sm:text-sm text-slate-800">
-                      <strong>📌 Cambridge Key Point:</strong> {vert.keyExamPoint}
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
           )}
@@ -789,7 +1140,7 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
           {/* Chapter 2 Sub-Tab Navigation */}
           <div className="flex flex-wrap items-center gap-2 p-1.5 bg-slate-100 rounded-2xl border border-slate-200">
             {[
-              { id: 'diagrams', label: '🔬 2D Cell Diagrams & Organelles', icon: Beaker },
+              { id: 'diagrams', label: '🔬 3D Cell Diagrams & Organelles', icon: Beaker },
               { id: 'specialized', label: '🧬 Specialised Cells Showcase (11 Cells)', icon: Sparkles },
               { id: 'magnification', label: '📐 Magnification Triangle (I = A × M)', icon: Calculator },
               { id: 'organisation', label: '🧱 Levels of Organisation', icon: Layers },
@@ -847,117 +1198,68 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
 
               {/* Interactive Cell Diagram + Organelle Inspector */}
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-                {/* Left Diagram (7 cols) */}
-                <div className="lg:col-span-7 bg-slate-950 p-6 rounded-3xl border border-slate-800 text-white flex flex-col items-center select-none relative">
-                  <div className="w-full flex items-center justify-between pb-3 border-b border-slate-800 text-sm">
-                    <span className="font-bold text-slate-200">
-                      {cellType === 'plant' && '🌿 Typical Plant Cell Diagram'}
-                      {cellType === 'animal' && '🐾 Typical Animal Cell Diagram'}
-                      {cellType === 'bacteria' && '🦠 Bacterial Cell (Prokaryotic) Diagram'}
-                    </span>
-                    <span className="text-xs font-mono text-cyan-400">Click organelle button below 🔬</span>
-                  </div>
+                {/* Left 3D Diagram (7 cols) */}
+                {(() => {
+                  const activeCell3d = CELL_3D_MODELS[cellType];
+                  return (
+                    <div className="lg:col-span-7 bg-slate-950 p-5 sm:p-6 rounded-3xl border border-slate-800 text-white flex flex-col items-center select-none relative shadow-lg">
+                      <div className="w-full flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-800 text-sm">
+                        <div>
+                          <span className="font-bold text-slate-100 block">{activeCell3d.title}</span>
+                          <span className="text-xs text-slate-400">{activeCell3d.subtitle}</span>
+                        </div>
+                        <span className="text-xs font-mono text-cyan-400 bg-cyan-950/70 px-2.5 py-1 rounded-lg border border-cyan-800/60">
+                          3D Cutaway Model 🔬
+                        </span>
+                      </div>
 
-                  {/* 2D Vector Cell Diagram */}
-                  <div className="w-full max-w-[440px] aspect-[440/320] my-4 relative">
-                    <svg viewBox="0 0 440 320" className="w-full h-full">
-                      {cellType === 'plant' && (
-                        <g>
-                          <rect x="20" y="20" width="400" height="280" rx="20" fill="#064e3b" stroke="#10b981" strokeWidth="8" />
-                          <rect x="28" y="28" width="384" height="264" rx="14" fill="#065f46" stroke="#34d399" strokeWidth="3" />
-                          <rect x="31" y="31" width="378" height="258" rx="12" fill="#022c22" />
-                          <ellipse cx="220" cy="160" rx="120" ry="85" fill="#0369a1" fillOpacity="0.45" stroke="#38bdf8" strokeWidth="2.5" />
-                          <text x="220" y="165" textAnchor="middle" fill="#bae6fd" fontSize="13" fontWeight="bold">
-                            Permanent Vacuole (Cell Sap)
-                          </text>
-                          <circle cx="85" cy="90" r="40" fill="#7e22ce" stroke="#c084fc" strokeWidth="3" />
-                          <circle cx="85" cy="90" r="14" fill="#581c87" />
-                          <text x="85" y="145" textAnchor="middle" fill="#e9d5ff" fontSize="12" fontWeight="bold">
-                            Nucleus (DNA)
-                          </text>
-                          <g fill="#22c55e" stroke="#15803d" strokeWidth="2">
-                            <ellipse cx="340" cy="80" rx="28" ry="16" />
-                            <ellipse cx="350" cy="230" rx="28" ry="16" />
-                            <ellipse cx="100" cy="240" rx="28" ry="16" />
-                          </g>
-                          <text x="340" y="110" textAnchor="middle" fill="#86efac" fontSize="11" fontWeight="bold">
-                            Chloroplast
-                          </text>
-                          <ellipse cx="230" cy="60" rx="20" ry="10" fill="#e11d48" stroke="#f43f5e" strokeWidth="1.5" />
-                          <ellipse cx="230" cy="265" rx="20" ry="10" fill="#e11d48" stroke="#f43f5e" strokeWidth="1.5" />
-                          <text x="230" y="80" textAnchor="middle" fill="#fda4af" fontSize="10" fontWeight="bold">
-                            Mitochondria
-                          </text>
-                        </g>
-                      )}
+                      {/* High-Resolution 3D Cell Diagram */}
+                      <div className="w-full my-4 rounded-2xl overflow-hidden bg-[#101827] border border-slate-800/90 shadow-inner">
+                        <img
+                          src={activeCell3d.image}
+                          alt={activeCell3d.alt}
+                          referrerPolicy="no-referrer"
+                          className="w-full aspect-[4/3] object-cover"
+                        />
+                      </div>
 
-                      {cellType === 'animal' && (
-                        <g>
-                          <path
-                            d="M 50 160 C 50 80, 100 40, 220 35 C 340 30, 390 90, 400 160 C 410 230, 350 285, 230 290 C 110 295, 50 240, 50 160 Z"
-                            fill="#1e1b4b"
-                            stroke="#818cf8"
-                            strokeWidth="4"
-                          />
-                          <text x="340" y="190" fill="#a5b4fc" fontSize="12" fontWeight="bold">
-                            Cytoplasm
-                          </text>
-                          <circle cx="210" cy="155" r="50" fill="#7e22ce" stroke="#c084fc" strokeWidth="3.5" />
-                          <circle cx="210" cy="155" r="18" fill="#581c87" />
-                          <text x="210" y="222" textAnchor="middle" fill="#e9d5ff" fontSize="13" fontWeight="bold">
-                            Nucleus (Chromosomes)
-                          </text>
-                          <ellipse cx="110" cy="110" rx="24" ry="12" fill="#e11d48" stroke="#f43f5e" strokeWidth="2" />
-                          <ellipse cx="320" cy="110" rx="24" ry="12" fill="#e11d48" stroke="#f43f5e" strokeWidth="2" />
-                          <ellipse cx="120" cy="220" rx="24" ry="12" fill="#e11d48" stroke="#f43f5e" strokeWidth="2" />
-                          <text x="110" y="134" textAnchor="middle" fill="#fda4af" fontSize="11" fontWeight="bold">
-                            Mitochondria
-                          </text>
-                          <circle cx="290" cy="230" r="10" fill="#38bdf8" opacity="0.6" />
-                          <circle cx="315" cy="240" r="7" fill="#38bdf8" opacity="0.6" />
-                          <circle cx="160" cy="90" r="2.5" fill="#facc15" />
-                          <circle cx="260" cy="85" r="2.5" fill="#facc15" />
-                          <circle cx="180" cy="235" r="2.5" fill="#facc15" />
-                        </g>
-                      )}
+                      {/* Interactive 3D Structure Colour Key */}
+                      <div className="w-full flex flex-wrap items-center justify-center gap-2 pb-3">
+                        {activeCell3d.keyItems.map((item) => (
+                          <button
+                            key={item.label}
+                            onClick={() => setSelectedOrganelle(item.organelle)}
+                            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold border transition-all cursor-pointer ${
+                              selectedOrganelle === item.organelle
+                                ? 'bg-slate-800 border-cyan-400 text-white shadow-xs'
+                                : 'bg-slate-900/90 border-slate-800 text-slate-300 hover:border-slate-600'
+                            }`}
+                          >
+                            <span className={`w-2.5 h-2.5 rounded-full ${item.colorClass} shrink-0`} />
+                            <span>{item.label}</span>
+                          </button>
+                        ))}
+                      </div>
 
-                      {cellType === 'bacteria' && (
-                        <g>
-                          <rect x="70" y="70" width="300" height="180" rx="60" fill="#3b0764" stroke="#c084fc" strokeWidth="6" />
-                          <rect x="80" y="80" width="280" height="160" rx="50" fill="#1e1b4b" stroke="#38bdf8" strokeWidth="2.5" />
-                          <path d="M 70 160 C 30 140, 40 200, 10 170" fill="none" stroke="#e879f9" strokeWidth="3" strokeDasharray="3 2" />
-                          <text x="25" y="145" fill="#e879f9" fontSize="11" fontWeight="bold">Flagellum</text>
-                          <path d="M 170 130 C 190 100, 250 110, 270 140 C 290 170, 230 200, 190 180 C 150 160, 230 140, 210 160" fill="none" stroke="#f43f5e" strokeWidth="3" />
-                          <text x="220" y="165" textAnchor="middle" fill="#fda4af" fontSize="12" fontWeight="bold">
-                            Circular Loop of DNA (Nucleoid)
-                          </text>
-                          <circle cx="130" cy="180" r="10" fill="none" stroke="#facc15" strokeWidth="2.5" />
-                          <circle cx="310" cy="130" r="8" fill="none" stroke="#facc15" strokeWidth="2.5" />
-                          <text x="130" y="205" textAnchor="middle" fill="#fef08a" fontSize="10" fontWeight="bold">Plasmid</text>
-                          <circle cx="140" cy="120" r="2" fill="#38bdf8" />
-                          <circle cx="280" cy="190" r="2" fill="#38bdf8" />
-                        </g>
-                      )}
-                    </svg>
-                  </div>
-
-                  {/* Quick Organelle Selector Buttons */}
-                  <div className="w-full flex flex-wrap gap-2 pt-3 border-t border-slate-800 justify-center">
-                    {CELL_ORGANELLES.map((org) => (
-                      <button
-                        key={org.name}
-                        onClick={() => setSelectedOrganelle(org.name)}
-                        className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
-                          selectedOrganelle === org.name
-                            ? 'bg-blue-600 text-white shadow-xs'
-                            : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
-                        }`}
-                      >
-                        {org.name}
-                      </button>
-                    ))}
-                  </div>
-                </div>
+                      {/* Quick Organelle Selector Buttons */}
+                      <div className="w-full flex flex-wrap gap-2 pt-3 border-t border-slate-800 justify-center">
+                        {CELL_ORGANELLES.map((org) => (
+                          <button
+                            key={org.name}
+                            onClick={() => setSelectedOrganelle(org.name)}
+                            className={`px-3 py-1.5 rounded-xl text-xs sm:text-sm font-bold transition-all cursor-pointer ${
+                              selectedOrganelle === org.name
+                                ? 'bg-blue-600 text-white shadow-xs'
+                                : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                            }`}
+                          >
+                            {org.name}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 {/* Right Organelle Details (5 cols) */}
                 <div className="lg:col-span-5 flex flex-col gap-4">
@@ -1023,30 +1325,47 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
                 </span>
               </div>
 
-              {/* Specialised Cells Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {/* Specialised Cells Grid (Each card includes a 3D Cell Diagram) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {SPECIALIZED_CELLS.filter(
                   (c) => specializedFilter === 'All' || c.organism === specializedFilter
                 ).map((cell) => {
                   const isSelected = selectedSpecializedCell === cell.name;
+                  const cellImg = SPECIALIZED_CELL_IMAGES[cell.name];
                   return (
                     <div
                       key={cell.name}
                       onClick={() => setSelectedSpecializedCell(cell.name)}
-                      className={`p-5 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
+                      className={`group p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between ${
                         isSelected
-                          ? 'bg-blue-50/80 border-blue-500 shadow-md ring-2 ring-blue-500/20'
-                          : 'bg-white border-slate-200 hover:border-slate-300 hover:bg-slate-50'
+                          ? 'bg-blue-50/90 border-blue-500 shadow-md ring-2 ring-blue-500/20'
+                          : 'bg-white border-slate-200 hover:border-teal-300 hover:shadow-md'
                       }`}
                     >
-                      <div className="space-y-2">
-                        <div className="flex items-center justify-between">
-                          <span className={`text-xs font-bold px-2 py-0.5 rounded-md ${
-                            cell.organism === 'Plant' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
-                          }`}>
-                            {cell.organism}
-                          </span>
-                          <span className="text-xs text-slate-500 font-mono font-medium">
+                      <div className="space-y-3">
+                        {/* 3D Specialised Cell Image */}
+                        {cellImg && (
+                          <div className="relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800/60 aspect-[4/3]">
+                            <img
+                              src={cellImg}
+                              alt={`3D diagram of ${cell.name}`}
+                              referrerPolicy="no-referrer"
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                            />
+                            <span
+                              className={`absolute top-2.5 left-2.5 text-xs font-bold px-2.5 py-0.5 rounded-full shadow-xs ${
+                                cell.organism === 'Plant'
+                                  ? 'bg-emerald-500 text-white'
+                                  : 'bg-blue-600 text-white'
+                              }`}
+                            >
+                              {cell.organism}
+                            </span>
+                          </div>
+                        )}
+
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-xs text-slate-500 font-mono font-semibold truncate">
                             {cell.system.split(' (')[0]}
                           </span>
                         </div>
@@ -1059,7 +1378,7 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
 
                       <div className="mt-3 pt-3 border-t border-slate-100 flex items-center justify-between text-xs">
                         <span className="font-bold text-blue-700">Inspect Adaptations</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
+                        <ArrowRight className="w-3.5 h-3.5 text-blue-600 transition-transform group-hover:translate-x-0.5" />
                       </div>
                     </div>
                   );
@@ -1069,16 +1388,39 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
               {/* Detailed Inspector for Selected Specialised Cell */}
               {(() => {
                 const cell = SPECIALIZED_CELLS.find((c) => c.name === selectedSpecializedCell) || SPECIALIZED_CELLS[0];
+                const activeCellImg = SPECIALIZED_CELL_IMAGES[cell.name];
                 return (
-                  <div className="p-6 sm:p-7 bg-slate-900 text-white rounded-3xl space-y-4 shadow-md">
-                    <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                  <div className="p-6 sm:p-7 bg-slate-900 text-white rounded-3xl space-y-5 shadow-lg border border-slate-800">
+                    <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
                       <div>
                         <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
                           Syllabus Adaptations Dossier
                         </span>
                         <h4 className="text-2xl sm:text-3xl font-black text-white">{cell.name}</h4>
                       </div>
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <div className="flex items-center p-1 bg-slate-800 rounded-xl border border-slate-700">
+                          <button
+                            onClick={() => setSpecializedViewMode('3d')}
+                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              specializedViewMode === '3d'
+                                ? 'bg-cyan-500 text-slate-950'
+                                : 'text-slate-300 hover:text-white'
+                            }`}
+                          >
+                            3D Diagram
+                          </button>
+                          <button
+                            onClick={() => setSpecializedViewMode('2d')}
+                            className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                              specializedViewMode === '2d'
+                                ? 'bg-cyan-500 text-slate-950'
+                                : 'text-slate-300 hover:text-white'
+                            }`}
+                          >
+                            2D Labelled Schematic
+                          </button>
+                        </div>
                         <span className="px-3 py-1 rounded-full text-xs font-bold bg-slate-800 text-slate-200 border border-slate-700">
                           {cell.organism} Cell
                         </span>
@@ -1088,11 +1430,36 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
                       </div>
                     </div>
 
-                    {/* Integrated Biological Vector Diagram */}
-                    <SpecialisedCellDiagram
-                      cellName={cell.name}
-                      className="w-full h-52 sm:h-60 bg-slate-950/90 rounded-2xl border border-slate-800 p-2 shadow-inner"
-                    />
+                    {/* Visual Showcase: 3D Render or Labelled 2D Schematic */}
+                    {specializedViewMode === '3d' && activeCellImg ? (
+                      <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center bg-slate-950/80 rounded-2xl border border-slate-800 p-4">
+                        <div className="lg:col-span-7 rounded-xl overflow-hidden bg-slate-950 border border-slate-800">
+                          <img
+                            src={activeCellImg}
+                            alt={`3D cutaway diagram of ${cell.name}`}
+                            referrerPolicy="no-referrer"
+                            className="w-full max-h-[340px] object-cover"
+                          />
+                        </div>
+                        <div className="lg:col-span-5 space-y-3 text-sm">
+                          <div className="text-xs font-mono uppercase tracking-wider text-cyan-400 font-bold">
+                            3D Structural Highlights
+                          </div>
+                          <p className="text-slate-200 leading-relaxed text-sm sm:text-base">
+                            {cell.function}
+                          </p>
+                          <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 text-xs sm:text-sm text-slate-300">
+                            <span className="text-emerald-400 font-bold block mb-1">System Location:</span>
+                            {cell.system}
+                          </div>
+                        </div>
+                      </div>
+                    ) : (
+                      <SpecialisedCellDiagram
+                        cellName={cell.name}
+                        className="w-full h-56 sm:h-64 bg-white rounded-2xl border border-slate-700 p-2 shadow-inner"
+                      />
+                    )}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
                       <div className="p-4 bg-slate-800/90 rounded-2xl border border-slate-700 space-y-2">
@@ -1384,81 +1751,184 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Plant Cell Outcome */}
-              <div className="p-5 bg-slate-800/80 rounded-2xl border border-slate-700 space-y-3">
-                <div className="flex items-center justify-between">
-                  <h5 className="text-lg font-bold text-emerald-300">🌿 Plant Cell Outcome:</h5>
-                  <span className="text-xs font-mono font-bold text-white bg-slate-700 px-2.5 py-1 rounded-md">
-                    Has Cellulose Cell Wall
-                  </span>
-                </div>
+            {(() => {
+              const activeKey = String(osmosisTonicity) as '-1' | '0' | '1';
+              const activeVisual = OSMOSIS_CELL_VISUALS[activeKey];
+              return (
+                <>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Plant Cell (Palisade Mesophyll) Outcome */}
+                    <div className="p-5 bg-slate-800/80 rounded-2xl border border-slate-700 space-y-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <h5 className="text-lg font-bold text-emerald-300">🌿 Plant Cell (Palisade Mesophyll):</h5>
+                        <span className="text-xs font-mono font-bold text-white bg-slate-700 px-2.5 py-1 rounded-md">
+                          Has Cellulose Cell Wall
+                        </span>
+                      </div>
 
-                <div className="p-4 bg-slate-900/90 rounded-xl text-sm sm:text-base leading-relaxed">
-                  {osmosisTonicity === -1 && (
-                    <div className="text-emerald-300 font-semibold space-y-1">
-                      <p className="text-xl font-bold">State: TURGID (Turgor Pressure)</p>
-                      <p className="text-slate-300 font-normal">
-                        Water enters vacuole by osmosis down water potential gradient. The vacuole swells, pushing cytoplasm against the rigid cellulose cell wall. The cell wall pushes back with wall pressure, preventing lysis (bursting). This supports non-woody plants upright!
-                      </p>
-                    </div>
-                  )}
-                  {osmosisTonicity === 0 && (
-                    <div className="text-slate-200 font-semibold space-y-1">
-                      <p className="text-xl font-bold">State: INCIPIENT PLASMOLYSIS</p>
-                      <p className="text-slate-300 font-normal">
-                        Water potential inside cell equals external solution. No net movement of water molecules.
-                      </p>
-                    </div>
-                  )}
-                  {osmosisTonicity === 1 && (
-                    <div className="text-rose-400 font-semibold space-y-1">
-                      <p className="text-xl font-bold">State: PLASMOLYSED (Flaccid)</p>
-                      <p className="text-slate-300 font-normal">
-                        Water leaves vacuole by osmosis down water potential gradient. The vacuole collapses and the cell membrane pulls away from the cell wall. The plant wilts!
-                      </p>
-                    </div>
-                  )}
-                </div>
-              </div>
+                      <div className="relative rounded-xl overflow-hidden bg-slate-950 border border-slate-700 aspect-[4/3]">
+                        <img
+                          src={activeVisual.plant.image}
+                          alt={activeVisual.plant.alt}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover"
+                        />
+                        <span className={`absolute bottom-2.5 left-2.5 px-3 py-1 rounded-lg text-xs font-extrabold shadow-md ${activeVisual.plant.badgeClass}`}>
+                          {activeVisual.plant.arrowLabel}
+                        </span>
+                      </div>
 
-              {/* Animal Cell (Red Blood Cell) Outcome */}
-              <div className="p-5 bg-slate-800/80 rounded-2xl border border-slate-700 space-y-3">
-                <div className="flex items-center justify-between">
-                  <h5 className="text-lg font-bold text-rose-300">🐾 Animal Cell Outcome (RBC):</h5>
-                  <span className="text-xs font-mono font-bold text-rose-300 bg-rose-950 px-2.5 py-1 rounded-md border border-rose-800">
-                    NO Cell Wall!
-                  </span>
-                </div>
+                      <div className="p-4 bg-slate-900/90 rounded-xl text-sm sm:text-base leading-relaxed">
+                        {osmosisTonicity === -1 && (
+                          <div className="text-emerald-300 font-semibold space-y-1">
+                            <p className="text-xl font-bold">State: TURGID (Turgor Pressure)</p>
+                            <p className="text-slate-300 font-normal">
+                              Water enters the palisade cell vacuole by osmosis down a water potential gradient. The vacuole swells, pressing chloroplasts and cytoplasm tightly against the rigid cellulose cell wall, which pushes back to prevent bursting.
+                            </p>
+                          </div>
+                        )}
+                        {osmosisTonicity === 0 && (
+                          <div className="text-slate-200 font-semibold space-y-1">
+                            <p className="text-xl font-bold">State: FLACCID (Incipient Plasmolysis)</p>
+                            <p className="text-slate-300 font-normal">
+                              Water potential inside the palisade cell equals the external solution. There is no net movement of water molecules, so the cell loses turgor pressure and becomes soft/flaccid.
+                            </p>
+                          </div>
+                        )}
+                        {osmosisTonicity === 1 && (
+                          <div className="text-rose-400 font-semibold space-y-1">
+                            <p className="text-xl font-bold">State: PLASMOLYSED</p>
+                            <p className="text-slate-300 font-normal">
+                              Water leaves the vacuole by osmosis down a water potential gradient. The vacuole shrinks and the cell membrane pulls away from the rigid cellulose cell wall (plasmolysis), causing the leaf to wilt!
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </div>
 
-                <div className="p-4 bg-slate-900/90 rounded-xl text-sm sm:text-base leading-relaxed">
-                  {osmosisTonicity === -1 && (
-                    <div className="text-rose-400 font-semibold space-y-1">
-                      <p className="text-xl font-bold">State: LYSIS (BURSTING!)</p>
-                      <p className="text-slate-300 font-normal">
-                        Water enters cell down water potential gradient. Because animal cells have NO rigid cell wall, the membrane stretches and BURSTS (haemolysis in RBCs).
-                      </p>
+                    {/* Animal Cell (Red Blood Cell) Outcome */}
+                    <div className="p-5 bg-slate-800/80 rounded-2xl border border-slate-700 space-y-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <h5 className="text-lg font-bold text-rose-300">🩸 Animal Cell (Red Blood Cell):</h5>
+                        <span className="text-xs font-mono font-bold text-rose-300 bg-rose-950 px-2.5 py-1 rounded-md border border-rose-800">
+                          NO Cell Wall!
+                        </span>
+                      </div>
+
+                      <div className="relative rounded-xl overflow-hidden bg-slate-950 border border-slate-700 aspect-[4/3]">
+                        <img
+                          src={activeVisual.animal.image}
+                          alt={activeVisual.animal.alt}
+                          referrerPolicy="no-referrer"
+                          className="w-full h-full object-cover"
+                        />
+                        <span className={`absolute bottom-2.5 left-2.5 px-3 py-1 rounded-lg text-xs font-extrabold shadow-md ${activeVisual.animal.badgeClass}`}>
+                          {activeVisual.animal.arrowLabel}
+                        </span>
+                      </div>
+
+                      <div className="p-4 bg-slate-900/90 rounded-xl text-sm sm:text-base leading-relaxed">
+                        {osmosisTonicity === -1 && (
+                          <div className="text-rose-400 font-semibold space-y-1">
+                            <p className="text-xl font-bold">State: LYSIS (BURSTING!)</p>
+                            <p className="text-slate-300 font-normal">
+                              Water enters the red blood cell down a water potential gradient. Because animal cells have NO rigid cellulose cell wall, the plasma membrane stretches beyond its limit and BURSTS (haemolysis).
+                            </p>
+                          </div>
+                        )}
+                        {osmosisTonicity === 0 && (
+                          <div className="text-slate-200 font-semibold space-y-1">
+                            <p className="text-xl font-bold">State: NORMAL (Biconcave Disc)</p>
+                            <p className="text-slate-300 font-normal">
+                              Blood plasma is kept strictly isotonic by the kidneys. Water enters and leaves the red blood cell at equal rates, preserving its biconcave disc shape for efficient oxygen transport.
+                            </p>
+                          </div>
+                        )}
+                        {osmosisTonicity === 1 && (
+                          <div className="text-amber-400 font-semibold space-y-1">
+                            <p className="text-xl font-bold">State: CRENATED (SHRIVELLED)</p>
+                            <p className="text-slate-300 font-normal">
+                              Water moves out of the red blood cell by osmosis into the concentrated solution. The cell shrinks, shrivels, and develops spiky notched edges (crenation).
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  )}
-                  {osmosisTonicity === 0 && (
-                    <div className="text-slate-200 font-semibold space-y-1">
-                      <p className="text-xl font-bold">State: NORMAL (Biconcave disc)</p>
-                      <p className="text-slate-300 font-normal">
-                        Blood plasma is kept strictly isotonic by kidneys. Equal rate of water entry and exit.
-                      </p>
+                  </div>
+
+                  {/* All 3 Conditions Visual Comparison Matrix (Hypotonic · Isotonic · Hypertonic) */}
+                  <div className="pt-4 border-t border-slate-800 space-y-4">
+                    <div className="flex flex-wrap items-center justify-between gap-2">
+                      <h5 className="text-base sm:text-lg font-extrabold text-cyan-300">
+                        Side-by-Side Comparison: Hypotonic · Isotonic · Hypertonic
+                      </h5>
+                      <span className="text-xs text-slate-400 font-medium">
+                        Click any condition card to inspect details above
+                      </span>
                     </div>
-                  )}
-                  {osmosisTonicity === 1 && (
-                    <div className="text-amber-400 font-semibold space-y-1">
-                      <p className="text-xl font-bold">State: CRENATED (SHRIVELLED)</p>
-                      <p className="text-slate-300 font-normal">
-                        Water moves out of cell by osmosis into concentrated solution. Cell shrivels and wrinkles with notched edges (crenation).
-                      </p>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {(['-1', '0', '1'] as const).map((key) => {
+                        const item = OSMOSIS_CELL_VISUALS[key];
+                        const numericKey = Number(key);
+                        const isSelected = osmosisTonicity === numericKey;
+                        return (
+                          <button
+                            key={key}
+                            onClick={() => setOsmosisTonicity(numericKey)}
+                            className={`text-left p-4 rounded-2xl border transition-all cursor-pointer space-y-3 ${
+                              isSelected
+                                ? 'bg-slate-800 border-cyan-400 ring-2 ring-cyan-400/30 shadow-md'
+                                : 'bg-slate-800/40 border-slate-700/80 hover:border-slate-500'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between gap-2">
+                              <span className="text-sm font-extrabold text-white">{item.conditionLabel}</span>
+                              {isSelected && (
+                                <span className="px-2 py-0.5 rounded-md bg-cyan-500 text-slate-950 text-[11px] font-black">
+                                  Active
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-xs text-cyan-300/90 font-medium">{item.waterPotentialNote}</p>
+
+                            <div className="grid grid-cols-2 gap-2.5">
+                              <div className="space-y-1">
+                                <div className="rounded-lg overflow-hidden bg-slate-950 border border-slate-700 aspect-[4/3]">
+                                  <img
+                                    src={item.plant.image}
+                                    alt={item.plant.alt}
+                                    referrerPolicy="no-referrer"
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <div className="text-[11px] font-bold text-emerald-300 leading-tight">
+                                  🌿 Palisade: {item.plant.state.split(' (')[0]}
+                                </div>
+                              </div>
+
+                              <div className="space-y-1">
+                                <div className="rounded-lg overflow-hidden bg-slate-950 border border-slate-700 aspect-[4/3]">
+                                  <img
+                                    src={item.animal.image}
+                                    alt={item.animal.alt}
+                                    referrerPolicy="no-referrer"
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <div className="text-[11px] font-bold text-rose-300 leading-tight">
+                                  🩸 RBC: {item.animal.state.split(' (')[0]}
+                                </div>
+                              </div>
+                            </div>
+                          </button>
+                        );
+                      })}
                     </div>
-                  )}
-                </div>
-              </div>
-            </div>
+                  </div>
+                </>
+              );
+            })()}
           </div>
           )}
 
@@ -1514,28 +1984,85 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
             })}
           </div>
 
-          {/* 4 Major Nutrient Categories */}
+          {/* 4 Major Nutrient Categories + Featured DNA Structure Visual */}
           {moleculesSubTab === 'nutrients' && (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {BIOLOGICAL_MOLECULES.map((mol) => (
-              <div key={mol.name} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2.5 flex flex-col justify-between">
-                <div className="space-y-1.5">
-                  <h4 className="text-lg font-bold text-slate-900">{mol.name}</h4>
-                  <div className="text-xs sm:text-sm font-mono font-bold text-purple-700 bg-purple-50 p-2 rounded-lg border border-purple-200">
-                    Elements: {mol.elements}
-                  </div>
-                  <p className="text-xs sm:text-sm text-slate-700 leading-relaxed pt-1">
-                    <strong>Building Blocks:</strong> {mol.basicUnits}
-                  </p>
-                </div>
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {BIOLOGICAL_MOLECULES.map((mol) => (
+                  <div key={mol.name} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-2.5 flex flex-col justify-between">
+                    <div className="space-y-1.5">
+                      <h4 className="text-lg font-bold text-slate-900">{mol.name}</h4>
+                      <div className="text-xs sm:text-sm font-mono font-bold text-purple-700 bg-purple-50 p-2 rounded-lg border border-purple-200">
+                        Elements: {mol.elements}
+                      </div>
+                      <p className="text-xs sm:text-sm text-slate-700 leading-relaxed pt-1">
+                        <strong>Building Blocks:</strong> {mol.basicUnits}
+                      </p>
+                    </div>
 
-                <div className="p-3 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-600">
-                  <strong className="text-slate-900 block mb-0.5">Biological Roles:</strong>
-                  {mol.roles}
+                    <div className="p-3 bg-white rounded-xl border border-slate-200 text-xs sm:text-sm text-slate-600">
+                      <strong className="text-slate-900 block mb-0.5">Biological Roles:</strong>
+                      {mol.roles}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Featured 3D DNA Double Helix & Base Pairing Showcase */}
+              <div className="p-6 sm:p-7 bg-gradient-to-br from-slate-950 via-indigo-950 to-slate-900 text-white rounded-3xl border border-indigo-800/60 shadow-lg">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                  <div className="lg:col-span-6 rounded-2xl overflow-hidden border border-cyan-500/30 bg-slate-950 shadow-inner">
+                    <img
+                      src={dnaStructure3dImg}
+                      alt="3D illustration of DNA double helix structure showing sugar-phosphate backbone and complementary base pairs"
+                      referrerPolicy="no-referrer"
+                      className="w-full aspect-video object-cover"
+                    />
+                  </div>
+
+                  <div className="lg:col-span-6 space-y-4">
+                    <div>
+                      <span className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-widest block">
+                        IGCSE 0610 · Topic 4.1 Molecular Biology
+                      </span>
+                      <h4 className="text-2xl sm:text-3xl font-black text-white mt-0.5">
+                        DNA Structure & Complementary Base Pairing
+                      </h4>
+                    </div>
+
+                    <p className="text-sm sm:text-base text-slate-200 leading-relaxed">
+                      Deoxyribonucleic acid (<strong>DNA</strong>) is a large polymer made of two strands coiled together into a <strong>double helix</strong>. Each strand is built from repeating subunits called <strong>nucleotides</strong> (a phosphate group, deoxyribose sugar, and a nitrogenous base).
+                    </p>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-emerald-500/40 space-y-1">
+                        <div className="text-xs font-bold uppercase tracking-wider text-emerald-400">
+                          Base Pair Rule 1
+                        </div>
+                        <div className="text-lg font-black text-white">
+                          A <span className="text-emerald-400">pairs with</span> T
+                        </div>
+                        <p className="text-xs text-slate-300">Adenine always bonds across the helix with Thymine.</p>
+                      </div>
+
+                      <div className="p-3.5 rounded-2xl bg-slate-900/80 border border-cyan-500/40 space-y-1">
+                        <div className="text-xs font-bold uppercase tracking-wider text-cyan-400">
+                          Base Pair Rule 2
+                        </div>
+                        <div className="text-lg font-black text-white">
+                          C <span className="text-cyan-400">pairs with</span> G
+                        </div>
+                        <p className="text-xs text-slate-300">Cytosine always bonds across the helix with Guanine.</p>
+                      </div>
+                    </div>
+
+                    <div className="p-3.5 rounded-2xl bg-amber-500/10 border border-amber-400/30 text-xs sm:text-sm text-amber-200 leading-relaxed">
+                      <strong className="text-amber-300">💡 Exam Key Point:</strong> The sequence of bases along a gene determines the exact sequence of <strong>amino acids</strong> joined together to make a specific protein!
+                    </div>
+                  </div>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
           )}
 
           {/* Interactive Virtual Food Testing Bench */}

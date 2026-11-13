@@ -266,6 +266,7 @@ export const SpecialisedCellDiagram: React.FC<CellDiagramProps> = ({ cellName, c
         </svg>
       );
 
+    case 'Guard Cells':
     case 'Guard Cells (Stomata)':
       return (
         <svg viewBox="0 0 400 240" className={className}>
@@ -357,6 +358,7 @@ export const SpecialisedCellDiagram: React.FC<CellDiagramProps> = ({ cellName, c
         </svg>
       );
 
+    case 'Motor Neurone (Nerve Cell)':
     case 'Motor Neurone':
       return (
         <svg viewBox="0 0 400 240" className={className}>
@@ -403,6 +405,7 @@ export const SpecialisedCellDiagram: React.FC<CellDiagramProps> = ({ cellName, c
         </svg>
       );
 
+    case 'Sperm Cell (Male Gamete)':
     case 'Sperm Cell':
       return (
         <svg viewBox="0 0 400 240" className={className}>
@@ -446,6 +449,7 @@ export const SpecialisedCellDiagram: React.FC<CellDiagramProps> = ({ cellName, c
         </svg>
       );
 
+    case 'Egg Cell (Ovum / Female Gamete)':
     case 'Egg Cell (Ovum)':
       return (
         <svg viewBox="0 0 400 240" className={className}>
@@ -488,6 +492,7 @@ export const SpecialisedCellDiagram: React.FC<CellDiagramProps> = ({ cellName, c
         </svg>
       );
 
+    case 'Skeletal Muscle Cell (Muscle Fibre)':
     case 'Skeletal Muscle Cell':
     default:
       return (

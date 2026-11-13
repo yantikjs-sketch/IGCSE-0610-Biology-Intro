@@ -3,8 +3,15 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-    color: #1e293b;
-    background-color: #f8fafc;
+    color: #0f172a;
+    background-color: #e6f4f1;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.22) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(56, 189, 248, 0.24) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.2) 0px, transparent 55%),
+      radial-gradient(at 0% 100%, rgba(20, 184, 166, 0.2) 0px, transparent 50%),
+      linear-gradient(135deg, #ecfdf5 0%, #e0f2fe 50%, #eef2ff 100%);
+    background-attachment: fixed;
   }
   
   h1, h2, h3, h4, h5, h6 {

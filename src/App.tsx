@@ -6,7 +6,7 @@ export default function App() {
   const [activeChapter, setActiveChapter] = useState<Semester1Chapter>('characteristics');
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col antialiased">
+    <div className="min-h-screen text-slate-900 flex flex-col antialiased">
       {/* Sleek Top Bar Navigation without secondary clutter */}
       <TopNavbar
         activeChapter={activeChapter}
@@ -22,7 +22,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-slate-200 bg-white py-4 px-6 text-center text-sm text-slate-600 font-medium">
+      <footer className="border-t border-teal-200/70 bg-white/80 backdrop-blur-md py-4 px-6 text-center text-sm text-slate-700 font-medium">
         <p>
           Cambridge IGCSE™ Biology (0610) · Year 9 Semester 1 Revision Suite & Digestive System Explorer · Suitable for Secondary 9 Students
         </p>
