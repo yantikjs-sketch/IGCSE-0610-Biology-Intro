@@ -17,6 +17,7 @@ export const TopNavbar: React.FC<TopNavbarProps> = ({
     { id: 'molecules', num: '4', title: 'Molecules' },
     { id: 'enzymes', num: '5', title: 'Enzymes' },
     { id: 'digestion', num: '6', title: 'Digestive System' },
+    { id: 'mye', num: '★', title: 'MYE Revision' },
   ];
 
   return (

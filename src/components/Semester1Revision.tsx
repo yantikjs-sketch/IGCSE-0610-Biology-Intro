@@ -52,6 +52,7 @@ import { RevisionSummaryModal } from './RevisionSummaryModal';
 import { SpecialisedCellDiagram, AnimalClassificationDiagram } from './BiologyDiagrams';
 import { ORGANS, STAGES } from '../data/digestiveData';
 import { OrganId, FoodType } from '../types/digestive';
+import { MyeRevisionHub } from './MyeRevisionHub';
 
 // 3D Biological Diagrams & Specialised Cell Micrograph Renders
 import plantCell3dImg from '../assets/images/plant_cell_3d_1794529010340.jpg';
@@ -309,7 +310,8 @@ export type Semester1Chapter =
   | 'movement'
   | 'molecules'
   | 'enzymes'
-  | 'digestion';
+  | 'digestion'
+  | 'mye';
 
 interface Semester1RevisionProps {
   initialChapter?: Semester1Chapter;
@@ -549,6 +551,7 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
           { id: 'molecules', title: '4. Biological Molecules', subtitle: 'Nutrients & 5 Food Tests' },
           { id: 'enzymes', title: '5. Enzymes', subtitle: 'Lock & Key, Temp & pH' },
           { id: 'digestion', title: '6. Digestive System', subtitle: 'Alimentary Canal & Villi' },
+          { id: 'mye', title: '★ MYE Revision (1–4)', subtitle: '40 MCQ × 2 & 60-Mark SQ × 2' },
         ].map((tab) => {
           const isActive = activeChapter === tab.id;
           return (
@@ -3133,6 +3136,11 @@ export const Semester1Revision: React.FC<Semester1RevisionProps> = ({
           )}
         </div>
       )}
+
+      {/* ======================================================== */}
+      {/* CHAPTER 7: MYE REVISION HUB (PAPERS 1, 2 & 3)            */}
+      {/* ======================================================== */}
+      {activeChapter === 'mye' && <MyeRevisionHub />}
 
       {/* Revision Summary Sheet Modal */}
       <RevisionSummaryModal
